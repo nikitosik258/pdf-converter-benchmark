@@ -1,0 +1,8 @@
+#! 0-pdf-benchmark-namespace.yaml
+# Generated code, do not edit
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: pdf-benchmark
+    labels:
+        com.docker.compose.project: pdf-benchmark

@@ -1,0 +1,54 @@
+﻿benchmark:
+  seed: 42
+  output_root: outputs/benchmark
+  ground_truth_dir: ground_truth
+  object_manifest: benchmark/object_manifest.json
+  normalization_config: config/normalization.yaml
+  metrics_config: config/metrics.yaml
+  matching_config: config/matching.yaml
+
+  documents:
+    D01:
+      filename: 3619.pdf
+      path_candidates:
+        - documents/3619.pdf
+        - documents/D01/3619.pdf
+        - 3619.pdf
+    D02:
+      filename: 369.pdf
+      path_candidates:
+        - documents/369.pdf
+        - documents/D02/369.pdf
+        - 369.pdf
+    D03:
+      filename: mais702.pdf
+      path_candidates:
+        - documents/mais702.pdf
+        - documents/D03/mais702.pdf
+        - mais702.pdf
+    D04:
+      filename: sjim924.pdf
+      path_candidates:
+        - documents/sjim924.pdf
+        - documents/D04/sjim924.pdf
+        - sjim924.pdf
+    D05:
+      filename: ufn289.pdf
+      path_candidates:
+        - documents/ufn289.pdf
+        - documents/D05/ufn289.pdf
+        - ufn289.pdf
+
+  tools:
+    - pymupdf
+    - pdfplumber
+    - docling
+    - pdfminer
+    - mineru
+    - ocr_space
+    - nutrient
+    - mindee
+    - adobe_extract
+    - llamaparse
+
+

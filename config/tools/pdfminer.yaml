@@ -1,0 +1,14 @@
+tool: pdfminer
+pinned_version: "20260107"
+config:
+  char_margin: 2.0
+  line_margin: 0.5
+  word_margin: 0.1
+  boxes_flow: 0.5
+  detect_vertical: true
+  all_texts: false
+  extract_images: true
+  min_image_width: 8.0
+  min_image_height: 8.0
+  diagram_vector_min_objects: 4
+  resource_sample_interval: 0.1

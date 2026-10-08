@@ -1,0 +1,55 @@
+{
+  "pages": [
+    {
+      "pageNumber": 0,
+      "width": 595,
+      "height": 842
+    }
+  ],
+  "elements": [
+    {
+      "Path": "//Document/H1",
+      "Page": 0,
+      "Bounds": [
+        72,
+        760,
+        400,
+        790
+      ],
+      "Text": "Заголовок"
+    },
+    {
+      "Path": "//Document/P",
+      "Page": 0,
+      "Bounds": [
+        72,
+        700,
+        500,
+        750
+      ],
+      "Text": "Основной технический текст."
+    },
+    {
+      "Path": "//Document/Table",
+      "Page": 0,
+      "Bounds": [
+        72,
+        500,
+        500,
+        680
+      ],
+      "filePaths": []
+    },
+    {
+      "Path": "//Document/Figure",
+      "Page": 0,
+      "Bounds": [
+        72,
+        250,
+        500,
+        450
+      ],
+      "filePaths": []
+    }
+  ]
+}

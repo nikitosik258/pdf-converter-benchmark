@@ -1,0 +1,13 @@
+﻿severity,code,message,tool,document_id,metric,value
+warning,statistical_outlier_iqr,"ocr_space: text_score=59.261231429979 outside [68.14, 108.3]",ocr_space,,text_score,59.261231429979
+warning,statistical_outlier_iqr,"pdfminer: table_score=0.0 outside [11.74, 104.3]",pdfminer,,table_score,0.0
+warning,statistical_outlier_iqr,"mindee: table_score=0.0 outside [11.74, 104.3]",mindee,,table_score,0.0
+warning,statistical_outlier_iqr,"ocr_space: chemistry_score=64.057141039719 outside [0, 0]",ocr_space,,chemistry_score,64.057141039719
+warning,statistical_outlier_iqr,"docling: diagram_score=42.19306332072 outside [0, 0]",docling,,diagram_score,42.19306332072
+warning,statistical_outlier_iqr,"mineru: diagram_score=14.14642778473 outside [0, 0]",mineru,,diagram_score,14.14642778473
+warning,statistical_outlier_iqr,"docling: sec_per_page=72.43632366837059 outside [-2.269, 7.57]",docling,,sec_per_page,72.43632366837059
+warning,statistical_outlier_iqr,"docling: total_processing_time_sec=7098.759719500318 outside [-222.4, 741.8]",docling,,total_processing_time_sec,7098.759719500318
+warning,statistical_outlier_iqr,"docling: peak_ram_mb=10878.44140625 outside [-990, 1905]",docling,,peak_ram_mb,10878.44140625
+warning,statistical_outlier_iqr,"mineru: peak_ram_mb=5791.12890625 outside [-990, 1905]",mineru,,peak_ram_mb,5791.12890625
+warning,statistical_outlier_iqr,"docling: peak_vram_mb=8180.71484375 outside [0, 0]",docling,,peak_vram_mb,8180.71484375
+warning,statistical_outlier_iqr,"mineru: peak_vram_mb=4767.93359375 outside [0, 0]",mineru,,peak_vram_mb,4767.93359375

@@ -1,0 +1,6 @@
+﻿reference,prediction,normalized_reference,normalized_prediction,raw_exact_match,normalized_exact_match,token_precision,token_recall,token_f1,edit_similarity,math_score
+\alpha x,\alphax,\alphax,\alphax,0.0,1.0,1.0,1.0,1.0,1.0,0.95
+x_i,x_{i},x_{i},x_{i},0.0,1.0,1.0,1.0,1.0,1.0,0.95
+x_i y,x_{i} y,x_{i}y,x_{i}y,0.0,1.0,1.0,1.0,1.0,1.0,0.95
+\frac{a}{b},\frac{a}{b}\tag{1},\frac{a}{b},\frac{a}{b}\tag{1},0.0,0.0,0.6363636363636364,1.0,0.7777777777777778,0.6111111111111112,0.43333333333333335
+\alpha x,\alpha{x},\alphax,\alpha{x},0.0,0.0,0.0,0.0,0.0,0.7777777777777778,0.15555555555555556

@@ -1,0 +1,9 @@
+#! app-web-runtime-persistentVolumeClaim.yaml
+# Generated code, do not edit
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: app-web-runtime
+    namespace: pdf-benchmark
+spec:
+    storageClassName: "hostpath" # see docker/desktop-storage-provisioner

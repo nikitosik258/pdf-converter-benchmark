@@ -1,0 +1,13 @@
+normalization:
+  version: "1.0"
+  unicode_form: "NFC"
+
+  # Ordinary text
+  preserve_paragraphs: true
+  normalize_quote_glyphs: true
+
+  # IMPORTANT:
+  # A visible line-end "-" may be a true lexical hyphen.
+  # It is removed only when the joined word is explicitly listed here after
+  # Ground Truth review. Empty by default, so normalization cannot hide errors.
+  visible_hyphen_join_lexicon: []

@@ -1,0 +1,13 @@
+# Frozen benchmark versions. Do NOT install this file as one environment:
+# Marker 2.0.0 and MinerU 4.0.0 have incompatible Pillow constraints.
+
+# Main/core environment (.venv)
+PyMuPDF==1.28.2
+pdfplumber==0.11.10
+docling==2.130.0
+
+# Isolated environment (.venv-marker)
+marker-pdf==2.0.0
+
+# Isolated environment (.venv-mineru)
+mineru==4.0.0

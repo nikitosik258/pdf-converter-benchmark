@@ -1,0 +1,11 @@
+{
+  "project": "PDF extraction benchmark",
+  "handoff_version": "1.0",
+  "final_prompt12_experiment": "20260930T193224Z_s42_704070d5",
+  "files": [
+    "CODEX_CONTEXT.md",
+    "AGENTS.md",
+    "FIRST_CODEX_PROMPT.md",
+    "README.md"
+  ]
+}

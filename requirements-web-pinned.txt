@@ -1,0 +1,16 @@
+# Direct, frozen application dependencies for the CPU web image.
+# Transitive packages are resolved by pip during `docker build`; the exact
+# adapter versions are also declared in pyproject.toml and requirements-*-pinned.
+fastapi==0.142.2
+uvicorn[standard]==0.54.0
+python-multipart==0.0.32
+pydantic==2.13.5
+pydantic-settings==2.15.0
+PyMuPDF==1.28.2
+pdfplumber==0.11.10
+pdfminer.six==20260107
+psutil==7.2.2
+beautifulsoup4==4.15.0
+lxml==6.1.3
+PyYAML==6.0.3
+nvidia-ml-py==13.615.71

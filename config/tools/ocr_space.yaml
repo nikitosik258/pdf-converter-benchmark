@@ -1,0 +1,12 @@
+mock: false
+endpoint: https://api.ocr.space/parse/image
+ocr_engine: 3
+language: auto
+is_table: true
+overlay: true
+pages_per_request: 3
+max_file_bytes: 1000000
+request_timeout_seconds: 180
+max_attempts: 4
+retry_base_seconds: 2.0
+retry_max_seconds: 30.0

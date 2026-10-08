@@ -1,0 +1,5 @@
+.env
+.venv-cloud/
+**/*service-account*.json
+**/*credentials*.json
+outputs/cloud/

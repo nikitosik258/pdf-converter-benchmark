@@ -1,0 +1,25 @@
+# Send only application sources necessary for the runtime image.
+**
+!pyproject.toml
+!requirements-web-pinned.txt
+!src/
+!src/**
+!scripts/
+!scripts/benchmark_worker.py
+!config/
+!config/**
+!Dockerfile
+!Dockerfile.gpu
+!compose.yaml
+!compose.gpu.yaml
+!deploy/
+!deploy/Caddyfile
+
+# Explicitly preserve the security boundary even if an allow-list changes.
+.env
+deploy/.env.server
+documents/
+ground_truth/
+benchmark/
+outputs/
+.venv*/

@@ -1,0 +1,26 @@
+{
+	# Caddy obtains and renews certificates automatically for APP_DOMAIN.
+	email {$ACME_EMAIL:admin@example.invalid}
+}
+
+{$APP_DOMAIN} {
+	encode zstd gzip
+
+	request_body {
+		max_size 100MB
+	}
+
+	header {
+		X-Content-Type-Options nosniff
+		X-Frame-Options SAMEORIGIN
+		Referrer-Policy no-referrer
+	}
+
+	reverse_proxy app:8000 {
+		flush_interval -1
+		transport http {
+			read_timeout 7300s
+			write_timeout 7300s
+		}
+	}
+}

@@ -1,0 +1,246 @@
+{
+  "schema_version": "1.0",
+  "object_count": 40,
+  "objects": [
+    {
+      "object_id": "TXT_001",
+      "document_id": "D01",
+      "page": 15,
+      "object_type": "text"
+    },
+    {
+      "object_id": "TXT_002",
+      "document_id": "D01",
+      "page": 27,
+      "object_type": "text"
+    },
+    {
+      "object_id": "TAB_001",
+      "document_id": "D01",
+      "page": 4,
+      "object_type": "table"
+    },
+    {
+      "object_id": "TAB_002",
+      "document_id": "D01",
+      "page": 8,
+      "object_type": "table"
+    },
+    {
+      "object_id": "MATH_001",
+      "document_id": "D01",
+      "page": 17,
+      "object_type": "math_formula"
+    },
+    {
+      "object_id": "IMG_001",
+      "document_id": "D01",
+      "page": 8,
+      "object_type": "image"
+    },
+    {
+      "object_id": "IMG_002",
+      "document_id": "D01",
+      "page": 9,
+      "object_type": "image"
+    },
+    {
+      "object_id": "IMG_003",
+      "document_id": "D01",
+      "page": 27,
+      "object_type": "image"
+    },
+    {
+      "object_id": "DIA_001",
+      "document_id": "D01",
+      "page": 9,
+      "object_type": "diagram"
+    },
+    {
+      "object_id": "DIA_002",
+      "document_id": "D01",
+      "page": 39,
+      "object_type": "diagram"
+    },
+    {
+      "object_id": "TXT_003",
+      "document_id": "D02",
+      "page": 3,
+      "object_type": "text"
+    },
+    {
+      "object_id": "TXT_004",
+      "document_id": "D02",
+      "page": 5,
+      "object_type": "text"
+    },
+    {
+      "object_id": "TAB_003",
+      "document_id": "D02",
+      "page": 2,
+      "object_type": "table"
+    },
+    {
+      "object_id": "TAB_004",
+      "document_id": "D02",
+      "page": 5,
+      "object_type": "table"
+    },
+    {
+      "object_id": "CHEM_001",
+      "document_id": "D02",
+      "page": 3,
+      "object_type": "chemical_formula"
+    },
+    {
+      "object_id": "CHEM_002",
+      "document_id": "D02",
+      "page": 3,
+      "object_type": "chemical_formula"
+    },
+    {
+      "object_id": "CHEM_003",
+      "document_id": "D02",
+      "page": 2,
+      "object_type": "chemical_structure"
+    },
+    {
+      "object_id": "CHEM_004",
+      "document_id": "D02",
+      "page": 2,
+      "object_type": "chemical_structure"
+    },
+    {
+      "object_id": "CHEM_005",
+      "document_id": "D02",
+      "page": 2,
+      "object_type": "chemical_structure"
+    },
+    {
+      "object_id": "CHEM_006",
+      "document_id": "D02",
+      "page": 2,
+      "object_type": "chemical_structure"
+    },
+    {
+      "object_id": "DIA_003",
+      "document_id": "D02",
+      "page": 4,
+      "object_type": "diagram"
+    },
+    {
+      "object_id": "TXT_005",
+      "document_id": "D03",
+      "page": 2,
+      "object_type": "text"
+    },
+    {
+      "object_id": "TXT_006",
+      "document_id": "D03",
+      "page": 7,
+      "object_type": "text"
+    },
+    {
+      "object_id": "TAB_005",
+      "document_id": "D03",
+      "page": 6,
+      "object_type": "table"
+    },
+    {
+      "object_id": "DIA_004",
+      "document_id": "D03",
+      "page": 5,
+      "object_type": "diagram"
+    },
+    {
+      "object_id": "DIA_005",
+      "document_id": "D03",
+      "page": 9,
+      "object_type": "diagram"
+    },
+    {
+      "object_id": "TXT_007",
+      "document_id": "D04",
+      "page": 7,
+      "object_type": "text"
+    },
+    {
+      "object_id": "TXT_008",
+      "document_id": "D04",
+      "page": 9,
+      "object_type": "text"
+    },
+    {
+      "object_id": "TAB_006",
+      "document_id": "D04",
+      "page": 8,
+      "object_type": "table"
+    },
+    {
+      "object_id": "MATH_002",
+      "document_id": "D04",
+      "page": 1,
+      "object_type": "math_formula"
+    },
+    {
+      "object_id": "MATH_003",
+      "document_id": "D04",
+      "page": 2,
+      "object_type": "math_formula"
+    },
+    {
+      "object_id": "MATH_004",
+      "document_id": "D04",
+      "page": 3,
+      "object_type": "math_formula"
+    },
+    {
+      "object_id": "MATH_005",
+      "document_id": "D04",
+      "page": 6,
+      "object_type": "math_formula"
+    },
+    {
+      "object_id": "DIA_006",
+      "document_id": "D04",
+      "page": 10,
+      "object_type": "diagram"
+    },
+    {
+      "object_id": "TXT_009",
+      "document_id": "D05",
+      "page": 10,
+      "object_type": "text"
+    },
+    {
+      "object_id": "TAB_007",
+      "document_id": "D05",
+      "page": 21,
+      "object_type": "table"
+    },
+    {
+      "object_id": "MATH_006",
+      "document_id": "D05",
+      "page": 19,
+      "object_type": "math_formula"
+    },
+    {
+      "object_id": "IMG_004",
+      "document_id": "D05",
+      "page": 2,
+      "object_type": "image"
+    },
+    {
+      "object_id": "IMG_005",
+      "document_id": "D05",
+      "page": 2,
+      "object_type": "image"
+    },
+    {
+      "object_id": "DIA_007",
+      "document_id": "D05",
+      "page": 8,
+      "object_type": "diagram"
+    }
+  ]
+}

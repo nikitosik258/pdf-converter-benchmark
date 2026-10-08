@@ -1,0 +1,9 @@
+tool: pdfplumber
+pinned_version: "0.11.10"
+config:
+  x_tolerance: 3
+  y_tolerance: 3
+  use_text_flow: false
+  find_tables: true
+  table_settings: {}
+  resource_sample_interval: 0.1

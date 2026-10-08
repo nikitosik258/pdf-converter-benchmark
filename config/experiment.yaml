@@ -1,0 +1,25 @@
+experiment:
+  expected_total_pages: 98
+  expected_pair_count: 50
+  expected_object_count_per_tool: 40
+  expected_tool_count: 10
+  expected_document_count: 5
+
+  expected_pages:
+    D01: 43
+    D02: 7
+    D03: 14
+    D04: 12
+    D05: 22
+
+  expected_objects:
+    D01: 10
+    D02: 11
+    D03: 5
+    D04: 8
+    D05: 6
+
+  require_bbox_all_gt_objects: true
+  stop_if_preflight_fails: true
+  stop_after_corrupt_tool: false
+  outlier_iqr_multiplier: 1.5

@@ -1,0 +1,13 @@
+﻿left,right,category,n_documents,delta,ci95_low,ci95_high,scope
+local,cloud,text,5,1.9013984717885024,-1.6579389057454363,5.460735849322441,fixed_tools_resampled_documents
+local,cloud,table,5,-4.196340895038299,-14.996744318921245,3.3657520349042187,fixed_tools_resampled_documents
+local,cloud,math,3,4.098347411718492,2.661489189700088,6.584524401656343,fixed_tools_resampled_documents
+local,cloud,chemistry,1,6.394392875113482,,,fixed_tools_resampled_documents
+local,cloud,image,2,33.7209814129926,22.212845698470062,45.22911712751514,fixed_tools_resampled_documents
+local,cloud,diagram,5,11.267898221089926,8.701471333426362,13.356072346838493,fixed_tools_resampled_documents
+ml_local,classic_local,text,5,-0.1147904832006816,-7.122967032497357,8.760486443463265,fixed_tools_resampled_documents
+ml_local,classic_local,table,5,36.56975041728611,22.587021071355387,51.927369506982856,fixed_tools_resampled_documents
+ml_local,classic_local,math,3,42.15002346714651,30.57175868697797,53.37805779054352,fixed_tools_resampled_documents
+ml_local,classic_local,chemistry,1,-18.780862605197882,,,fixed_tools_resampled_documents
+ml_local,classic_local,image,2,12.504012610772355,-0.8807374992609311,25.88876272080564,fixed_tools_resampled_documents
+ml_local,classic_local,diagram,5,28.169745552724816,21.753678333565905,33.390180867096234,fixed_tools_resampled_documents

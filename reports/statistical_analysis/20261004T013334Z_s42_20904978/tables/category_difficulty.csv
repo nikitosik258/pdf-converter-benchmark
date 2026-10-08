@@ -1,0 +1,7 @@
+﻿category,mean_across_fixed_tools,median_across_fixed_tools,tools_with_nonzero_score,matched_object_evaluations,object_evaluations,best_score,top_tools_at_0_01_precision,n_gt_objects,n_documents
+text,87.1829536688763,92.10428360824051,10,89,90,99.98282967033,pymupdf,9,5
+table,48.7333519075116,57.1463495914275,8,49,70,71.442137576025,mineru,7,5
+math,14.8108356809994,0.0,4,23,60,48.022163052725,mineru,6,3
+chemistry,68.49309587411081,70.142752873594,10,60,60,82.587548791528,pdfminer,6,1
+image,36.6573348627877,45.622140478807,7,29,50,75.014180343584,mineru,5,2
+diagram,5.633949110545,0.0,2,10,70,42.19306332072,docling,7,5

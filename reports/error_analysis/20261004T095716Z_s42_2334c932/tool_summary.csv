@@ -1,0 +1,11 @@
+﻿tool,tool_name,examples,categories,unmatched
+pymupdf,PyMuPDF,6,"Text, Tables, Math, Chemistry, Images, Diagrams",3
+pdfplumber,pdfplumber,6,"Text, Tables, Math, Chemistry, Images, Diagrams",3
+docling,Docling,6,"Text, Tables, Math, Chemistry, Images, Diagrams",1
+pdfminer,pdfminer.six,6,"Text, Tables, Math, Chemistry, Images, Diagrams",3
+mineru,MinerU,6,"Text, Tables, Math, Chemistry, Images, Diagrams",1
+ocr_space,OCR.Space,6,"Text, Tables, Math, Chemistry, Images, Diagrams",4
+nutrient,Nutrient,6,"Text, Tables, Math, Chemistry, Images, Diagrams",1
+mindee,Mindee,6,"Text, Tables, Math, Chemistry, Images, Diagrams",3
+adobe_extract,Adobe Extract,6,"Text, Tables, Math, Chemistry, Images, Diagrams",4
+llamaparse,LlamaParse,6,"Text, Tables, Math, Chemistry, Images, Diagrams",2

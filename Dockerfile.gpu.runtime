@@ -1,0 +1,11 @@
+# Fast local runtime layer over the already built GPU image.  Source changes do
+# not force a second download of the multi-gigabyte Docling/MinerU stack.
+FROM pdf-benchmark-web:gpu
+
+USER root
+COPY src /opt/pdf-benchmark/src
+COPY scripts/benchmark_worker.py /opt/pdf-benchmark/scripts/benchmark_worker.py
+RUN chown -R app:app /opt/pdf-benchmark/src /opt/pdf-benchmark/scripts/benchmark_worker.py \
+    && chown -R app:app /opt/pdf-benchmark/.venv/lib/python3.12/site-packages/rapidocr/models
+ENV PYTHONPATH=/opt/pdf-benchmark/src
+USER app

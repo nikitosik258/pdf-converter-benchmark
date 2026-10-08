@@ -1,0 +1,282 @@
+[
+  {
+    "source_document": "D01",
+    "source_picture": "#/pictures/1",
+    "meta": {
+      "classification": {
+        "predictions": [
+          {
+            "confidence": 0.9468718767166138,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "photograph"
+          },
+          {
+            "confidence": 0.011253425851464272,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "engineering_drawing"
+          },
+          {
+            "confidence": 0.0069239819422364235,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "icon"
+          },
+          {
+            "confidence": 0.006635475903749466,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "screenshot_from_manual"
+          },
+          {
+            "confidence": 0.006404338404536247,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "logo"
+          },
+          {
+            "confidence": 0.0055213505402207375,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "full_page_image"
+          },
+          {
+            "confidence": 0.005437876097857952,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "screenshot_from_computer"
+          },
+          {
+            "confidence": 0.0023365195374935865,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "music"
+          },
+          {
+            "confidence": 0.002314905636012554,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "other"
+          },
+          {
+            "confidence": 0.001574489288032055,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "bar_code"
+          },
+          {
+            "confidence": 0.0012090024538338184,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "stamp"
+          },
+          {
+            "confidence": 0.001010970794595778,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "table"
+          },
+          {
+            "confidence": 0.0008198826690204442,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "page_thumbnail"
+          },
+          {
+            "confidence": 0.0006000904832035303,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "flow_chart"
+          },
+          {
+            "confidence": 0.0002449402236379683,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "signature"
+          },
+          {
+            "confidence": 0.0001918416965054348,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "calendar"
+          },
+          {
+            "confidence": 0.0001893863664008677,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "qr_code"
+          },
+          {
+            "confidence": 0.00014997718972153962,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "geographical_map"
+          },
+          {
+            "confidence": 8.796581823844463e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "chemistry_structure"
+          },
+          {
+            "confidence": 7.402880873996764e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "line_chart"
+          },
+          {
+            "confidence": 6.063331966288388e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "bar_chart"
+          },
+          {
+            "confidence": 3.1565086828777567e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "crossword_puzzle"
+          },
+          {
+            "confidence": 2.702746496652253e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "scatter_plot"
+          },
+          {
+            "confidence": 2.2462010747403838e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "pie_chart"
+          },
+          {
+            "confidence": 2.9596048989333212e-06,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "box_plot"
+          },
+          {
+            "confidence": 2.9197124149504816e-06,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "topographical_map"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source_document": "D03",
+    "source_picture": "#/pictures/0",
+    "meta": {
+      "classification": {
+        "predictions": [
+          {
+            "confidence": 0.9954903721809387,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "logo"
+          },
+          {
+            "confidence": 0.0008057602099142969,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "line_chart"
+          },
+          {
+            "confidence": 0.0005814454052597284,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "other"
+          },
+          {
+            "confidence": 0.0005254735006019473,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "page_thumbnail"
+          },
+          {
+            "confidence": 0.000450570514658466,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "icon"
+          },
+          {
+            "confidence": 0.00039986384217627347,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "engineering_drawing"
+          },
+          {
+            "confidence": 0.0003043914621230215,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "flow_chart"
+          },
+          {
+            "confidence": 0.00028137920890003443,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "table"
+          },
+          {
+            "confidence": 0.0002537296968512237,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "calendar"
+          },
+          {
+            "confidence": 0.00024240378115791827,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "full_page_image"
+          },
+          {
+            "confidence": 0.0002129364584106952,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "screenshot_from_manual"
+          },
+          {
+            "confidence": 0.0001812985574360937,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "stamp"
+          },
+          {
+            "confidence": 7.434732833644375e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "screenshot_from_computer"
+          },
+          {
+            "confidence": 4.738322240882553e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "geographical_map"
+          },
+          {
+            "confidence": 3.426752664381638e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "chemistry_structure"
+          },
+          {
+            "confidence": 2.5640532840043306e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "crossword_puzzle"
+          },
+          {
+            "confidence": 2.2488757167593576e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "bar_chart"
+          },
+          {
+            "confidence": 1.537419120722916e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "scatter_plot"
+          },
+          {
+            "confidence": 1.345734199276194e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "signature"
+          },
+          {
+            "confidence": 1.1928254025406204e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "qr_code"
+          },
+          {
+            "confidence": 1.0451244634168688e-05,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "pie_chart"
+          },
+          {
+            "confidence": 9.74646354734432e-06,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "music"
+          },
+          {
+            "confidence": 4.357932084531058e-06,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "photograph"
+          },
+          {
+            "confidence": 6.855214564893686e-07,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "bar_code"
+          },
+          {
+            "confidence": 1.478739903859605e-07,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "topographical_map"
+          },
+          {
+            "confidence": 1.0084304591373439e-07,
+            "created_by": "DocumentPictureClassifier",
+            "class_name": "box_plot"
+          }
+        ]
+      }
+    }
+  }
+]

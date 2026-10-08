@@ -1,0 +1,82 @@
+{
+  "pymupdf": {
+    "text_blocks": 8056,
+    "tables": 26,
+    "formulas": 0,
+    "chemical_objects": 0,
+    "images": 630,
+    "diagrams": 0
+  },
+  "pdfplumber": {
+    "text_blocks": 32525,
+    "tables": 25,
+    "formulas": 0,
+    "chemical_objects": 0,
+    "images": 630,
+    "diagrams": 0
+  },
+  "docling": {
+    "text_blocks": 1095,
+    "tables": 34,
+    "formulas": 150,
+    "chemical_objects": 0,
+    "images": 6,
+    "diagrams": 41
+  },
+  "pdfminer": {
+    "text_blocks": 73001,
+    "tables": 0,
+    "formulas": 0,
+    "chemical_objects": 0,
+    "images": 54,
+    "diagrams": 0
+  },
+  "mineru": {
+    "text_blocks": 1135,
+    "tables": 34,
+    "formulas": 134,
+    "chemical_objects": 0,
+    "images": 32,
+    "diagrams": 23
+  },
+  "ocr_space": {
+    "text_blocks": 98,
+    "tables": 24,
+    "formulas": 0,
+    "chemical_objects": 0,
+    "images": 0,
+    "diagrams": 0
+  },
+  "nutrient": {
+    "text_blocks": 1271,
+    "tables": 34,
+    "formulas": 140,
+    "chemical_objects": 0,
+    "images": 52,
+    "diagrams": 0
+  },
+  "mindee": {
+    "text_blocks": 35674,
+    "tables": 0,
+    "formulas": 0,
+    "chemical_objects": 0,
+    "images": 0,
+    "diagrams": 0
+  },
+  "adobe_extract": {
+    "text_blocks": 2172,
+    "tables": 29,
+    "formulas": 0,
+    "chemical_objects": 0,
+    "images": 487,
+    "diagrams": 0
+  },
+  "llamaparse": {
+    "text_blocks": 1218,
+    "tables": 58,
+    "formulas": 1083,
+    "chemical_objects": 0,
+    "images": 1,
+    "diagrams": 0
+  }
+}

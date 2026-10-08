@@ -1,0 +1,48 @@
+﻿document_id,id,top_class,confidence,class_candidates,standardized_as_diagram,native_child_texts,baseline_diagram_texts,native_text_sample
+D01,#/pictures/0,engineering_drawing,0.64361971616745,26,True,27,0,Rx | U0 | ИН | 9 Хд 9 | Б | U1 | Uz | 0 | 10 | Rzo | 100 | 0 0 | 0 | 1 Оm | 0 ID0 | oRз | 0.001 | R1 | Оm | 010nu0 0 | I1 | ) 0 0 | успокоение 10 кОm | точно | успокоение 51 Оm | 12 | грубо
+D01,#/pictures/1,photograph,0.9468718767166138,26,True,23,0,"SENSE | HI | SOURCE | Lo | TEMР | EURSDR | RECALL | #""BLLE | EPIBIFS232 | EDIP | REL | LULAL | LO | POKER | RANGE | 4 | | л 0 | HANDLER | SEAN | HIGH | Law | ENTEР | SHIFT"
+D01,#/pictures/2,photograph,0.791163980960846,26,True,0,0,
+D01,#/pictures/3,engineering_drawing,0.9938663840293884,26,True,12,0,Ia | Ia | Псточнк | Псточнк | напряжения | Uв | Rx | напряжения | Rx | Rper | Rper | Uв
+D01,#/pictures/4,engineering_drawing,0.8397727012634277,26,True,14,0,а) | Средство измерения | Средство измерения | лш | АЦП | АЦП | Rx | Rx | Стабилизатор| | Стабилизатор | тока | токa | Io | In
+D01,#/pictures/5,engineering_drawing,0.9187144637107849,26,True,39,0,От | генератора | 16 | 19+ Eo | ~0 8 | 220 В | 100 | 50 Гц | КОм | 100 | Ом | Ишитация | пиний | связи | 5 | 1кОм | 3 | Uпп | 1кОм | 10 | НП | 1кОм | 11 | 300 | 300 | 2 оэ | Ом | кОм | Б | 13 | 14 | 15 | К | Ишитация | объекта | изшерений | Ru | Ru | Uпд
+D01,#/pictures/6,engineering_drawing,0.7327291965484619,26,True,10,0,Вольтнетр универсальный цифровой В7-23 | ЗАПЧЕК | D.l | 1D | IDD | BКЛ | нт | 1D | IUUD дBT | ДЧ БЛОК СЕТЬ
+D01,#/pictures/7,engineering_drawing,0.9993627667427063,26,True,4,0,R | Б | Ru | Rв
+D01,#/pictures/8,engineering_drawing,0.908589780330658,26,True,10,0,Поперечная | поmеха | Uпп} | ОВП | Сединительные провода | НП | Продопьная | пошеха | К | Uпд
+D01,#/pictures/9,engineering_drawing,0.9822589159011841,26,True,47,0,Ri | Ux | НП | 12 | 3 | Uвх | НП | Цв | Корпус | Внушреннцй экран | Ri | 12 | 12 | НП | Rиз | НП | К | ЦВ | Внушреннцй экран | R | Ri | 12 | Ux | 12 | U | НП | BX | 3 | Rиз | К | НП | ЦВ | Kopnус | Внушреннцй экран | Rвx] | Uпa | Rвx | Rex | Uвx | Rиз | Uпa | Rвx | Rвx} | Ruз | <э | Rыз] | Rыз
+D01,#/pictures/10,engineering_drawing,0.7968748211860657,26,True,25,0,а ) | ЦВ | ЦВ | ЦВ | 1 кОш | 1 кОш | 1 кОm | ВП | ВП | ВП | Ux | 1кОш | Ux | 1 кОш | Ux | 1 кОш | НП | НП | НП | 3 | 3 | кОш | К | К | К
+D01,#/pictures/11,engineering_drawing,0.9980875849723816,26,True,9,0,"ЦВ | 1 кОш | 2 | ВП | 1Ош | НП | 6,13 | 3 | К"
+D02,#/pictures/0,line_chart,0.9055657982826233,26,True,5,0,04 | 5 | nn | 124 | =
+D03,#/pictures/0,logo,0.9954903721809387,26,True,1,0,Modeling and Analysis
+D03,#/pictures/1,logo,0.999455988407135,26,True,2,0,Modeling and Analysis | of Informatian Systems
+D03,#/pictures/2,bar_chart,0.992421567440033,26,True,20,0,143346.0 | 140000 | 1O0000 | 1 | 80000 | # | 40000 | 20000 | 15294.0 | 8449.0 | 7877 0 | 1595.0 | 478.0 | 1405.0 | toxic | cbscene | treat | insult | identity_hate | dean
+D03,#/pictures/3,bar_chart,0.9960106611251831,26,True,10,0,I20000 | 100000 | 80OOO | 40000 | 20000 | 1000 | 2000 | 3000 | 4000 | 5000
+D03,#/pictures/4,bar_chart,0.996345579624176,26,True,18,0,143346 | 140000 | 120000 | 100000 | 1 | 80000 | '5 | # | 40000 | 20000 | 6360 | 4209 | 3480 | 1760 | 385 | 31 | 3 | 5
+D03,#/pictures/5,bar_chart,0.7042230367660522,26,True,66,0,toxic | 1 | 0.31 | 0.68 | 0.16 | 0.65 | 0.26 | -0.97 | 0.8 | severe toxic | 0.31 | 1 | 0.4 | 0.13 | 0.38 | 0.19 | -0.3 | 0.4 | obscene | 0.68 | 0.4 | 1 | 0.15 | 0.74 | 0.29 | -0.7 | treat | 0.16 | 0.13 | 0.15 | 1 | 0.16 | 0.12 | ~0.17 | 0.0 | insult | 0.65 | 0.38 | 0.74 | 0.16 | 1 | 0.33 | -0.68 | ~0.4 | identity_hate | 0.26 | 0.19 | 0.29 | 0.12 | 0.33 | 1 | -0.27 | none | -0.97 | 0.3 | -0.7 | -0.
+D03,#/pictures/6,line_chart,0.8830966353416443,26,True,11,0,dean | 200 | False | True | 150 | 3 | 100 | 50 | cunt word | cunt unique word | Feature
+D03,#/pictures/7,line_chart,0.882205605506897,26,True,16,0,Bad | Clean | 0.06 | 0.05 | 1 | 0.03 | 0.02 | 001 | 0.00 | 20 | 40 | 80 | 100 | Percent | words | unique
+D03,#/pictures/8,flow_chart,0.9942324757575989,26,True,71,0,"input: | (None, None) | input | 1: InputLayer | output: | (None, None) | input: | (None; None) | embedding | Embedding | output: | (None, 220,300) | input: | (None, 220,300) | spatial_dropoutld_1: SpatialDropoutlD | output: | (None, 220, 300) | input: | (None, 220,300) | bidirectional | 1(gru_1): Bidirectional(GRU) | output: | (None, 220,256) | input: | (None, 220,256) | bidirectional_2(lstm_1): B"
+D03,#/pictures/9,flow_chart,0.8222324848175049,26,True,76,0,"input: | (None, None) | input_1: InputLayer | output: | (None, None) | input: | (None | None) | embedding_1 : Embedding | output: | (None, 220,300) | input: | (None, 220,300) | spatial_dropoutld_1: SpatialDropoutlD | output: | (None, 220,300) | input: | (None, 220,300) | bidirectional | l(cu_dnngru_1): Bidirectional(CuDNNGRU) | output: | (None, 220,512) | input: | (None, 220,512) | spatial_dropout"
+D03,#/pictures/10,flow_chart,0.9271146059036255,26,True,127,0,"input; | (None | None) | input | 1: InputLayer | output: | (None | None) | input: | (None, None) | embedding_1: Embedding | output: | (None, 400,300) | input: | (None | 400 | 300) | spatial_dropoutld_1: SpatialDropoutID | output: | (None | 400,300) | input: | (None | 400 | 300) | bidirectional | 1 (cu_dnngru_1): Bidirectional(CuDNNGRU) | output: | (None | 400,512) | input: | (None | 400,512) | spa"
+D04,#/pictures/0,flow_chart,0.8366159796714783,26,True,0,0,
+D04,#/pictures/1,line_chart,0.8993802070617676,26,True,1,0,+0 8
+D04,#/pictures/2,bar_chart,0.9907163977622986,26,True,103,0,"25,00cа | 25 00a6 | 20,00J | 10,009t | 10,0096 | 5,0096 | g | g | g | 5 | g | g | 8 | g | g | g | g | 5 | 8 | 8 | 8 | g | g | g | g | 5 | 5 | 5 | g | g | g | g | $ | 5 | g | 8 | 25 00nc | 20,009 | 15,0096 | g | g | g | g | g | g | g | g | g | g | g | g | g | g | g | g | : | 5 | g | g | g | g | : | 5 | : | 8 | 2 | 5 | 25,00%6 | 25,00% | 20,00c6 | 15,0056 | 0096 | g | g | g | g | 5 | 5 | g | € | g |"
+D05,#/pictures/0,other,0.6158573031425476,26,True,0,0,
+D05,#/pictures/1,engineering_drawing,0.22947752475738525,26,True,0,0,
+D05,#/pictures/2,engineering_drawing,0.7791509628295898,26,True,3,0,710 | Еlоc | /
+D05,#/pictures/3,line_chart,0.9780856370925903,26,True,1,0,Es
+D05,#/pictures/4,line_chart,0.9955653548240662,26,True,0,0,
+D05,#/pictures/5,line_chart,0.9942927360534668,26,True,0,0,
+D05,#/pictures/6,engineering_drawing,0.9991565942764282,26,True,2,0,Rш | Rш
+D05,#/pictures/7,engineering_drawing,0.9989041090011597,26,True,2,0,Rш | Rv
+D05,#/pictures/8,line_chart,0.9714815616607666,26,True,14,0,"Cd2+ | 0,2 | -0.4 | 0,6 | ^ 7 | Р Ь 2 + | / - | i | /\ | / 1 | •-i | i l | i i | 2"
+D05,#/pictures/9,engineering_drawing,0.9207621216773987,26,True,15,0,Жидкость | Оксид | 3 _ 5 нм | Проводник | • | • | • | о | о | X X X X | А 1 | • 2 | о-о 3 | X 4 | О 5
+D05,#/pictures/10,engineering_drawing,0.9657720327377319,26,True,2,0,Е | M
+D05,#/pictures/11,line_chart,0.9903340935707092,26,True,5,0,25 | 20 | 15 | 10 | 10
+D05,#/pictures/12,line_chart,0.7148726582527161,26,True,19,0,"1 _ | Cu; Fe; J_ | 2_Fc; J+ | 25 | Cu; J+ | начало | неустойчивости | 20 | 15 | Игла | 10 | d= 6 мм | D = 5 мм | 2,68 | 3,83 | 5,00 | 6,13 | U, кВ | / , мкА"
+D05,#/pictures/13,line_chart,0.9872053861618042,26,True,15,0,"Кристалл | Оксидный слой | Внешнее | р-кремния | электрическое | поле | 0,4 | 0,2 | Толщина слоя | HM | : | 0 | 2 | 4 | 6"
+D05,#/pictures/14,line_chart,0.6743549108505249,26,True,8,0,Катод | Катод | Еc | Elоc | Ev | £ F | ^ 1 | i s
+D05,#/pictures/15,line_chart,0.6697700023651123,26,True,0,0,
+D05,#/pictures/16,line_chart,0.9412828087806702,26,True,5,0,j(0) | jd* | E1 | tel | 7(0
+D05,#/pictures/17,logo,0.6687427759170532,26,True,0,0,
+D05,#/pictures/18,engineering_drawing,0.4434328079223633,26,True,0,0,
+D05,#/pictures/19,line_chart,0.9943284392356873,26,True,8,0,10 | 14 | _13 | _12 | -10 | log | log 6 | - 11

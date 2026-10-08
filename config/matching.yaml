@@ -1,0 +1,16 @@
+matching:
+  # Primary spatial matching threshold for objects that have bbox.
+  spatial_min_iou: 0.10
+
+  # Fallback only for text/formula/table objects when bbox is unavailable.
+  content_min_similarity: 0.25
+
+  # Text blocks can be lines, paragraphs, or whole-page OCR results depending
+  # on the parser. Use intersection-over-smaller rather than IoU to collect
+  # blocks belonging to one GT text region before scoring the concatenated text.
+  text_multiblock_min_overlap: 0.50
+
+  # GT visual objects are a selected sample, not exhaustive page annotation.
+  # Extra candidates are diagnostic only; required GT misses already receive
+  # object_score=0 and therefore encode recall without a second page penalty.
+  visual_detection_policy: sampled_gt_recall_v1

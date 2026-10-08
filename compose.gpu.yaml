@@ -1,0 +1,24 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.gpu.runtime
+    image: pdf-benchmark-web:gpu-runtime
+    environment:
+      PDF_BENCHMARK_WEB_EXECUTOR_WORKERS: "1"
+      PDF_BENCHMARK_WEB_ADAPTER_TIMEOUT_SECONDS: "7200"
+      HF_HOME: /home/app/.cache/huggingface
+    volumes:
+      - web-runtime:/var/lib/pdf-benchmark/runtime
+      - model-cache:/home/app/.cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  web-runtime:
+  model-cache:

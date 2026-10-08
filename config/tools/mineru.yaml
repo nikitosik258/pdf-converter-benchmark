@@ -1,0 +1,7 @@
+tool: mineru
+pinned_version: "4.0.0"
+config:
+  tier: standard
+  ocr_mode: auto
+  page_range: all
+  resource_sample_interval: 0.2

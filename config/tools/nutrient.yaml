@@ -1,0 +1,5 @@
+mock: false
+mode: understand
+free_credits_per_month: 5000
+assume_free_quota_available: true
+resource_sample_interval: 0.1

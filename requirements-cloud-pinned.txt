@@ -1,0 +1,7 @@
+PyMuPDF==1.28.2
+requests==2.32.5
+python-dotenv==1.2.3
+google-cloud-vision==3.15.0
+mindee==5.3.1
+pdfservices-sdk==4.2.0
+azure-ai-documentintelligence==1.0.2

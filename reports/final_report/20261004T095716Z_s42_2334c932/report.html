@@ -1,0 +1,925 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Сравнительное исследование средств анализа PDF и преобразования в текст</title><style>
+:root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#1c3345;font:16px/1.62 system-ui,Segoe UI,sans-serif}header{background:#15394a;color:#fff;padding:48px max(24px,calc((100vw - 1250px)/2));border-bottom:6px solid #2eb7ac}header h1{max-width:1050px;font-size:35px;line-height:1.2;margin:0 0 12px}header p{color:#d5e4e9;margin:0}main{max-width:1280px;margin:24px auto;padding:38px;background:#fff;border:1px solid #dae3e8;border-radius:12px}nav{display:flex;flex-wrap:wrap;gap:8px 18px;padding:18px;background:#edf5f6;border-radius:8px;font-size:13px}nav a{width:calc(25% - 18px)}a{color:#116c7d;text-underline-offset:3px}h2{margin:52px 0 18px;padding-bottom:10px;border-bottom:1px solid #d8e2e7;font-size:26px}h3{margin-top:34px}p,li{max-width:1120px}.table-wrap{overflow:auto;margin:20px 0 30px}table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.4}caption{text-align:left;font-weight:700;padding:0 0 10px}th,td{padding:9px 10px;border-bottom:1px solid #dbe4e8;vertical-align:top;text-align:left}th{background:#eaf1f4;white-space:nowrap}tbody tr:nth-child(even){background:#f7f9fa}figure{margin:28px 0 42px;padding:14px;border:1px solid #dfe7eb;border-radius:8px}figure img{display:block;width:100%;height:auto}figcaption{font-size:13px;color:#536779;margin-top:12px}.formula{margin:18px 0;padding:16px;background:#f4f7f8;border-left:4px solid #2eb7ac;overflow:auto}.formula code{font-size:15px;white-space:pre-wrap}.example{margin:14px 0;border:1px solid #dbe4e8;border-radius:8px;background:#fbfcfc}.example summary{padding:14px 16px;font-weight:700;cursor:pointer}.example>div,.example>p,.example>h4,.example>pre{margin-left:16px;margin-right:16px}.example-grid{display:grid;grid-template-columns:minmax(260px,40%) 1fr;gap:20px}.example img{max-width:100%;max-height:520px;object-fit:contain;border:1px solid #dbe4e8}.example pre{max-height:420px;overflow:auto;padding:13px;background:#17232d;color:#e9f1f4;white-space:pre-wrap;font:12px/1.45 Consolas,monospace}.links{font-size:14px}footer{margin-top:48px;padding-top:18px;border-top:1px solid #dbe4e8;color:#536779;font-size:13px}@media(max-width:800px){main{margin:10px;padding:18px}header{padding:28px 22px}nav a{width:100%}.example-grid{grid-template-columns:1fr}}@media print{body{background:#fff}header{padding:16px;background:#fff;color:#1c3345}header p{color:#536779}main{border:0;margin:0;padding:0;max-width:none}nav{display:none}figure,.table-wrap{break-inside:avoid}.example{break-before:page}.example[open] pre{max-height:none}h2{break-after:avoid}}
+</style></head><body><header><h1>Сравнительное исследование средств анализа PDF и преобразования в текст</h1><p>Полный технический отчёт · эксперимент 20261004T095716Z_s42_2334c932 · 10 инструментов · 5 PDF · 40 GT-объектов</p></header><main><nav><a href="#introduction">1. Введение</a><a href="#relevance">2. Актуальность</a><a href="#goal">3. Цель и задачи</a><a href="#object_subject">4. Объект и предмет исследования</a><a href="#services">5. Обзор выбранных сервисов</a><a href="#libraries">6. Обзор выбранных библиотек</a><a href="#dataset">7. Описание тестового набора PDF</a><a href="#methodology">8. Методология benchmark</a><a href="#ground_truth">9. Ground Truth</a><a href="#metrics">10. Количественная система оценки</a><a href="#experiment">11. Организация эксперимента</a><a href="#results">12. Результаты</a><a href="#quality">13. Сравнение качества</a><a href="#performance">14. Сравнение производительности</a><a href="#cost">15. Сравнение стоимости</a><a href="#errors">16. Error analysis</a><a href="#examples">17. По 5 примеров для каждого из 10 инструментов</a><a href="#synthesis">18. Обобщение результатов</a><a href="#limitations">19. Ограничения исследования</a><a href="#conclusions">20. Выводы</a></nav><h2 id="introduction">1. Введение</h2>
+<p>Технический PDF хранит не только последовательность символов. Значение документа определяется совместным расположением абзацев, колонок, таблиц, математических и химических формул, изображений, подписей и связей внутри диаграмм. Поэтому преобразование PDF в TXT в данном исследовании трактуется как извлечение текстового содержания и восстановление структурированных объектов, которые затем могут быть представлены в текстовой или машиночитаемой форме.</p>
+<p>Исследование сравнивает пять локальных библиотек и пять облачных сервисов на одном фиксированном корпусе. Основной результат — воспроизводимая система количественных оценок по шести категориям, дополненная измерением скорости, памяти, стоимости и подробным анализом ошибок.</p>
+<h2 id="relevance">2. Актуальность</h2>
+<p>PDF остаётся основным форматом публикации научных статей, руководств и отчётов, однако его внутренняя структура часто ориентирована на визуальное отображение, а не на последовательное чтение программой. Ошибка порядка колонок меняет смысл текста; потеря строки или merged-cell искажает таблицу; плоская OCR-строка не сохраняет структуру дроби; пропуск подписи лишает изображение контекста. Эти дефекты непосредственно влияют на поиск, индексацию, RAG, анализ данных и архивную конвертацию.</p>
+<p>Практическая актуальность состоит в выборе инструмента под конкретный состав документов. Универсальный Overall полезен как сводный индикатор, но не заменяет профиль по категориям и эксплуатационные ограничения.</p>
+<h2 id="goal">3. Цель и задачи</h2>
+<p>Цель — экспериментально оценить качество и эксплуатационные характеристики десяти средств анализа технических PDF при преобразовании содержимого в текстовое и структурированное представление.</p>
+<ul><li>сформировать фиксированный корпус из пяти технических PDF и Ground Truth по шести категориям;</li><li>привести ответы десяти инструментов к единой схеме и выполнить однозначное сопоставление с GT;</li><li>определить объектные, документные, категориальные и итоговую оценки;</li><li>сравнить локальные/облачные и classic/ML группы;</li><li>измерить время, RAM, VRAM и зарегистрированную API-стоимость;</li><li>оценить зависимость результатов от документа и неопределённость;</li><li>провести error analysis и представить пять проверяемых примеров на каждый инструмент.</li></ul>
+<h2 id="object_subject">4. Объект и предмет исследования</h2>
+<p>Объект исследования — программные библиотеки и облачные сервисы анализа PDF. Предмет исследования — точность извлечения текста, таблиц, математических формул, химических формул и структур, изображений и диаграмм, а также скорость, потребление памяти и стоимость обработки.</p>
+<p>Единицей качества служит размеченный объект в PDF. Статистическим кластером для межинструментного анализа служит документ: 400 строк объектных результатов представляют 40 одинаковых GT-объектов, оценённых десятью инструментами, и не являются 400 независимыми наблюдениями.</p>
+<h2 id="services">5. Обзор выбранных сервисов</h2>
+<div class="table-wrap"><table><caption>Пять облачных сервисов</caption><thead><tr><th>Сервис</th><th>SDK/adapter</th><th>Продукт/режим</th><th>Роль в benchmark</th><th>Официальная документация</th></tr></thead><tbody>
+<tr><td>OCR.Space</td><td>2.32.5</td><td>3</td><td>Облачный OCR; в эксперименте использован Engine 3 с TextOverlay.</td><td>https://ocr.space/ocrapi</td></tr>
+<tr><td>Nutrient</td><td>3.1.0</td><td>Nutrient Data Extraction API</td><td>Облачный Data Extraction API; режим understand, spatial output.</td><td>https://www.nutrient.io/api/data-extraction-api/</td></tr>
+<tr><td>Mindee</td><td>5.3.1</td><td>Mindee V2 OCR utility / Raw Text OCR</td><td>Облачный V2 OCR / Raw Text OCR с текстом и координатами слов.</td><td>https://docs.mindee.com/</td></tr>
+<tr><td>Adobe Extract</td><td>4.2.0</td><td>—</td><td>Облачный PDF Extract API со структурированным JSON и renditions.</td><td>https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/</td></tr>
+<tr><td>LlamaParse</td><td>2.16.0</td><td>LlamaParse v2 Parse</td><td>Облачный LlamaParse v2; tier agentic со структурным page/item output.</td><td>https://developers.llamaindex.ai/llamaparse/parse/getting_started/</td></tr>
+</tbody></table></div>
+<p class="links"><a href="https://ocr.space/ocrapi">OCR.Space</a> · <a href="https://www.nutrient.io/api/data-extraction-api/">Nutrient</a> · <a href="https://docs.mindee.com/">Mindee</a> · <a href="https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/">Adobe Extract</a> · <a href="https://developers.llamaindex.ai/llamaparse/parse/getting_started/">LlamaParse</a></p>
+<p>Сравниваются конкретные API-режимы. Например, Mindee использован как Raw Text OCR, поэтому отсутствие типизированных таблиц или изображений характеризует выбранный endpoint, а не все продукты Mindee. Аналогично результаты LlamaParse относятся к tier agentic и сохранённой версии API.</p>
+<h2 id="libraries">6. Обзор выбранных библиотек</h2>
+<div class="table-wrap"><table><caption>Пять локальных библиотек</caption><thead><tr><th>Библиотека</th><th>Версия</th><th>Класс</th><th>Роль в benchmark</th><th>Официальная документация</th></tr></thead><tbody>
+<tr><td>PyMuPDF</td><td>1.28.2</td><td>classic</td><td>Классический локальный PDF-парсер; извлечение текста, координат и встроенных изображений.</td><td>https://pymupdf.readthedocs.io/en/latest/</td></tr>
+<tr><td>pdfplumber</td><td>0.11.10</td><td>classic</td><td>Классическая локальная библиотека поверх pdfminer.six с доступом к словам, геометрии и таблицам.</td><td>https://github.com/jsvine/pdfplumber</td></tr>
+<tr><td>Docling</td><td>2.130.0</td><td>ML</td><td>Локальная ML-система анализа layout, таблиц, формул и иллюстраций.</td><td>https://docling-project.github.io/docling/</td></tr>
+<tr><td>pdfminer.six</td><td>20260107</td><td>classic</td><td>Классический локальный анализатор текстового слоя и геометрии PDF.</td><td>https://pdfminersix.readthedocs.io/en/latest/</td></tr>
+<tr><td>MinerU</td><td>4.0.0</td><td>ML</td><td>Локальная ML-система структурного разбора технических документов.</td><td>https://github.com/opendatalab/MinerU</td></tr>
+</tbody></table></div>
+<p class="links"><a href="https://pymupdf.readthedocs.io/en/latest/">PyMuPDF</a> · <a href="https://github.com/jsvine/pdfplumber">pdfplumber</a> · <a href="https://docling-project.github.io/docling/">Docling</a> · <a href="https://pdfminersix.readthedocs.io/en/latest/">pdfminer.six</a> · <a href="https://github.com/opendatalab/MinerU">MinerU</a></p>
+<p>PyMuPDF, pdfplumber и pdfminer.six образуют группу классических локальных парсеров. Docling и MinerU образуют локальную ML-группу. Облачные сервисы не включались в сравнение classic/ML, поскольку внутренняя архитектура поставщика не всегда раскрыта и место исполнения является другой осью классификации.</p>
+<h2 id="dataset">7. Описание тестового набора PDF</h2>
+<div class="table-wrap"><table><caption>Корпус: 5 PDF, 98 страниц, 40 GT-объектов</caption><thead><tr><th>PDF</th><th>Файл</th><th>Стр.</th><th>Содержание</th><th>Текст</th><th>Таблицы</th><th>Математика</th><th>Химия</th><th>Изображения</th><th>Диаграммы</th><th>GT</th></tr></thead><tbody>
+<tr><td>D01</td><td>3619.pdf</td><td>43</td><td>Лабораторный практикум по измерительной технике и метрологии; таблицы, формулы, приборные изображения и схемы.</td><td>2</td><td>2</td><td>1</td><td>0</td><td>3</td><td>2</td><td>10</td></tr>
+<tr><td>D02</td><td>369.pdf</td><td>7</td><td>Химическая статья о магнитных сорбентах; линейные формулы и структурные формулы.</td><td>2</td><td>2</td><td>0</td><td>6</td><td>0</td><td>1</td><td>11</td></tr>
+<tr><td>D03</td><td>mais702.pdf</td><td>14</td><td>Статья о классификации токсичности комментариев нейронными сетями; многоколоночный текст, таблицы и графики.</td><td>2</td><td>1</td><td>0</td><td>0</td><td>0</td><td>2</td><td>5</td></tr>
+<tr><td>D04</td><td>sjim924.pdf</td><td>12</td><td>Статья о нейросетевом решении обратных задач аномальной диффузии; плотная математика, таблица и диаграмма.</td><td>2</td><td>1</td><td>4</td><td>0</td><td>0</td><td>1</td><td>8</td></tr>
+<tr><td>D05</td><td>ufn289.pdf</td><td>22</td><td>Обзор приэлектродных процессов в жидких диэлектриках; сканированный текст, формулы, таблица, фотографии и схема.</td><td>1</td><td>1</td><td>1</td><td>0</td><td>2</td><td>1</td><td>6</td></tr>
+</tbody></table></div>
+<p>Корпус целенаправленно включает born-digital и сканированный материал, русский и английский текст, многоколоночную вёрстку, крупные таблицы, LaTeX-подобную математику, химические формулы и структуры, фотографии, графики и схемы. Категории распределены неравномерно: химия размечена только в D02, изображения — в D01 и D05, математика — в D01, D04 и D05.</p>
+<h2 id="methodology">8. Методология benchmark</h2>
+<p>Общая цепочка: PDF → нативный ответ инструмента → standardized schema → нормализация → one-to-one matching → объектные метрики → document macro → category macro → Overall. Стандартизация отделяет возможности поставщика от формата его ответа, а сохранение raw и provenance позволяет проверить каждое преобразование.</p>
+<p>Основной механизм сопоставления — венгерский алгоритм с отношением один к одному. Для объектов с координатами минимальный spatial IoU равен 0,10. Контентный fallback для текста, формул и таблиц без bbox требует similarity не ниже 0,25. Для фрагментированного текста разрешена GT-независимая сборка блоков с overlap относительно меньшего прямоугольника не ниже 0,50. Повторяющиеся слова в разных координатах сохраняются; блоки удаляются как дубликаты только при совпадении нормализованного текста и bbox.</p>
+<p>Для визуальных объектов используется sampled-GT recall: GT содержит выбранные примеры, а не исчерпывающую разметку всех картинок страницы. Поэтому несопоставленные кандидаты не объявляются false positive без полной аннотации страницы. Пропуск обязательного GT-объекта получает нулевой Object Score.</p>
+<h2 id="ground_truth">9. Ground Truth</h2>
+<p>Ground Truth состоит из 40 вручную проверенных объектов с фиксированными ID, страницами, bbox и эталонными payload. Размечены 9 текстовых регионов, 7 таблиц, 6 математических формул, 6 химических объектов, 5 изображений и 7 диаграмм. Табличный GT хранит строки, столбцы, spans, headers и текст ячеек; математический — LaTeX; химический — формулу либо структурное изображение с метками; визуальный — bbox, подпись и семантические элементы.</p>
+<p>GT нужен для количественного сравнения: без эталона нельзя измерить потерю символов, структуры или связей. Он не используется для создания ответа инструмента. Все подтверждённые исправления GT выполнены до текущего baseline по методологическим причинам; object IDs, категории и манифест сохранены. Во время Промптов 13–15 GT не изменялся.</p>
+<h2 id="metrics">10. Количественная система оценки</h2>
+<p>Все объектные оценки переводятся в диапазон 0–100. Если компонент метрики неприменим по определению GT, его вес исключается и оставшиеся веса нормируются. Если инструмент не выдал обязательный объект, применимые компоненты получают нулевое значение.</p>
+<div class="formula"><code>S_text=100[0.40(1-CER)+0.30(1-WER)+0.10E+0.20R]</code><p>CER и WER ограничиваются снизу нулевой quality-функцией; E — нормализованное edit similarity, R — сохранение reading order.</p></div>
+<div class="formula"><code>S_table=100[0.30F_{cell}+0.25C_{cell}+0.20S_{struct}+0.25TEDS_{like}]</code><p>Структура объединяет сходство числа строк, столбцов и F1 merged-cells; TEDS-like сравнивает линеаризованное дерево таблицы.</p></div>
+<div class="formula"><code>S_math=100[0.05EM_{raw}+0.35EM_{norm}+0.40F1_{token}+0.20E]</code><p>Нормализация LaTeX устраняет только допустимые поверхностные различия; математическая эквивалентность выражений отдельно не доказывается.</p></div>
+<div class="formula"><code>S_{chem,linear}=100[0.35EM_{norm}+0.30F1_{token}+0.20E+0.15C_{composition}]</code><p>Composition similarity сравнивает количества химических элементов после строгого разбора формулы.</p></div>
+<div class="formula"><code>S_{chem,structure}=100[0.30D+0.25IoU+0.25F1_{label}+0.20X]</code><p>D — обнаружение, X — наличие структурированного извлечения. Detection и conditional Structured Extraction дополнительно публикуются раздельно.</p></div>
+<div class="formula"><code>S_{image}=100[0.30D+0.25IoU+0.25X+0.20C_{caption}]</code><p>Подпись объединяет token F1 и edit similarity; при отсутствии подписи в GT компонент неприменим.</p></div>
+<div class="formula"><code>S_{diagram}=100[0.20D+0.15IoU+0.25F1_{text}+0.15C_{caption}+0.25K]</code><p>K объединяет полноту ключевых элементов и число подрисунков.</p></div>
+<div class="formula"><code>S_{c,t}=\frac{1}{|D_c|}\sum_{d\in D_c}\frac{1}{|O_{d,c}|}\sum_{o\in O_{d,c}}S_{t,o};\quad Overall_t=\frac{1}{6}\sum_c S_{c,t}</code><p>Сначала объекты усредняются внутри документа, затем документы — внутри категории. Для химии линейные формулы и структуры предварительно получают равный вес подтипов.</p></div>
+<p>Доверительные интервалы категорий рассчитаны percentile bootstrap с 10 000 повторов и seed=42. Общий Overall CI не строился: при пересэмплировании всего пяти PDF отдельная категория может исчезнуть, а перенормирование весов изменило бы сам показатель.</p>
+<h2 id="experiment">11. Организация эксперимента</h2>
+<p>Официальный baseline: 20261004T095716Z_s42_2334c932. Он содержит 10 tool rows, 50 успешных tool×PDF пар, 400 object rows, 0 errors и 13 статистических warnings; status=clean означает структурную целостность, а не отсутствие методологических ограничений. Контрольный Промпт 12 прошёл 625/625 проверок.</p>
+<p>Текущий baseline получен кэшированной повторной стандартизацией сохранённых raw-ответов после подтверждённых исправлений адаптеров, нормализации, matching и GT. Все 50 пар использовали standardize_only; новых acquisition, облачных вызовов и повторных тяжёлых запусков Docling/MinerU не было. Измерения времени, RAM, VRAM и API cost взяты из исходных запусков, а не из повторного вычисления метрик.</p>
+<div class="table-wrap"><table><caption>Зафиксированные версии и режимы</caption><thead><tr><th>Инструмент</th><th>Версия</th><th>Развёртывание</th><th>Модели/режим</th></tr></thead><tbody>
+<tr><td>PyMuPDF</td><td>1.28.2</td><td>локально</td><td>{&quot;PyMuPDF&quot;: &quot;1.28.2&quot;}</td></tr>
+<tr><td>pdfplumber</td><td>0.11.10</td><td>локально</td><td>{&quot;pdfplumber&quot;: &quot;0.11.10&quot;, &quot;pdfminer.six&quot;: &quot;20260107&quot;}</td></tr>
+<tr><td>Docling</td><td>2.130.0</td><td>локально</td><td>{&quot;docling&quot;: &quot;2.130.0&quot;, &quot;docling-core&quot;: &quot;2.99.0&quot;, &quot;docling-ibm-models&quot;: &quot;4.0.3&quot;, &quot;torch&quot;: &quot;2.14.0+cu130&quot;}</td></tr>
+<tr><td>pdfminer.six</td><td>20260107</td><td>локально</td><td>{&quot;pdfminer.six&quot;: &quot;20260107&quot;}</td></tr>
+<tr><td>MinerU</td><td>4.0.0</td><td>локально</td><td>{&quot;mineru&quot;: &quot;4.0.0&quot;, &quot;docvortex&quot;: &quot;0.5.7&quot;, &quot;onnxruntime&quot;: &quot;1.30.0&quot;, &quot;torch&quot;: &quot;2.14.0+cu130&quot;}</td></tr>
+<tr><td>OCR.Space</td><td>2.32.5</td><td>облако</td><td>{&quot;ocr_engine&quot;: &quot;3&quot;, &quot;endpoint&quot;: &quot;https://api.ocr.space/parse/image&quot;}</td></tr>
+<tr><td>Nutrient</td><td>3.1.0</td><td>облако</td><td>{&quot;product&quot;: &quot;Nutrient Data Extraction API&quot;, &quot;endpoint&quot;: &quot;/extraction/parse&quot;, &quot;mode&quot;: &quot;understand&quot;, &quot;output_format&quot;: &quot;spatial&quot;}</td></tr>
+<tr><td>Mindee</td><td>5.3.1</td><td>облако</td><td>{&quot;product&quot;: &quot;Mindee V2 OCR utility / Raw Text OCR&quot;, &quot;model_id&quot;: &quot;58e6c937-4df2-44bd-be3f-32375784ff40&quot;}</td></tr>
+<tr><td>Adobe Extract</td><td>4.2.0</td><td>облако</td><td>{}</td></tr>
+<tr><td>LlamaParse</td><td>2.16.0</td><td>облако</td><td>{&quot;product&quot;: &quot;LlamaParse v2 Parse&quot;, &quot;tier&quot;: &quot;agentic&quot;, &quot;version&quot;: &quot;2026-09-07&quot;}</td></tr>
+</tbody></table></div>
+<h2 id="results">12. Результаты</h2>
+<div class="table-wrap"><table><caption>Основные оценки качества, 0–100</caption><thead><tr><th>Инструмент</th><th>Текст</th><th>Таблицы</th><th>Математика</th><th>Химия</th><th>Изображения</th><th>Диаграммы</th><th>Overall</th></tr></thead><tbody>
+<tr><td>Docling</td><td>92,01</td><td>65,71</td><td>36,28</td><td>73,45</td><td>47,03</td><td>42,19</td><td>59,44</td></tr>
+<tr><td>MinerU</td><td>84,12</td><td>71,44</td><td>48,02</td><td>47,40</td><td>75,01</td><td>14,15</td><td>56,69</td></tr>
+<tr><td>Nutrient</td><td>93,73</td><td>70,82</td><td>33,70</td><td>70,38</td><td>44,22</td><td>0,00</td><td>52,14</td></tr>
+<tr><td>PyMuPDF</td><td>99,98</td><td>48,58</td><td>21,96</td><td>82,43</td><td>54,77</td><td>0,00</td><td>51,29</td></tr>
+<tr><td>LlamaParse</td><td>92,46</td><td>71,37</td><td>49,33</td><td>69,80</td><td>0,00</td><td>0,00</td><td>47,16</td></tr>
+<tr><td>Adobe Extract</td><td>92,20</td><td>65,86</td><td>0,00</td><td>69,90</td><td>54,77</td><td>0,00</td><td>47,12</td></tr>
+<tr><td>pdfplumber</td><td>82,90</td><td>47,44</td><td>19,85</td><td>72,59</td><td>36,02</td><td>0,00</td><td>43,13</td></tr>
+<tr><td>pdfminer.six</td><td>81,66</td><td>0,00</td><td>20,97</td><td>82,59</td><td>54,77</td><td>0,00</td><td>40,00</td></tr>
+<tr><td>OCR.Space</td><td>59,26</td><td>46,11</td><td>47,15</td><td>64,06</td><td>0,00</td><td>0,00</td><td>36,10</td></tr>
+<tr><td>Mindee</td><td>93,51</td><td>0,00</td><td>14,39</td><td>52,33</td><td>0,00</td><td>0,00</td><td>26,70</td></tr>
+</tbody></table></div>
+<figure><img src="figures/01_overall.png" alt="Overall quality"><figcaption>Overall — равновесное среднее шести Category Scores; он не является универсальным рейтингом. <a href="figures/01_overall.svg">SVG</a> · <a href="figures/01_overall.png">PNG</a></figcaption></figure>
+<figure><img src="figures/04_heatmap.png" alt="Heatmap tool × category"><figcaption>Профиль категорий показывает специализацию, скрытую сводным Overall. <a href="figures/04_heatmap.svg">SVG</a> · <a href="figures/04_heatmap.png">PNG</a></figcaption></figure>
+<figure><img src="figures/03_radar.png" alt="Radar charts"><figcaption>Радиальные профили позволяют сопоставить сильные и слабые категории инструментов. <a href="figures/03_radar.svg">SVG</a> · <a href="figures/03_radar.png">PNG</a></figcaption></figure>
+<p>Наибольший наблюдённый Overall у Docling — 59,44, затем MinerU — 56,69 и Nutrient — 52,14. Однако лидеры категорий различаются: PyMuPDF по тексту, MinerU по таблицам и изображениям, LlamaParse по математике, pdfminer.six по действующему Chemistry Score, Docling по диаграммам.</p>
+<h2 id="quality">13. Сравнение качества</h2>
+<div class="table-wrap"><table><caption>Трудность категорий и покрытие</caption><thead><tr><th>Категория</th><th>Наибольшая оценка</th><th>Score</th><th>Среднее 10 tools</th><th>Score&gt;0</th><th>Matched</th></tr></thead><tbody>
+<tr><td>Текст</td><td>pymupdf</td><td>99,98</td><td>87,18</td><td>10/10</td><td>89/90</td></tr>
+<tr><td>Таблицы</td><td>mineru</td><td>71,44</td><td>48,73</td><td>8/10</td><td>49/70</td></tr>
+<tr><td>Математика</td><td>llamaparse</td><td>49,33</td><td>29,17</td><td>9/10</td><td>54/60</td></tr>
+<tr><td>Химия</td><td>pdfminer</td><td>82,59</td><td>68,49</td><td>10/10</td><td>60/60</td></tr>
+<tr><td>Изображения</td><td>mineru</td><td>75,01</td><td>36,66</td><td>7/10</td><td>29/50</td></tr>
+<tr><td>Диаграммы</td><td>docling</td><td>42,19</td><td>5,63</td><td>2/10</td><td>10/70</td></tr>
+</tbody></table></div>
+<p>Текст оказался наиболее устойчивой категорией: среднее десяти инструментов 87,18. Таблицы имеют среднее 48,73 и особенно зависят от сохранения grid/merged cells. Математика имеет среднее 29,17; ненулевой результат получен у 9/10 инструментов, но структурный LaTeX остаётся сложным. Изображения имеют среднее 36,66. Наиболее трудны диаграммы: среднее 5,63, ненулевые результаты только у Docling и MinerU.</p>
+<p>Все инструменты обнаружили 6/6 химических GT-объектов по единому строгому GT-независимому правилу, поэтому Chemistry Detection=100 у всех. Conditional Structured Extraction различается от 39,04 до 75,13 и лучше отражает качество формул, bbox, labels и структурного представления. Chemistry Score и Overall при этом не заменялись диагностическими показателями.</p>
+<div class="table-wrap"><table><caption>Химия: покрытие и качество payload раздельно</caption><thead><tr><th>Инструмент</th><th>Chemistry</th><th>Detection</th><th>Extraction | detected</th><th>Объекты</th></tr></thead><tbody>
+<tr><td>PyMuPDF</td><td>82,43</td><td>100,00</td><td>74,90</td><td>6/6</td></tr>
+<tr><td>pdfplumber</td><td>72,59</td><td>100,00</td><td>60,84</td><td>6/6</td></tr>
+<tr><td>Docling</td><td>73,45</td><td>100,00</td><td>62,07</td><td>6/6</td></tr>
+<tr><td>pdfminer.six</td><td>82,59</td><td>100,00</td><td>75,13</td><td>6/6</td></tr>
+<tr><td>MinerU</td><td>47,40</td><td>100,00</td><td>39,04</td><td>6/6</td></tr>
+<tr><td>OCR.Space</td><td>64,06</td><td>100,00</td><td>61,69</td><td>6/6</td></tr>
+<tr><td>Nutrient</td><td>70,38</td><td>100,00</td><td>57,69</td><td>6/6</td></tr>
+<tr><td>Mindee</td><td>52,33</td><td>100,00</td><td>44,00</td><td>6/6</td></tr>
+<tr><td>Adobe Extract</td><td>69,90</td><td>100,00</td><td>57,01</td><td>6/6</td></tr>
+<tr><td>LlamaParse</td><td>69,80</td><td>100,00</td><td>56,86</td><td>6/6</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table><caption>Средние фиксированных групп</caption><thead><tr><th>Группа</th><th>Текст</th><th>Таблицы</th><th>Математика</th><th>Химия</th><th>Изображения</th><th>Диаграммы</th><th>Overall</th></tr></thead><tbody>
+<tr><td>Локальные</td><td>88,13</td><td>46,64</td><td>29,42</td><td>71,69</td><td>53,52</td><td>11,27</td><td>50,11</td></tr>
+<tr><td>Облачные</td><td>86,23</td><td>50,83</td><td>28,91</td><td>65,30</td><td>19,80</td><td>0,00</td><td>41,85</td></tr>
+<tr><td>Classic local</td><td>88,18</td><td>32,01</td><td>20,93</td><td>79,20</td><td>48,52</td><td>0,00</td><td>44,81</td></tr>
+<tr><td>ML local</td><td>88,06</td><td>68,58</td><td>42,15</td><td>60,42</td><td>61,02</td><td>28,17</td><td>58,07</td></tr>
+</tbody></table></div>
+<p>Средний Overall локальной группы равен 50,11, облачной — 41,85. Внутри локальной группы ML-системы имеют 58,07 против 44,81 у classic parsers. Средний Text почти одинаков, а различие связано главным образом с таблицами, математикой, изображениями и диаграммами. Это сравнение выбранных участников, а не всех решений соответствующего класса.</p>
+<div class="table-wrap"><table><caption>Сопоставимая трудность документов</caption><thead><tr><th>PDF</th><th>Среднее Text/Table/Diagram</th><th>Text</th><th>Table</th><th>Diagram</th></tr></thead><tbody>
+<tr><td>D01</td><td>52,62</td><td>93,91</td><td>59,05</td><td>4,92</td></tr>
+<tr><td>D02</td><td>52,74</td><td>90,34</td><td>61,75</td><td>6,12</td></tr>
+<tr><td>D03</td><td>56,89</td><td>94,92</td><td>69,41</td><td>6,35</td></tr>
+<tr><td>D04</td><td>39,49</td><td>85,66</td><td>25,50</td><td>7,29</td></tr>
+<tr><td>D05</td><td>34,18</td><td>71,08</td><td>27,96</td><td>3,50</td></tr>
+</tbody></table></div>
+<p>На общем наборе Text/Table/Diagram наиболее трудным оказался D05 — 34,18, наиболее лёгким D03 — 56,89. Зависимость от документа велика: например, Text pdfminer.six равен 100 на D02/D03, но 15,78 на D05. Поэтому один PDF не может представлять всё множество технических документов.</p>
+<figure><img src="figures/02_categories_ci.png" alt="Категории и 95% CI"><figcaption>Интервалы отражают малый фиксированный корпус; Math имеет 3 PDF, Image — 2, Chemistry — 1. <a href="figures/02_categories_ci.svg">SVG</a> · <a href="figures/02_categories_ci.png">PNG</a></figcaption></figure>
+<figure><img src="figures/12_category_difficulty.png" alt="Трудность типов контента"><figcaption>Средние десяти инструментов показывают резкое усложнение от текста к диаграммам. <a href="figures/12_category_difficulty.svg">SVG</a> · <a href="figures/12_category_difficulty.png">PNG</a></figcaption></figure>
+<figure><img src="figures/13_groups.png" alt="Cloud/local и classic/ML"><figcaption>Средние относятся к фиксированному составу групп. <a href="figures/13_groups.svg">SVG</a> · <a href="figures/13_groups.png">PNG</a></figcaption></figure>
+<figure><img src="figures/10_document_text.png" alt="Text Score по PDF"><figcaption>Текстовая устойчивость зависит от вёрстки и качества текстового слоя. <a href="figures/10_document_text.svg">SVG</a> · <a href="figures/10_document_text.png">PNG</a></figcaption></figure>
+<figure><img src="figures/11_document_categories.png" alt="Категории по PDF"><figcaption>Состав и трудность объектов неодинаковы между документами. <a href="figures/11_document_categories.svg">SVG</a> · <a href="figures/11_document_categories.png">PNG</a></figcaption></figure>
+<figure><img src="figures/14_object_distributions.png" alt="Распределения объектных оценок"><figcaption>Нулевая дисперсия нулевых оценок не означает надёжность; coverage анализируется отдельно. <a href="figures/14_object_distributions.svg">SVG</a> · <a href="figures/14_object_distributions.png">PNG</a></figcaption></figure>
+<figure><img src="figures/15_document_sensitivity.png" alt="Чувствительность к исключению PDF"><figcaption>Leave-one-document-out не заменяет официальный результат по полному корпусу. <a href="figures/15_document_sensitivity.svg">SVG</a> · <a href="figures/15_document_sensitivity.png">PNG</a></figcaption></figure>
+<figure><img src="figures/16_paired_differences.png" alt="Парные различия"><figcaption>Парный bootstrap сохраняет общие документы; поправка на множественные сравнения не применялась. <a href="figures/16_paired_differences.svg">SVG</a> · <a href="figures/16_paired_differences.png">PNG</a></figcaption></figure>
+<h2 id="performance">14. Сравнение производительности</h2>
+<div class="table-wrap"><table><caption>Скорость и ресурсы на 98 страницах</caption><thead><tr><th>Инструмент</th><th>с/стр.</th><th>Всего, с</th><th>Peak RAM, GiB</th><th>Peak VRAM, GiB</th><th>Overall</th></tr></thead><tbody>
+<tr><td>pdfplumber</td><td>0,086</td><td>8,5</td><td>0,81</td><td>0,00</td><td>43,13</td></tr>
+<tr><td>PyMuPDF</td><td>0,357</td><td>35,0</td><td>0,55</td><td>0,00</td><td>51,29</td></tr>
+<tr><td>Adobe Extract</td><td>1,415</td><td>138,7</td><td>0,09</td><td>0,00</td><td>47,12</td></tr>
+<tr><td>Mindee</td><td>1,435</td><td>140,7</td><td>0,14</td><td>0,00</td><td>26,70</td></tr>
+<tr><td>MinerU</td><td>2,705</td><td>265,1</td><td>5,66</td><td>4,66</td><td>56,69</td></tr>
+<tr><td>pdfminer.six</td><td>2,760</td><td>270,5</td><td>0,77</td><td>0,00</td><td>40,00</td></tr>
+<tr><td>LlamaParse</td><td>2,785</td><td>273,0</td><td>0,08</td><td>0,00</td><td>47,16</td></tr>
+<tr><td>Nutrient</td><td>4,245</td><td>416,0</td><td>0,09</td><td>0,00</td><td>52,14</td></tr>
+<tr><td>OCR.Space</td><td>6,182</td><td>605,8</td><td>0,09</td><td>0,00</td><td>36,10</td></tr>
+<tr><td>Docling</td><td>72,436</td><td>7098,8</td><td>10,62</td><td>7,99</td><td>59,44</td></tr>
+</tbody></table></div>
+<p>Самый быстрый наблюдённый результат у pdfplumber — 0,086 с/стр., затем PyMuPDF — 0,357 с/стр. Docling требует 72,44 с/стр., около 10,62 GiB RAM и 7,99 GiB VRAM; MinerU — 2,70 с/стр., 5,66 GiB RAM и 4,66 GiB VRAM. Для облачных сервисов измерены клиентские ресурсы; серверные RAM/VRAM неизвестны и не интерпретируются как ноль поставщика.</p>
+<p>Опубликованный peak_vram_mb использует process GPU peak, если он доступен; иначе device-wide usage учитывается только при подтверждённой CUDA-активности адаптера. torch_peak_reserved не выдаётся за физическое потребление VRAM.</p>
+<figure><img src="figures/05_speed.png" alt="Скорость"><figcaption>Время повторного вычисления метрик исключено; показаны исходные замеры адаптеров. <a href="figures/05_speed.svg">SVG</a> · <a href="figures/05_speed.png">PNG</a></figcaption></figure>
+<figure><img src="figures/17_speed_by_document.png" alt="Скорость по документам"><figcaption>Отдельные PDF могут доминировать во времени конкретного инструмента. <a href="figures/17_speed_by_document.svg">SVG</a> · <a href="figures/17_speed_by_document.png">PNG</a></figcaption></figure>
+<figure><img src="figures/06_resources.png" alt="RAM и VRAM"><figcaption>Облачные значения отражают только клиентский процесс. <a href="figures/06_resources.svg">SVG</a> · <a href="figures/06_resources.png">PNG</a></figcaption></figure>
+<figure><img src="figures/08_quality_speed.png" alt="Качество и скорость"><figcaption>Pareto-профиль зависит от требуемой категории и допустимых ресурсов. <a href="figures/08_quality_speed.svg">SVG</a> · <a href="figures/08_quality_speed.png">PNG</a></figcaption></figure>
+<h2 id="cost">15. Сравнение стоимости</h2>
+<div class="table-wrap"><table><caption>Стоимость, сохранённая в эксперименте</caption><thead><tr><th>Инструмент</th><th>Зафиксировано, USD</th><th>Основание</th><th>Overall</th></tr></thead><tbody>
+<tr><td>PyMuPDF</td><td>0,00</td><td>not_applicable_local</td><td>51,29</td></tr>
+<tr><td>pdfplumber</td><td>0,00</td><td>not_applicable_local</td><td>43,13</td></tr>
+<tr><td>Docling</td><td>0,00</td><td>not_applicable_local</td><td>59,44</td></tr>
+<tr><td>pdfminer.six</td><td>0,00</td><td>not_applicable_local</td><td>40,00</td></tr>
+<tr><td>MinerU</td><td>0,00</td><td>not_applicable_local</td><td>56,69</td></tr>
+<tr><td>OCR.Space</td><td>0,00</td><td>actual</td><td>36,10</td></tr>
+<tr><td>Nutrient</td><td>0,00</td><td>estimated</td><td>52,14</td></tr>
+<tr><td>Mindee</td><td>0,00</td><td>estimated</td><td>26,70</td></tr>
+<tr><td>Adobe Extract</td><td>0,00</td><td>estimated</td><td>47,12</td></tr>
+<tr><td>LlamaParse</td><td>0,00</td><td>estimated</td><td>47,16</td></tr>
+</tbody></table></div>
+<p>Во всех строках сохранено 0,00 USD. Для локальных библиотек это not_applicable_local; для облачных сервисов — actual, estimated либо free/trial условия конкретного запуска. Эти значения не являются актуальным коммерческим прайс-листом и не позволяют ранжировать cost/quality. Корректное коммерческое сравнение потребует единого тарифа, объёма страниц, региона, налогов и даты фиксации цен.</p>
+<figure><img src="figures/07_cost.png" alt="Зафиксированная стоимость"><figcaption>Нули отражают условия запусков, а не доказанную бесплатность промышленной эксплуатации. <a href="figures/07_cost.svg">SVG</a> · <a href="figures/07_cost.png">PNG</a></figcaption></figure>
+<figure><img src="figures/09_quality_cost.png" alt="Качество и стоимость"><figcaption>При одинаковом нулевом наблюдении Pareto-рейтинг стоимости неинформативен. <a href="figures/09_quality_cost.svg">SVG</a> · <a href="figures/09_quality_cost.png">PNG</a></figcaption></figure>
+<h2 id="errors">16. Error analysis</h2>
+<div class="table-wrap"><table><caption>Характерные ошибки десяти инструментов</caption><thead><tr><th>Инструмент</th><th>Характерные ошибки на выбранных объектах</th></tr></thead><tbody>
+<tr><td>PyMuPDF</td><td>Текст почти точный; сложные таблицы остаются набором текстовых блоков; формулы теряют дроби и индексы; схемы типизируются как обычные изображения.</td></tr>
+<tr><td>pdfplumber</td><td>В сложной вёрстке нарушаются порядок и разбиение слов; таблицы не всегда собираются из слов; математика становится плоским текстом; диаграммы не типизируются.</td></tr>
+<tr><td>Docling</td><td>На D05 заметны ошибки порядка/OCR; сложные таблицы теряют строки и объединения; MATH_006 повреждает дроби, индексы, греческие символы и операторы; у схем теряются подписи и связи.</td></tr>
+<tr><td>pdfminer.six</td><td>D05 вызывает сильную потерю текста и порядка; таблицы остаются словами; формулы плоские и неполные; изображения извлекаются непоследовательно, диаграммы остаются generic image.</td></tr>
+<tr><td>MinerU</td><td>Ошибки текста связаны с порядком и OCR; таблицы теряют строки/merges; в формулах встречаются токенные ошибки; страдают индексы химии, crop и caption изображений.</td></tr>
+<tr><td>OCR.Space</td><td>Часть текстовых регионов не сопоставляется; таблицы не структурируются; OCR формул теряет дроби, индексы, греческие символы и операторы; визуальный payload отсутствует.</td></tr>
+<tr><td>Nutrient</td><td>На D05 нарушаются порядок и переносы; таблицы теряют строки/объединения; отдельный математический объект сопоставлен пространственно, но payload пуст; схемы часто остаются изображениями.</td></tr>
+<tr><td>Mindee</td><td>Слова D05 дробятся; таблицы представлены словами; математика плоская; химические индексы повреждаются; изображения и диаграммы представлены преимущественно текстом OCR.</td></tr>
+<tr><td>Adobe Extract</td><td>Сегментация слов ухудшается на D05; отдельные таблицы теряют структуру; математические объекты возвращаются как Figure без LaTeX; диаграммы остаются figures.</td></tr>
+<tr><td>LlamaParse</td><td>На D05 встречаются ошибки порядка и переносов; таблицы теряют строки и содержимое; математический payload не всегда точен; Mermaid-граф может остаться TextBlock, а изображения — описанием без visual asset.</td></tr>
+</tbody></table></div>
+<p>Ошибки разделены на отсутствие объекта и низкое качество уже найденного объекта. Дополнительно проверялся nearby output другого типа: таблица могла присутствовать как TextBlock, формула Adobe — как Figure, диаграмма — как generic Image или Mermaid-текст. Такое содержимое не считается полноценным структурированным извлечением требуемой категории, но учитывается при объяснении причины.</p>
+<p class="links"><a href="../../error_analysis/20261004T095716Z_s42_2334c932/report.html">Полный error analysis из 60 случаев</a> · <a href="../../error_analysis/20261004T095716Z_s42_2334c932/examples.json">Все 60 примеров JSON</a></p>
+<h2 id="examples">17. По 5 примеров для каждого из 10 инструментов</h2>
+<p>Для каждого инструмента взяты пять наименьших Object Score среди шести стратифицированных категориальных случаев Промпта 14; при равенстве использован фиксированный порядок категорий и object ID. Это диагностическая выборка, а не новая средняя оценка. Шестой случай каждого инструмента доступен в полном error analysis.</p>
+<h3>PyMuPDF</h3>
+<details class="example"><summary>Пример 1: Tables — TAB_006 (D04, стр. 8), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/TAB_006.png" alt="TAB_006"></div><div><p><b>Тип ошибки:</b> таблица превращена в обычный текст; структура строк/колонок отсутствует</p><p><b>Причина:</b> Typed Table отсутствует, но внутри GT-области найдено TextBlock: 8. Текст извлечён без сетки ячеек, поэтому cell recall и структурные компоненты обнуляются.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cell_recall=0.00, cell_content=24.24, row_structure=0.00, column_structure=0.00, merged_f1=0.00, teds_like=0.45</p></div></div>
+<h4>Ground Truth</h4><pre>Размер: 25 × 6; ячеек: 132
+[H] Сеть | [H] Показатель | [H] Обучающее α | [H] Обучающее λ | [H] Обучающее + 5% шум α | [H] Обучающее + 5% шум λ
+1 | Правильно | 68,20 % | 35,60 % | 67,60 % | 36,20 %
+ | Средняя ошибка | 0,0787 | 0,1430 | 0,0827 | 0,1441
+ | Макс. ошибка | 0,3728 | 0,5027 | 0,9759 | 0,5047
+ | Дисперсия ошибки | 0,0030 | 0,0088 | 0,0046 | 0,0089
+2 | Правильно | 86,00 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0604 |  | 0,0641 | 
+ | Макс. ошибка | 0,3622 |  | 0,4495 | 
+ | Дисперсия ошибки | 0,0020 |  | 0,0028 | 
+3 | Правильно | 88,70 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0583 |  | 0,0634 | 
+ | Макс. ошибка | 0,2045 |  | 0,8540 | 
+ | Дисперсия ошибки | 0,0013 |  | 0,0029 | 
+4 | Правильно | 77,10 % | 39,50 % | 75,80 % | 38,60 %
+ | Средняя ошибка | 0,0671 | 0,1449 | 0,0712 | 0,1466
+ | Макс. ошибка | 0,3594 | 0,5603 | 0,7292 | 0,5605
+ | Дисперсия ошибки | 0,0025 | 0,0103 | 0,0036 | 0,0104
+5 | Правильно | 88,50 % |  | 84,20 % | 
+ | Средняя ошибка | 0,0574 |  | 0,0651 | 
+ | Макс. ошибка | 0,3233 |  | 1,4295 | 
+ | Дисперсия ошибки | 0,016 |  | 0,0057 | 
+6 | Правильно | 80,60 % |  | 79,00 % | 
+ | Средняя ошибка | 0,0631 |  | 0,0683 | 
+ | Макс. ошибка | 0,2647 |  | 0,8166 | 
+ | Дисперсия ошибки | 0,0018 |  | 0,0037 | </pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.02: и тестирование на зашумленном обучающем множестве
+- TextBlock overlap=0.01: Результат обучения нейронной сети
+- TextBlock overlap=0.01: Обучающее + 5 % шум
+- TextBlock overlap=0.01: Дисперсия ошибки
+- TextBlock overlap=0.01: Дисперсия ошибки
+- TextBlock overlap=0.01: Дисперсия ошибки
+- TextBlock overlap=0.01: Дисперсия ошибки
+- TextBlock overlap=0.01: Дисперсия ошибки</pre></details>
+<details class="example"><summary>Пример 2: Images — IMG_004 (D05, стр. 2), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/IMG_004.png" alt="IMG_004"></div><div><p><b>Тип ошибки:</b> visual candidate не сопоставлен с Image GT</p><p><b>Причина:</b> В области есть visual candidate, но он не выбран при one-to-one сопоставлении по типу/геометрии либо не имеет подтверждённого extraction payload.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00</p></div></div>
+<p><a href="prediction_assets/pymupdf_IMG_004.png">Извлечённый visual asset</a></p>
+<h4>Ground Truth</h4><pre>caption: Рис. 1. Картины течения в системе двух параллельных проводников; asset: ground_truth/assets/IMG_004.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: assets\p2_image_16.png</pre></details>
+<details class="example"><summary>Пример 3: Diagrams — DIA_001 (D01, стр. 9), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/DIA_001.png" alt="DIA_001"></div><div><p><b>Тип ошибки:</b> диаграмма сохранена как обычное изображение; потеря текста и связей</p><p><b>Причина:</b> В GT-области найдено Image: 1, но Diagram отсутствует. Generic image не содержит типизированных text_elements/key_elements.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00</p></div></div>
+<p><a href="prediction_assets/pymupdf_DIA_001.png">Извлечённый visual asset</a></p>
+<h4>Ground Truth</h4><pre>тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: assets\p9_image_9.png</pre></details>
+<details class="example"><summary>Пример 4: Math — MATH_001 (D01, стр. 17), 11,40/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/MATH_001.png" alt="MATH_001"></div><div><p><b>Тип ошибки:</b> потеря fraction structure; ошибки subscript; потеря brackets</p><p><b>Причина:</b> Exact match отсутствует; token precision=61.90, token recall=15.12, edit similarity=8.40.</p><p><b>Влияние:</b> Object Score=11.40/100; потеря относительно идеального объекта=88.60 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=61.90, token_recall=15.12, token_f1=24.30, edit_similarity=8.40</p></div></div>
+<h4>Ground Truth</h4><pre>\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}}</pre><h4>Output инструмента</h4><pre>a 0 U U R ~R в R x = = = , x R + I I I x 0 а в + 1 R в</pre></details>
+<details class="example"><summary>Пример 5: Chemistry — CHEM_003 (D02, стр. 2), 62,91/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/CHEM_003.png" alt="CHEM_003"></div><div><p><b>Тип ошибки:</b> потеря химических символов/меток; неточный crop</p><p><b>Причина:</b> Structure detection есть, но IoU=51.62, label recall=0.00, extraction=100.00.</p><p><b>Влияние:</b> Object Score=62.91/100; потеря относительно идеального объекта=37.09 п.п.; detection=100.00, iou=51.62, label_recall=0.00, extraction=100.00, structured_extraction=47.01</p></div></div>
+<p><a href="prediction_assets/pymupdf_CHEM_003.jpeg">Извлечённый visual asset</a></p>
+<h4>Ground Truth</h4><pre>Желтый «солнечный закат» (Sunset Yellow FCF); текстовые метки: HO, N=N, NaO3S, SO3Na; asset: ground_truth/assets/CHEM_003.png</pre><h4>Output инструмента</h4><pre>structure; текстовые метки: нет; asset: assets\p2_image_15.jpeg</pre></details>
+<h3>pdfplumber</h3>
+<details class="example"><summary>Пример 1: Tables — TAB_006 (D04, стр. 8), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/TAB_006.png" alt="TAB_006"></div><div><p><b>Тип ошибки:</b> таблица превращена в обычный текст; структура строк/колонок отсутствует</p><p><b>Причина:</b> Typed Table отсутствует, но внутри GT-области найдено TextBlock: 8. Текст извлечён без сетки ячеек, поэтому cell recall и структурные компоненты обнуляются.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cell_recall=0.00, cell_content=24.24, row_structure=0.00, column_structure=0.00, merged_f1=0.00, teds_like=0.45</p></div></div>
+<h4>Ground Truth</h4><pre>Размер: 25 × 6; ячеек: 132
+[H] Сеть | [H] Показатель | [H] Обучающее α | [H] Обучающее λ | [H] Обучающее + 5% шум α | [H] Обучающее + 5% шум λ
+1 | Правильно | 68,20 % | 35,60 % | 67,60 % | 36,20 %
+ | Средняя ошибка | 0,0787 | 0,1430 | 0,0827 | 0,1441
+ | Макс. ошибка | 0,3728 | 0,5027 | 0,9759 | 0,5047
+ | Дисперсия ошибки | 0,0030 | 0,0088 | 0,0046 | 0,0089
+2 | Правильно | 86,00 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0604 |  | 0,0641 | 
+ | Макс. ошибка | 0,3622 |  | 0,4495 | 
+ | Дисперсия ошибки | 0,0020 |  | 0,0028 | 
+3 | Правильно | 88,70 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0583 |  | 0,0634 | 
+ | Макс. ошибка | 0,2045 |  | 0,8540 | 
+ | Дисперсия ошибки | 0,0013 |  | 0,0029 | 
+4 | Правильно | 77,10 % | 39,50 % | 75,80 % | 38,60 %
+ | Средняя ошибка | 0,0671 | 0,1449 | 0,0712 | 0,1466
+ | Макс. ошибка | 0,3594 | 0,5603 | 0,7292 | 0,5605
+ | Дисперсия ошибки | 0,0025 | 0,0103 | 0,0036 | 0,0104
+5 | Правильно | 88,50 % |  | 84,20 % | 
+ | Средняя ошибка | 0,0574 |  | 0,0651 | 
+ | Макс. ошибка | 0,3233 |  | 1,4295 | 
+ | Дисперсия ошибки | 0,016 |  | 0,0057 | 
+6 | Правильно | 80,60 % |  | 79,00 % | 
+ | Средняя ошибка | 0,0631 |  | 0,0683 | 
+ | Макс. ошибка | 0,2647 |  | 0,8166 | 
+ | Дисперсия ошибки | 0,0018 |  | 0,0037 | </pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.01: Обучающее+5%
+- TextBlock overlap=0.00: зашумленном
+- TextBlock overlap=0.00: тестирование
+- TextBlock overlap=0.00: Обучающее
+- TextBlock overlap=0.00: обучающем
+- TextBlock overlap=0.00: Правильно
+- TextBlock overlap=0.00: Правильно
+- TextBlock overlap=0.00: Правильно</pre></details>
+<details class="example"><summary>Пример 2: Images — IMG_004 (D05, стр. 2), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/IMG_004.png" alt="IMG_004"></div><div><p><b>Тип ошибки:</b> visual candidate не сопоставлен с Image GT</p><p><b>Причина:</b> В области есть visual candidate, но он не выбран при one-to-one сопоставлении по типу/геометрии либо не имеет подтверждённого extraction payload.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00</p></div></div>
+<h4>Ground Truth</h4><pre>caption: Рис. 1. Картины течения в системе двух параллельных проводников; asset: ground_truth/assets/IMG_004.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: нет</pre></details>
+<details class="example"><summary>Пример 3: Diagrams — DIA_001 (D01, стр. 9), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/DIA_001.png" alt="DIA_001"></div><div><p><b>Тип ошибки:</b> диаграмма сохранена как обычное изображение; потеря текста и связей</p><p><b>Причина:</b> В GT-области найдено Image: 1, но Diagram отсутствует. Generic image не содержит типизированных text_elements/key_elements.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00</p></div></div>
+<h4>Ground Truth</h4><pre>тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: нет</pre></details>
+<details class="example"><summary>Пример 4: Math — MATH_001 (D01, стр. 17), 10,89/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/MATH_001.png" alt="MATH_001"></div><div><p><b>Тип ошибки:</b> потеря fraction structure; ошибки subscript; потеря brackets</p><p><b>Причина:</b> Exact match отсутствует; token precision=60.00, token recall=13.95, edit similarity=9.16.</p><p><b>Влияние:</b> Object Score=10.89/100; потеря относительно идеального объекта=89.11 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=60.00, token_recall=13.95, token_f1=22.64, edit_similarity=9.16</p></div></div>
+<h4>Ground Truth</h4><pre>\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}}</pre><h4>Output инструмента</h4><pre>a 0 U U R ~ в R x = = = , R x R + I I I x 0 а в 1+ R в</pre></details>
+<details class="example"><summary>Пример 5: Chemistry — CHEM_003 (D02, стр. 2), 43,30/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/CHEM_003.png" alt="CHEM_003"></div><div><p><b>Тип ошибки:</b> потеря химических символов/меток; structural formula не извлечена; неточный crop</p><p><b>Причина:</b> Structure detection есть, но IoU=53.20, label recall=0.00, extraction=0.00.</p><p><b>Влияние:</b> Object Score=43.30/100; потеря относительно идеального объекта=56.70 п.п.; detection=100.00, iou=53.20, label_recall=0.00, extraction=0.00, structured_extraction=19.00</p></div></div>
+<h4>Ground Truth</h4><pre>Желтый «солнечный закат» (Sunset Yellow FCF); текстовые метки: HO, N=N, NaO3S, SO3Na; asset: ground_truth/assets/CHEM_003.png</pre><h4>Output инструмента</h4><pre>structure; текстовые метки: нет; asset: нет</pre></details>
+<h3>Docling</h3>
+<details class="example"><summary>Пример 1: Images — IMG_003 (D01, стр. 27), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/IMG_003.png" alt="IMG_003"></div><div><p><b>Тип ошибки:</b> visual candidate не сопоставлен с Image GT</p><p><b>Причина:</b> В области есть visual candidate, но он не выбран при one-to-one сопоставлении по типу/геометрии либо не имеет подтверждённого extraction payload.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00</p></div></div>
+<p><a href="prediction_assets/docling_IMG_003.png">Извлечённый visual asset</a></p>
+<h4>Ground Truth</h4><pre>caption: Рис. 3.2. Лицевая панель цифрового интегрирующего вольтметра В7-23; asset: ground_truth/assets/IMG_003.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Diagram overlap=0.97: тип: scientific_scheme
+caption: Рис. 3.2. Лицевая панель цифрового интегрирующего вольтметра В7-23
+текст: Вольтнетр универсальный цифровой В7-23, ЗАПЧЕК, D.l, 1D, IDD, BКЛ, нт, 1D, IUUD дBT, ДЧ БЛОК СЕТЬ
+ключевые элементы/связи: нет
+asset: assets\picture_0007.png</pre></details>
+<details class="example"><summary>Пример 2: Math — MATH_006 (D05, стр. 19), 8,99/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/MATH_006.png" alt="MATH_006"></div><div><p><b>Тип ошибки:</b> потеря fraction structure; ошибки superscript; потеря Greek symbols; потеря operators</p><p><b>Причина:</b> Exact match отсутствует; token precision=12.05, token recall=34.54, edit similarity=9.22.</p><p><b>Влияние:</b> Object Score=8.99/100; потеря относительно идеального объекта=91.01 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=12.05, token_recall=34.54, token_f1=17.87, edit_similarity=9.22</p></div></div>
+<h4>Ground Truth</h4><pre>j(t)=j_e(t)+j_i(t)+j_d(t),\quad j_e(t)=\varepsilon\varepsilon_0\left.\frac{\partial E_1}{\partial t}\right|_{x=0},\quad j_i(t)=e(\mu_1n_{10}+\mu_2n_{20})E_0+\left.e\mu_2n_{20}E_1\right|_{x=0},\quad j_d(t)=\left.e\mu_2n_{21}\right|_{x=0}E_0,\quad \left.E_1\right|_{x=0}=\frac{en_0}{\varepsilon\varepsilon_0d}\left[(x_1+x_2)d-\frac{d^2}{2}-\frac{1}{2}(x_1^2+x_2^2)\right],\quad \left.n_{21}\right|_{x=0}=\left(k_dN-\mu_2\frac{en_0^2}{\varepsilon_0\varepsilon}\right)\frac{x_1}{V_2},\quad t\le t_*;\quad \left.n_{21}\right|_{x=0}=k_dN\frac{d}{V_2}-\mu_2\frac{en_0^2}{\varepsilon\varepsilon_0}\frac{x_2}{V_2},\quad t&gt;t_*</pre><h4>Output инструмента</h4><pre>\Pi o c j e \colon &amp; \rho j e _ { N } h a ( 5 5 ) \ n \ \Pi o c j e A \bar { h } \ \bar { b } e p x , \\ \hom e \left ( 5 \right ) c \ &amp; \top \Pi o c \bar { b } \ \Pi o \ J \bar { h } \ \Pi o \bar { h } \ \Pi o \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J</pre></details>
+<details class="example"><summary>Пример 3: Tables — TAB_006 (D04, стр. 8), 28,82/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/TAB_006.png" alt="TAB_006"></div><div><p><b>Тип ошибки:</b> потеря строк; ошибки объединения ячеек; искажение содержимого ячеек</p><p><b>Причина:</b> GT=25×6, output=8×6; headers 6→7. Cell recall=19.70, TEDS-like=17.19.</p><p><b>Влияние:</b> Object Score=28.82/100; потеря относительно идеального объекта=71.18 п.п.; cell_recall=19.70, cell_content=25.54, row_structure=32.00, column_structure=100.00, merged_f1=0.00, teds_like=17.19</p></div></div>
+<h4>Ground Truth</h4><pre>Размер: 25 × 6; ячеек: 132
+[H] Сеть | [H] Показатель | [H] Обучающее α | [H] Обучающее λ | [H] Обучающее + 5% шум α | [H] Обучающее + 5% шум λ
+1 | Правильно | 68,20 % | 35,60 % | 67,60 % | 36,20 %
+ | Средняя ошибка | 0,0787 | 0,1430 | 0,0827 | 0,1441
+ | Макс. ошибка | 0,3728 | 0,5027 | 0,9759 | 0,5047
+ | Дисперсия ошибки | 0,0030 | 0,0088 | 0,0046 | 0,0089
+2 | Правильно | 86,00 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0604 |  | 0,0641 | 
+ | Макс. ошибка | 0,3622 |  | 0,4495 | 
+ | Дисперсия ошибки | 0,0020 |  | 0,0028 | 
+3 | Правильно | 88,70 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0583 |  | 0,0634 | 
+ | Макс. ошибка | 0,2045 |  | 0,8540 | 
+ | Дисперсия ошибки | 0,0013 |  | 0,0029 | 
+4 | Правильно | 77,10 % | 39,50 % | 75,80 % | 38,60 %
+ | Средняя ошибка | 0,0671 | 0,1449 | 0,0712 | 0,1466
+ | Макс. ошибка | 0,3594 | 0,5603 | 0,7292 | 0,5605
+ | Дисперсия ошибки | 0,0025 | 0,0103 | 0,0036 | 0,0104
+5 | Правильно | 88,50 % |  | 84,20 % | 
+ | Средняя ошибка | 0,0574 |  | 0,0651 | 
+ | Макс. ошибка | 0,3233 |  | 1,4295 | 
+ | Дисперсия ошибки | 0,016 |  | 0,0057 | 
+6 | Правильно | 80,60 % |  | 79,00 % | 
+ | Средняя ошибка | 0,0631 |  | 0,0683 | 
+ | Макс. ошибка | 0,2647 |  | 0,8166 | 
+ | Дисперсия ошибки | 0,0018 |  | 0,0037 | </pre><h4>Output инструмента</h4><pre>Размер: 8 × 6; ячеек: 35
+ |  | [H] Обучающее |  | [H] Обучающее + 5 % шум | 
+[H] Сеть |  | [H] α | [H] λ | [H] α | [H] λ
+1 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 68,20 % 0,0787 0,3728 0,0030 | 35,60 % 0,1430 0,5027 0,0088 | 67,60 % 0,0827 0,9759 0,0046 | 36,20 % 0,1441 0,5047 0,0089
+2 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 86,00 % 0,0604 0,3622 0,0020 |  | 82,40 % 0,0641 0,4495 0,0028 | 
+3 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 88,70 % 0,0583 0,2045 0,0013 |  | 82,40 % 0,0634 0,8540 0,0029 | 
+4 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 77,10 % 0,0671 0,3594 0,0025 | 39,50 % 0,1449 0,5603 0,0103 | 75,80 % 0,0712 0,7292 0,0036 | 38,60 % 0,1466 0,5605 0,0104
+5 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 88,50 % 0,0574 0,3233 0,016 |  | 84,20 % 0,0651 1,4295 0,0057 | 
+6 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 80,60 % 0,0631 0,2647 0,0018 |  | 79,00 % 0,0683 0,8166 0,0037 | </pre></details>
+<details class="example"><summary>Пример 4: Diagrams — DIA_003 (D02, стр. 4), 34,06/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/DIA_003.png" alt="DIA_003"></div><div><p><b>Тип ошибки:</b> потеря текста; потеря связей/ключевых элементов; потеря caption</p><p><b>Причина:</b> Detection=100.00, IoU=93.74, diagram text recall=0.00, key elements=0.00.</p><p><b>Влияние:</b> Object Score=34.06/100; потеря относительно идеального объекта=65.94 п.п.; detection_recall=100.00, iou=93.74, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00</p></div></div>
+<p><a href="prediction_assets/docling_DIA_003.png">Извлечённый visual asset</a></p>
+<h4>Ground Truth</h4><pre>тип: chart
+caption: Намагниченность насыщения: а – ХМК–C16–100/Fe3O4; б – ХМК–C16–250/Fe3O4
+текст: Намагниченность, Магнитное поле
+ключевые элементы/связи: кривая намагничивания, ось поля, ось намагниченности
+asset: ground_truth/assets/DIA_003.png</pre><h4>Output инструмента</h4><pre>тип: chart
+caption: нет
+текст: 04, 5, nn, 124, =
+ключевые элементы/связи: нет
+asset: assets\picture_0001.png</pre></details>
+<details class="example"><summary>Пример 5: Chemistry — CHEM_004 (D02, стр. 2), 42,20/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/CHEM_004.png" alt="CHEM_004"></div><div><p><b>Тип ошибки:</b> потеря химических символов/меток; structural formula не извлечена; неточный crop</p><p><b>Причина:</b> Structure detection есть, но IoU=48.78, label recall=0.00, extraction=0.00.</p><p><b>Влияние:</b> Object Score=42.20/100; потеря относительно идеального объекта=57.80 п.п.; detection=100.00, iou=48.78, label_recall=0.00, extraction=0.00, structured_extraction=17.42</p></div></div>
+<h4>Ground Truth</h4><pre>Тартразин (Tartrazine); текстовые метки: NaOOC, N=N, OH, NaO3S, SO3Na; asset: ground_truth/assets/CHEM_004.png</pre><h4>Output инструмента</h4><pre>structure; текстовые метки: нет; asset: нет</pre></details>
+<h3>pdfminer.six</h3>
+<details class="example"><summary>Пример 1: Tables — TAB_001 (D01, стр. 4), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/TAB_001.png" alt="TAB_001"></div><div><p><b>Тип ошибки:</b> таблица превращена в обычный текст; структура строк/колонок отсутствует</p><p><b>Причина:</b> Typed Table отсутствует, но внутри GT-области найдено TextBlock: 8. Текст извлечён без сетки ячеек, поэтому cell recall и структурные компоненты обнуляются.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cell_recall=0.00, cell_content=0.00, row_structure=0.00, column_structure=0.00, merged_f1=100.00, teds_like=1.96</p></div></div>
+<h4>Ground Truth</h4><pre>Размер: 5 × 6; ячеек: 30
+[H] Тип | [H] Число декад | [H] Пределы воспроизведения R, Ом | [H] Дискретность воспроизведения, Ом | [H] Класс точности γ, % | [H] Допускаемая мощность на декаду, Вт
+Р 33 | 6 | 0–100000 | 0,1 | 0,2 | 0,5
+КМС 6 | 6 | 0–100000 | 0,1 | 0,2 | 0,5
+МСР 60М | 6 | 0–10000 | 0,01 | 0,02 | 0,5
+МСР 63 | 7 | 0–100000 | 0,01 | 0,05 | 0,5</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.01: Допускаема
+- TextBlock overlap=0.01: 0 - 100000
+- TextBlock overlap=0.01: 0 - 100000
+- TextBlock overlap=0.01: 0 - 100000
+- TextBlock overlap=0.01: произведе-
+- TextBlock overlap=0.01: ведения R
+- TextBlock overlap=0.01: ность вос-
+- TextBlock overlap=0.01: 0 - 10000</pre></details>
+<details class="example"><summary>Пример 2: Images — IMG_004 (D05, стр. 2), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/IMG_004.png" alt="IMG_004"></div><div><p><b>Тип ошибки:</b> visual candidate не сопоставлен с Image GT</p><p><b>Причина:</b> В области есть visual candidate, но он не выбран при one-to-one сопоставлении по типу/геометрии либо не имеет подтверждённого extraction payload.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00</p></div></div>
+<p><a href="prediction_assets/pdfminer_IMG_004.bmp">Извлечённый visual asset</a></p>
+<h4>Ground Truth</h4><pre>caption: Рис. 1. Картины течения в системе двух параллельных проводников; asset: ground_truth/assets/IMG_004.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: assets\im2.bmp</pre></details>
+<details class="example"><summary>Пример 3: Diagrams — DIA_001 (D01, стр. 9), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/DIA_001.png" alt="DIA_001"></div><div><p><b>Тип ошибки:</b> диаграмма сохранена как обычное изображение; потеря текста и связей</p><p><b>Причина:</b> В GT-области найдено Image: 1, но Diagram отсутствует. Generic image не содержит типизированных text_elements/key_elements.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00</p></div></div>
+<p><a href="prediction_assets/pdfminer_DIA_001.jpg">Извлечённый visual asset</a></p>
+<h4>Ground Truth</h4><pre>тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: assets\Im1.jpg</pre></details>
+<details class="example"><summary>Пример 4: Math — MATH_001 (D01, стр. 17), 10,97/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/MATH_001.png" alt="MATH_001"></div><div><p><b>Тип ошибки:</b> потеря fraction structure; ошибки subscript; потеря brackets</p><p><b>Причина:</b> Exact match отсутствует; token precision=63.16, token recall=13.95, edit similarity=9.16.</p><p><b>Влияние:</b> Object Score=10.97/100; потеря относительно идеального объекта=89.03 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=63.16, token_recall=13.95, token_f1=22.86, edit_similarity=9.16</p></div></div>
+<h4>Ground Truth</h4><pre>\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}}</pre><h4>Output инструмента</h4><pre>U R в R x ~R = = = , U I x + I I 0 а в + 1 R R x в</pre></details>
+<details class="example"><summary>Пример 5: Text — TXT_009 (D05, стр. 10), 15,78/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/TXT_009.png" alt="TXT_009"></div><div><p><b>Тип ошибки:</b> потеря символов/строк; reading order или разбиение слов; сломанные переносы; ошибки OCR/символьные замены</p><p><b>Причина:</b> Длина output составляет 0.43 от GT; CER-quality=25.25, WER-quality=0.00. Классификация причины основана на фактическом соотношении длин и разрыве между посимвольной и пословной метриками.</p><p><b>Влияние:</b> Object Score=15.78/100; потеря относительно идеального объекта=84.22 п.п.; cer=25.25, wer=0.00, edit_similarity=25.25</p></div></div>
+<h4>Ground Truth</h4><pre>5.2. Поверхностные электронные состояния 
+Поверхностные электронные состояния (ПЭС) играют 
+важную роль в теории полупроводников, так как именно 
+они определяют контактные электронные свойства [34]. 
+Реальная поверхность любого металла покрыта оксид­
+ной пленкой, свойства которой ближе к полупроводни­
+ковым, то же самое можно сказать и о л ю б о м металличе­
+ском электроде. П о определению П Э С связаны только с 
+узкой областью вблизи поверхности, где свойства кри­
+сталла сильно отличаются от свойств бесконечной кри­
+сталлической решетки. В этой области возникает нерав­
+н о м е р н о е распределение з а р я д о в как по н о р м а л и к 
+поверхности, так и вдоль нее; имеются специфические 
+центры адсорбции электронов, связанные с дефектами 
+кристаллической решетки, геометрическими неоднород-
+н о с т я м и и т.д. В качестве п р и м е р а приведем схему 
+распределения поверхностных электронов на границе 
+кристалла кремния, покрытого оксидной пленкой S i 0 2 
+(рис. 10) [34]. Из рисунка видно, что по мере продвижения 
+от свободной поверхности (т.е. оксида кремния) к кри­
+сталлу кремния П Э С изменяются, последовательно пере­
+ходя от локализованных состояний 7, 2 (обусловленных 
+наличием ловушек, образованных за счет адсорбции 
+молекул воды с последующим формированием связей 
+S i - О Н . . . Н О - S i ) к состояниям медленных 3 и быстрых 
+4 поверхностных электронов и, наконец, к рекомбина-
+ционным состояниям 5.</pre><h4>Output инструмента</h4><pre>т
+е с
+я
+я ( П
+С)
+в, т
+к к
+к и
+о
+е с
+а [34].
+а
+а п
+е к п
+м м
+ы т
+е с
+е э
+е
+и п
+5.2. П
+е
+ь в т
+т к
+ю р
+и о
+я п
+й п
+м, т
+м э
+й о
+а с
+ь л
+а к
+о с
+е э
+о м
+й б
+ь и о л
+С с
+ю П
+и, г
+в б
+и в
+в
+е; и
+и п
+я о
+т с
+и. В э
+й о
+е
+к и в
+и э
+ь н
+в, с
+й, с
+е м
+е с
+о ж
+е. П
+о о
+ю в
+о о
+й р
+е
+и, т
+ы а
+о с
+а к
+й к
+т н
+о
+к
+я
+е с
+к
+и
+е
+и
+д-
+а
+м
+у
+е
+й S i 02
+о, ч
+е п
+о м
+о п
+я) к к
+я
+х
+и
+В к
+й р
+и, г
+и т . д.
+и н
+е
+в
+а
+я
+й п
+я, п
+а к
+с. 10) [34]. И
+з р
+и (т.е. о
+я, п
+й п
+С и
+я П
+о
+а в
+а к
+о п
+й 7, 2 ( о
+а
+х
+т
+м
+м
+О - S i) к с
+в и, н
+ц, к
+(р
+т с
+у к
+т л
+я о
+м
+л
+S i - О
+4 п
+м с
+х с
+к,
+ы с п
+Н .. . Н
+х
+м 5.
+х
+и
+й
+м м
+х
+х 3 и б
+а-</pre></details>
+<h3>MinerU</h3>
+<details class="example"><summary>Пример 1: Diagrams — DIA_001 (D01, стр. 9), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/DIA_001.png" alt="DIA_001"></div><div><p><b>Тип ошибки:</b> диаграмма сохранена как обычное изображение; потеря текста и связей</p><p><b>Причина:</b> В GT-области найдено Image: 1, но Diagram отсутствует. Generic image не содержит типизированных text_elements/key_elements.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00</p></div></div>
+<p><a href="prediction_assets/mineru_DIA_001.jpg">Извлечённый visual asset</a></p>
+<h4>Ground Truth</h4><pre>тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=0.70: caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра; asset: assets\p9_image_0007.jpg</pre></details>
+<details class="example"><summary>Пример 2: Chemistry — CHEM_001 (D02, стр. 3), 30,98/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/CHEM_001.png" alt="CHEM_001"></div><div><p><b>Тип ошибки:</b> ошибки индексов; ошибки химических символов</p><p><b>Причина:</b> GT=&#x27;FeCl3·6H2O&#x27;, output=&#x27;FeCl3&#x27;; token F1=54.55, composition similarity=30.77.</p><p><b>Влияние:</b> Object Score=30.98/100; потеря относительно идеального объекта=69.02 п.п.; detection=100.00, token_f1=54.55, composition_similarity=30.77, structured_extraction=30.98</p></div></div>
+<h4>Ground Truth</h4><pre>Формула: FeCl3·6H2O</pre><h4>Output инструмента</h4><pre>Формула: FeCl3</pre></details>
+<details class="example"><summary>Пример 3: Tables — TAB_006 (D04, стр. 8), 35,92/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/TAB_006.png" alt="TAB_006"></div><div><p><b>Тип ошибки:</b> потеря строк; ошибки объединения ячеек; искажение содержимого ячеек</p><p><b>Причина:</b> GT=25×6, output=8×6; headers 6→6. Cell recall=31.06, TEDS-like=26.79.</p><p><b>Влияние:</b> Object Score=35.92/100; потеря относительно идеального объекта=64.08 п.п.; cell_recall=31.06, cell_content=27.04, row_structure=32.00, column_structure=100.00, merged_f1=0.00, teds_like=26.79</p></div></div>
+<h4>Ground Truth</h4><pre>Размер: 25 × 6; ячеек: 132
+[H] Сеть | [H] Показатель | [H] Обучающее α | [H] Обучающее λ | [H] Обучающее + 5% шум α | [H] Обучающее + 5% шум λ
+1 | Правильно | 68,20 % | 35,60 % | 67,60 % | 36,20 %
+ | Средняя ошибка | 0,0787 | 0,1430 | 0,0827 | 0,1441
+ | Макс. ошибка | 0,3728 | 0,5027 | 0,9759 | 0,5047
+ | Дисперсия ошибки | 0,0030 | 0,0088 | 0,0046 | 0,0089
+2 | Правильно | 86,00 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0604 |  | 0,0641 | 
+ | Макс. ошибка | 0,3622 |  | 0,4495 | 
+ | Дисперсия ошибки | 0,0020 |  | 0,0028 | 
+3 | Правильно | 88,70 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0583 |  | 0,0634 | 
+ | Макс. ошибка | 0,2045 |  | 0,8540 | 
+ | Дисперсия ошибки | 0,0013 |  | 0,0029 | 
+4 | Правильно | 77,10 % | 39,50 % | 75,80 % | 38,60 %
+ | Средняя ошибка | 0,0671 | 0,1449 | 0,0712 | 0,1466
+ | Макс. ошибка | 0,3594 | 0,5603 | 0,7292 | 0,5605
+ | Дисперсия ошибки | 0,0025 | 0,0103 | 0,0036 | 0,0104
+5 | Правильно | 88,50 % |  | 84,20 % | 
+ | Средняя ошибка | 0,0574 |  | 0,0651 | 
+ | Макс. ошибка | 0,3233 |  | 1,4295 | 
+ | Дисперсия ошибки | 0,016 |  | 0,0057 | 
+6 | Правильно | 80,60 % |  | 79,00 % | 
+ | Средняя ошибка | 0,0631 |  | 0,0683 | 
+ | Макс. ошибка | 0,2647 |  | 0,8166 | 
+ | Дисперсия ошибки | 0,0018 |  | 0,0037 | </pre><h4>Output инструмента</h4><pre>Размер: 8 × 6; ячеек: 48
+[H]  | [H]  | [H] Обуч | [H] ающее | [H] Обучающ | [H] ее+5% шум
+Сеть |  | α | λ | α | λ
+1 | ПравильноСредняя ошибкаМакс. ошибкаДисперсия ошибки | 68,20 %0,07870,37280,0030 | 35,60 %0,14300,50270,0088 | 67,60 %0,08270,97590,0046 | 36,20 %0,14410,50470,0089
+2 | ПравильноСредняя ошибкаМакс. ошибкаДисперсия ошибки | 86,00 %0,06040,36220,0020 |  | 82,40 %0,06410,44950,0028 | 
+3 | ПравильноСредняя ошибкаМакс. ошибкаДисперсия ошибки | 88,70 %0,05830,20450,0013 |  | 82,40 %0,06340,85400,0029 | 
+4 | ПравильноСредняя ошибкаМакс. ошибкаДисперсия ошибки | 77,10 %0,06710,35940,0025 | 39,50 %0,14490,56030,0103 | 75,80 %0,07120,72920,0036 | 38,60 %0,14660,56050,0104
+5 | ПравильноСредняя ошибкаМакс. ошибкаДисперсия ошибки | 88,50 %0,05740,32330,016 |  | 84,20 %0,06511,42950,0057 | 
+6 | ПравильноСредняя ошибкаМакс. ошибкаДисперсия ошибки | 80,60 %0,06310,26470,0018 |  | 79,00 %0,06830,81660,0037 | </pre></details>
+<details class="example"><summary>Пример 4: Math — MATH_001 (D01, стр. 17), 39,77/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/MATH_001.png" alt="MATH_001"></div><div><p><b>Тип ошибки:</b> искажение токенов/номера формулы</p><p><b>Причина:</b> Exact match отсутствует; token precision=62.31, token recall=94.19, edit similarity=48.85.</p><p><b>Влияние:</b> Object Score=39.77/100; потеря относительно идеального объекта=60.23 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=62.31, token_recall=94.19, token_f1=75.00, edit_similarity=48.85</p></div></div>
+<h4>Ground Truth</h4><pre>\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}}</pre><h4>Output инструмента</h4><pre>\widetilde {\mathrm{R}} _ {\mathrm{x}} = \frac {\mathrm{U} _ {\mathrm{B}}}{\mathrm{I} _ {\mathrm{a}}} = \frac {\mathrm{U} _ {\mathrm{R}}}{\mathrm{I} _ {0} + \mathrm{I} _ {\mathrm{B}}} = \frac {\mathrm{R} _ {\mathrm{x}}}{1 + \frac {\mathrm{R} _ {\mathrm{x}}}{\mathrm{R} _ {\mathrm{B}}}},\tag{3}</pre></details>
+<details class="example"><summary>Пример 5: Images — IMG_005 (D05, стр. 2), 61,97/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/IMG_005.png" alt="IMG_005"></div><div><p><b>Тип ошибки:</b> неправильный crop; потеря caption</p><p><b>Причина:</b> Detection=100.00, IoU=27.89, extraction=100.00, caption=0.00.</p><p><b>Влияние:</b> Object Score=61.97/100; потеря относительно идеального объекта=38.03 п.п.; detection_recall=100.00, iou=27.89, extraction=100.00, caption=0.00</p></div></div>
+<p><a href="prediction_assets/mineru_IMG_005.jpg">Извлечённый visual asset</a></p>
+<h4>Ground Truth</h4><pre>caption: Рис. 2. Фотографии поверхности медного электрода после воздействия электрического поля; asset: ground_truth/assets/IMG_005.png</pre><h4>Output инструмента</h4><pre>caption: нет; asset: assets\p2_image_0011.jpg</pre></details>
+<h3>OCR.Space</h3>
+<details class="example"><summary>Пример 1: Text — TXT_008 (D04, стр. 9), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/TXT_008.png" alt="TXT_008"></div><div><p><b>Тип ошибки:</b> пропуск текста</p><p><b>Причина:</b> В размеченной области не найден TextBlock, поэтому все текстовые компоненты равны нулю.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cer=0.00, wer=0.00, edit_similarity=0.00</p></div></div>
+<h4>Ground Truth</h4><pre>3. Метод показал себя устойчивым к шуму в начальных данных: в боль-
+шинстве рассматриваемых моделей внесение шума в исходные данные обрат-
+ной задачи в размере не более 5 % дает 5–7 % снижения точности распознавания
+и весьма незначительное увеличение средней ошибки (порядка 0,02–0,03).
+Но наиболее неожиданным, на наш взгляд, результатом является то, что
+дополнительное знание о расположении измерительного прибора (координа-
+та x0) не дает существенного повышения точности определения параметра
+дробного дифференцирования α.
+Этот факт позволяет выдвинуть гипотезу
+о том, что предложенный метод может быть успешно применен для решения
+обратной задачи в области Ω′ = {(x, t) : −∞&lt; x &lt; ∞, t ≥0}.
+Данные в табл. 5, 6 дают представление о максимальной ошибке восста-
+новления параметров задачи (5), но не говорят о том, как часто возникает
+ошибка, большая допустимой.
+Разобьем отрезок [0, 2] на 11 интервалов [0, 00; 0, 02), [0, 02; 0, 04), [0, 04;
+0, 06), [0, 06; 0, 08), [0, 08; 0, 10), [0, 10; 0, 12), [0, 12; 0, 14), [0, 14; 0, 16), [0, 16; 0, 18),</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.</pre></details>
+<details class="example"><summary>Пример 2: Tables — TAB_006 (D04, стр. 8), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/TAB_006.png" alt="TAB_006"></div><div><p><b>Тип ошибки:</b> пропуск таблицы</p><p><b>Причина:</b> В области нет типизированной таблицы; строки, колонки и headers не восстановлены.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cell_recall=0.00, cell_content=24.24, row_structure=0.00, column_structure=0.00, merged_f1=0.00, teds_like=0.45</p></div></div>
+<h4>Ground Truth</h4><pre>Размер: 25 × 6; ячеек: 132
+[H] Сеть | [H] Показатель | [H] Обучающее α | [H] Обучающее λ | [H] Обучающее + 5% шум α | [H] Обучающее + 5% шум λ
+1 | Правильно | 68,20 % | 35,60 % | 67,60 % | 36,20 %
+ | Средняя ошибка | 0,0787 | 0,1430 | 0,0827 | 0,1441
+ | Макс. ошибка | 0,3728 | 0,5027 | 0,9759 | 0,5047
+ | Дисперсия ошибки | 0,0030 | 0,0088 | 0,0046 | 0,0089
+2 | Правильно | 86,00 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0604 |  | 0,0641 | 
+ | Макс. ошибка | 0,3622 |  | 0,4495 | 
+ | Дисперсия ошибки | 0,0020 |  | 0,0028 | 
+3 | Правильно | 88,70 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0583 |  | 0,0634 | 
+ | Макс. ошибка | 0,2045 |  | 0,8540 | 
+ | Дисперсия ошибки | 0,0013 |  | 0,0029 | 
+4 | Правильно | 77,10 % | 39,50 % | 75,80 % | 38,60 %
+ | Средняя ошибка | 0,0671 | 0,1449 | 0,0712 | 0,1466
+ | Макс. ошибка | 0,3594 | 0,5603 | 0,7292 | 0,5605
+ | Дисперсия ошибки | 0,0025 | 0,0103 | 0,0036 | 0,0104
+5 | Правильно | 88,50 % |  | 84,20 % | 
+ | Средняя ошибка | 0,0574 |  | 0,0651 | 
+ | Макс. ошибка | 0,3233 |  | 1,4295 | 
+ | Дисперсия ошибки | 0,016 |  | 0,0057 | 
+6 | Правильно | 80,60 % |  | 79,00 % | 
+ | Средняя ошибка | 0,0631 |  | 0,0683 | 
+ | Макс. ошибка | 0,2647 |  | 0,8166 | 
+ | Дисперсия ошибки | 0,0018 |  | 0,0037 | </pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.</pre></details>
+<details class="example"><summary>Пример 3: Images — IMG_001 (D01, стр. 8), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/IMG_001.png" alt="IMG_001"></div><div><p><b>Тип ошибки:</b> в области остался только текст; потеря visual payload</p><p><b>Причина:</b> В области найдено TextBlock: 8, но отсутствует Image asset; OCR-текст, caption или alt-text не заменяют извлечение изображения.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00</p></div></div>
+<h4>Ground Truth</h4><pre>caption: Рис. 3.2. Лицевая панель цифрового миллиомметра GOM-802; asset: ground_truth/assets/IMG_001.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.03: Рис. 3.2. Передняя панель цифрового миллиомметра GOM-802
+- TextBlock overlap=0.00: GWINSTEK
+- TextBlock overlap=0.00: DC MILLI-OHM METER
+- TextBlock overlap=0.00: GOM-802
+- TextBlock overlap=0.00: GPIB/RS232
+- TextBlock overlap=0.00: HANDLER
+- TextBlock overlap=0.00: NORMAL
+- TextBlock overlap=0.00: CURSOR</pre></details>
+<details class="example"><summary>Пример 4: Diagrams — DIA_001 (D01, стр. 9), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/DIA_001.png" alt="DIA_001"></div><div><p><b>Тип ошибки:</b> диаграмма представлена только текстом/Markdown; связи не типизированы</p><p><b>Причина:</b> В GT-области найдено TextBlock: 8, но Diagram отсутствует. OCR-текст или Markdown/Mermaid не дают benchmark typed key_elements без отдельного преобразования.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00</p></div></div>
+<h4>Ground Truth</h4><pre>тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.01: UBB Rx
+- TextBlock overlap=0.01: напряжения
+- TextBlock overlap=0.00: 6)
+- TextBlock overlap=0.00: Источник
+- TextBlock overlap=0.00: Источник
+- TextBlock overlap=0.00: a)
+- TextBlock overlap=0.00: Rper
+- TextBlock overlap=0.00: Rx</pre></details>
+<details class="example"><summary>Пример 5: Math — MATH_002 (D04, стр. 1), 22,01/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/MATH_002.png" alt="MATH_002"></div><div><p><b>Тип ошибки:</b> потеря fraction structure; ошибки subscript; ошибки superscript; потеря Greek symbols; потеря operators; потеря brackets</p><p><b>Причина:</b> Exact match отсутствует; token precision=72.41, token recall=31.82, edit similarity=21.62.</p><p><b>Влияние:</b> Object Score=22.01/100; потеря относительно идеального объекта=77.99 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=72.41, token_recall=31.82, token_f1=44.21, edit_similarity=21.62</p></div></div>
+<h4>Ground Truth</h4><pre>{}_{t}D_*^{\alpha}f(t)=\frac{1}{\Gamma(1-\alpha)}\int_{0}^{t}\frac{f&#x27;(\tau)}{(t-\tau)^{\alpha}}\,d\tau,\quad 0&lt;\alpha&lt;1</pre><h4>Output инструмента</h4><pre>1 f&#x27;(т) Dof(t) = (1-a) (1-7) dr. 0 &lt; α &lt;1.</pre></details>
+<h3>Nutrient</h3>
+<details class="example"><summary>Пример 1: Math — MATH_003 (D04, стр. 2), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/MATH_003.png" alt="MATH_003"></div><div><p><b>Тип ошибки:</b> потеря fraction structure; ошибки subscript; ошибки superscript; потеря Greek symbols; потеря operators; потеря brackets</p><p><b>Причина:</b> Exact match отсутствует; token precision=100.00, token recall=0.00, edit similarity=0.00.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=100.00, token_recall=0.00, token_f1=0.00, edit_similarity=0.00</p></div></div>
+<h4>Ground Truth</h4><pre>{}_{t}D^{\alpha}f(t)=\frac{1}{\Gamma(1-\alpha)}\frac{d}{dt}\int_{0}^{t}\frac{f(\tau)}{(t-\tau)^{\alpha}}\,d\tau,\quad 0&lt;\alpha&lt;1</pre><h4>Output инструмента</h4><pre>Formula spatially matched, но математический payload пуст.</pre></details>
+<details class="example"><summary>Пример 2: Diagrams — DIA_001 (D01, стр. 9), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/DIA_001.png" alt="DIA_001"></div><div><p><b>Тип ошибки:</b> диаграмма сохранена как обычное изображение; потеря текста и связей</p><p><b>Причина:</b> В GT-области найдено Image: 1, но Diagram отсутствует. Generic image не содержит типизированных text_elements/key_elements.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00</p></div></div>
+<h4>Ground Truth</h4><pre>тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=0.68: caption: нет; asset: нет</pre></details>
+<details class="example"><summary>Пример 3: Tables — TAB_006 (D04, стр. 8), 34,73/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/TAB_006.png" alt="TAB_006"></div><div><p><b>Тип ошибки:</b> потеря строк; ошибки объединения ячеек; искажение содержимого ячеек</p><p><b>Причина:</b> GT=25×6, output=8×6; headers 6→10. Cell recall=29.55, TEDS-like=23.66.</p><p><b>Влияние:</b> Object Score=34.73/100; потеря относительно идеального объекта=65.27 п.п.; cell_recall=29.55, cell_content=27.49, row_structure=32.00, column_structure=100.00, merged_f1=0.00, teds_like=23.66</p></div></div>
+<h4>Ground Truth</h4><pre>Размер: 25 × 6; ячеек: 132
+[H] Сеть | [H] Показатель | [H] Обучающее α | [H] Обучающее λ | [H] Обучающее + 5% шум α | [H] Обучающее + 5% шум λ
+1 | Правильно | 68,20 % | 35,60 % | 67,60 % | 36,20 %
+ | Средняя ошибка | 0,0787 | 0,1430 | 0,0827 | 0,1441
+ | Макс. ошибка | 0,3728 | 0,5027 | 0,9759 | 0,5047
+ | Дисперсия ошибки | 0,0030 | 0,0088 | 0,0046 | 0,0089
+2 | Правильно | 86,00 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0604 |  | 0,0641 | 
+ | Макс. ошибка | 0,3622 |  | 0,4495 | 
+ | Дисперсия ошибки | 0,0020 |  | 0,0028 | 
+3 | Правильно | 88,70 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0583 |  | 0,0634 | 
+ | Макс. ошибка | 0,2045 |  | 0,8540 | 
+ | Дисперсия ошибки | 0,0013 |  | 0,0029 | 
+4 | Правильно | 77,10 % | 39,50 % | 75,80 % | 38,60 %
+ | Средняя ошибка | 0,0671 | 0,1449 | 0,0712 | 0,1466
+ | Макс. ошибка | 0,3594 | 0,5603 | 0,7292 | 0,5605
+ | Дисперсия ошибки | 0,0025 | 0,0103 | 0,0036 | 0,0104
+5 | Правильно | 88,50 % |  | 84,20 % | 
+ | Средняя ошибка | 0,0574 |  | 0,0651 | 
+ | Макс. ошибка | 0,3233 |  | 1,4295 | 
+ | Дисперсия ошибки | 0,016 |  | 0,0057 | 
+6 | Правильно | 80,60 % |  | 79,00 % | 
+ | Средняя ошибка | 0,0631 |  | 0,0683 | 
+ | Макс. ошибка | 0,2647 |  | 0,8166 | 
+ | Дисперсия ошибки | 0,0018 |  | 0,0037 | </pre><h4>Output инструмента</h4><pre>Размер: 8 × 6; ячеек: 46
+[H] Сеть | [H]  | [H] Обучающее |  | [H] Обучающее+5%шум | 
+[H]  | [H]  | [H] α | [H] λ | [H] α | [H] λ
+1 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 68,20 % 0,0787 0,3728 0,0030 | 35,60 % 0,1430 0,5027 0,0088 | 67,60 % 0,0827 0,9759 0,0046 | 36,20 % 0,1441 0,5047 0,0089
+2 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 86,00 % 0,0604 0,3622 0,0020 |  | 82,40 % 0,0641 0,4495 0,0028 | 
+3 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 88,70 % 0,0583 0,2045 0,0013 |  | 82,40 % 0,0634 0,8540 0,0029 | 
+4 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 77,10 % 0,0671 0,3594 0,0025 | 39,50 % 0,1449 0,5603 0,0103 | 75,80 % 0,0712 0,7292 0,0036 | 38,60 % 0,1466 0,5605 0,0104
+5 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 88,50 % 0,0574 0,3233 0,016 |  | 84,20 % 0,0651 1,4295 0,0057 | 
+6 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 80,60 % 0,0631 0,2647 0,0018 |  | 79,00 % 0,0683 0,8166 0,0037 | </pre></details>
+<details class="example"><summary>Пример 4: Images — IMG_005 (D05, стр. 2), 36,90/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/IMG_005.png" alt="IMG_005"></div><div><p><b>Тип ошибки:</b> неправильный crop; изображение не сохранено; потеря caption</p><p><b>Причина:</b> Detection=100.00, IoU=27.60, extraction=0.00, caption=0.00.</p><p><b>Влияние:</b> Object Score=36.90/100; потеря относительно идеального объекта=63.10 п.п.; detection_recall=100.00, iou=27.60, extraction=0.00, caption=0.00</p></div></div>
+<h4>Ground Truth</h4><pre>caption: Рис. 2. Фотографии поверхности медного электрода после воздействия электрического поля; asset: ground_truth/assets/IMG_005.png</pre><h4>Output инструмента</h4><pre>caption: нет; asset: нет</pre></details>
+<details class="example"><summary>Пример 5: Chemistry — CHEM_004 (D02, стр. 2), 38,30/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/CHEM_004.png" alt="CHEM_004"></div><div><p><b>Тип ошибки:</b> потеря химических символов/меток; structural formula не извлечена; неточный crop</p><p><b>Причина:</b> Structure detection есть, но IoU=33.18, label recall=0.00, extraction=0.00.</p><p><b>Влияние:</b> Object Score=38.30/100; потеря относительно идеального объекта=61.70 п.п.; detection=100.00, iou=33.18, label_recall=0.00, extraction=0.00, structured_extraction=11.85</p></div></div>
+<h4>Ground Truth</h4><pre>Тартразин (Tartrazine); текстовые метки: NaOOC, N=N, OH, NaO3S, SO3Na; asset: ground_truth/assets/CHEM_004.png</pre><h4>Output инструмента</h4><pre>structure; текстовые метки: нет; asset: нет</pre></details>
+<h3>Mindee</h3>
+<details class="example"><summary>Пример 1: Tables — TAB_001 (D01, стр. 4), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/TAB_001.png" alt="TAB_001"></div><div><p><b>Тип ошибки:</b> таблица превращена в обычный текст; структура строк/колонок отсутствует</p><p><b>Причина:</b> Typed Table отсутствует, но внутри GT-области найдено TextBlock: 8. Текст извлечён без сетки ячеек, поэтому cell recall и структурные компоненты обнуляются.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cell_recall=0.00, cell_content=0.00, row_structure=0.00, column_structure=0.00, merged_f1=100.00, teds_like=1.96</p></div></div>
+<h4>Ground Truth</h4><pre>Размер: 5 × 6; ячеек: 30
+[H] Тип | [H] Число декад | [H] Пределы воспроизведения R, Ом | [H] Дискретность воспроизведения, Ом | [H] Класс точности γ, % | [H] Допускаемая мощность на декаду, Вт
+Р 33 | 6 | 0–100000 | 0,1 | 0,2 | 0,5
+КМС 6 | 6 | 0–100000 | 0,1 | 0,2 | 0,5
+МСР 60М | 6 | 0–10000 | 0,01 | 0,02 | 0,5
+МСР 63 | 7 | 0–100000 | 0,01 | 0,05 | 0,5</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.01: Допускаема
+- TextBlock overlap=0.01: Дискрет-
+- TextBlock overlap=0.01: произведе-
+- TextBlock overlap=0.01: Пределы
+- TextBlock overlap=0.01: воспроиз-
+- TextBlock overlap=0.01: мощность
+- TextBlock overlap=0.01: ведения
+- TextBlock overlap=0.01: Класс</pre></details>
+<details class="example"><summary>Пример 2: Images — IMG_001 (D01, стр. 8), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/IMG_001.png" alt="IMG_001"></div><div><p><b>Тип ошибки:</b> в области остался только текст; потеря visual payload</p><p><b>Причина:</b> В области найдено TextBlock: 8, но отсутствует Image asset; OCR-текст, caption или alt-text не заменяют извлечение изображения.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00</p></div></div>
+<h4>Ground Truth</h4><pre>caption: Рис. 3.2. Лицевая панель цифрового миллиомметра GOM-802; asset: ground_truth/assets/IMG_001.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.01: GWINSTEK
+- TextBlock overlap=0.01: GOM-802
+- TextBlock overlap=0.01: миллиомметра
+- TextBlock overlap=0.01: цифрового
+- TextBlock overlap=0.00: GOM-802
+- TextBlock overlap=0.00: Передняя
+- TextBlock overlap=0.00: панель
+- TextBlock overlap=0.00: -|10</pre></details>
+<details class="example"><summary>Пример 3: Diagrams — DIA_001 (D01, стр. 9), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/DIA_001.png" alt="DIA_001"></div><div><p><b>Тип ошибки:</b> диаграмма представлена только текстом/Markdown; связи не типизированы</p><p><b>Причина:</b> В GT-области найдено TextBlock: 8, но Diagram отсутствует. OCR-текст или Markdown/Mermaid не дают benchmark typed key_elements без отдельного преобразования.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00</p></div></div>
+<h4>Ground Truth</h4><pre>тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.01: напряжения
+- TextBlock overlap=0.01: Источник
+- TextBlock overlap=0.01: напряжения
+- TextBlock overlap=0.01: Источник
+- TextBlock overlap=0.01: Rper
+- TextBlock overlap=0.00: Rper
+- TextBlock overlap=0.00: б)
+- TextBlock overlap=0.00: (B</pre></details>
+<details class="example"><summary>Пример 4: Math — MATH_001 (D01, стр. 17), 9,23/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/MATH_001.png" alt="MATH_001"></div><div><p><b>Тип ошибки:</b> потеря fraction structure; ошибки subscript; потеря brackets</p><p><b>Причина:</b> Exact match отсутствует; token precision=50.00, token recall=11.63, edit similarity=8.40.</p><p><b>Влияние:</b> Object Score=9.23/100; потеря относительно идеального объекта=90.77 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=50.00, token_recall=11.63, token_f1=18.87, edit_similarity=8.40</p></div></div>
+<h4>Ground Truth</h4><pre>\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}}</pre><h4>Output инструмента</h4><pre>U R. UR UB = Ř = = , R, I2 I0+1B x a 1+ RA</pre></details>
+<details class="example"><summary>Пример 5: Chemistry — CHEM_001 (D02, стр. 3), 41,50/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/CHEM_001.png" alt="CHEM_001"></div><div><p><b>Тип ошибки:</b> ошибки индексов; ошибки химических символов</p><p><b>Причина:</b> GT=&#x27;FeCl3·6H2O&#x27;, output=&#x27;6H2O&#x27;; token F1=66.67, composition similarity=90.00.</p><p><b>Влияние:</b> Object Score=41.50/100; потеря относительно идеального объекта=58.50 п.п.; detection=100.00, token_f1=66.67, composition_similarity=90.00, structured_extraction=41.50</p></div></div>
+<h4>Ground Truth</h4><pre>Формула: FeCl3·6H2O</pre><h4>Output инструмента</h4><pre>Формула: 6H2O</pre></details>
+<h3>Adobe Extract</h3>
+<details class="example"><summary>Пример 1: Tables — TAB_007 (D05, стр. 21), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/TAB_007.png" alt="TAB_007"></div><div><p><b>Тип ошибки:</b> таблица превращена в обычный текст; структура строк/колонок отсутствует</p><p><b>Причина:</b> Typed Table отсутствует, но внутри GT-области найдено TextBlock: 2. Текст извлечён без сетки ячеек, поэтому cell recall и структурные компоненты обнуляются.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cell_recall=0.00, cell_content=5.71, row_structure=0.00, column_structure=0.00, merged_f1=100.00, teds_like=1.65</p></div></div>
+<p><a href="prediction_assets/adobe_extract_TAB_007.png">Извлечённый visual asset</a></p>
+<h4>Ground Truth</h4><pre>Размер: 7 × 5; ячеек: 35
+[H] Процесс | [H] Плотность инжектируемого заряда | [H] Плотность инжектируемого тока | [H] Литература | [H] Физико-химическая схема
+Инжекция Шоттки | q∞ = qA exp(-ε_ad/r_A) | j_i = β q∞ E | [36] | инжекция с поверхности электрода
+M + A+B− ⇄ M(e) + A + B | q∞ | j_i = j_e a_ext a_ox N / (a_red + a_ext) | [19] | окислительно-восстановительный механизм
+X+Q−(M) ⇄ X− | q∞ | j_i = μ q∞ E | [35] | полевая инжекция
+X+Q−(M) ⇒ X− | q∞ | j_i = μ r_i E² | [35] | полевая инжекция
+Адсорбционная электризация | Ток электризации | J = -q_i S V_0; S = 2π r D R |  | q_sj = K_ad j q_0, j=1,2
+Электризация по ОВ-механизму | n* = n_A/K_AD; n_A=(k_1/k_2)c_A | I = √(2 ε e n* φ_0) 2πR V_0 |  | K_ad = ∫ exp(E_ad/x) dx</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p21_00613.png
+- Image overlap=1.00: caption: нет; asset: нет
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p21_00616.png
+- Image overlap=1.00: caption: нет; asset: нет
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p21_00636.png
+- Image overlap=1.00: caption: нет; asset: нет
+- TextBlock overlap=0.02: связанными, могут быть причиной электризации тел в газовой среде, содержащей электроотрицательные моле­кулы. Разумеется, это область малых токов, однако в течение длительного времени (или при наличии интен­сивного обтекания тел) накопление зарядов может быть значительным, и эти процессы нельзя не принимать во внимание. По нашему мнению, процесс ионизации плотных газов, скажем воздуха, по окислительно-восста-
+- TextBlock overlap=0.02: новительному механизму требует дополнительных как экспериментальных, так и теоретических исследований. </pre></details>
+<details class="example"><summary>Пример 2: Math — MATH_001 (D01, стр. 17), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/MATH_001.png" alt="MATH_001"></div><div><p><b>Тип ошибки:</b> формула возвращена как Figure/Image; нет структурированного Math payload</p><p><b>Причина:</b> В области есть графический объект, но нет Formula с LaTeX/plain-math представлением; типобезопасный matcher не переименовывает generic Figure в формулу.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=100.00, token_recall=0.00, token_f1=0.00, edit_similarity=0.00</p></div></div>
+<p><a href="prediction_assets/adobe_extract_MATH_001.png">Извлечённый visual asset</a></p>
+<h4>Ground Truth</h4><pre>\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}}</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=0.52: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D01\versions\92df332f0870ad8424f1dd75\assets\adobe_p17_00663.png
+- Image overlap=0.52: caption: нет; asset: нет
+- TextBlock overlap=0.02: (3) </pre></details>
+<details class="example"><summary>Пример 3: Images — IMG_004 (D05, стр. 2), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/IMG_004.png" alt="IMG_004"></div><div><p><b>Тип ошибки:</b> visual candidate не сопоставлен с Image GT</p><p><b>Причина:</b> В области есть visual candidate, но он не выбран при one-to-one сопоставлении по типу/геометрии либо не имеет подтверждённого extraction payload.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00</p></div></div>
+<p><a href="prediction_assets/adobe_extract_IMG_004.png">Извлечённый visual asset</a></p>
+<h4>Ground Truth</h4><pre>caption: Рис. 1. Картины течения в системе двух параллельных проводников; asset: ground_truth/assets/IMG_004.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p2_00043.png
+- Image overlap=1.00: caption: нет; asset: нет
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p2_00047.png
+- Image overlap=1.00: caption: нет; asset: нет
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p2_00050.png
+- Image overlap=1.00: caption: нет; asset: нет
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p2_00056.png
+- Image overlap=1.00: caption: нет; asset: нет</pre></details>
+<details class="example"><summary>Пример 4: Diagrams — DIA_001 (D01, стр. 9), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/DIA_001.png" alt="DIA_001"></div><div><p><b>Тип ошибки:</b> диаграмма сохранена как обычное изображение; потеря текста и связей</p><p><b>Причина:</b> В GT-области найдено Image: 1, но Diagram отсутствует. Generic image не содержит типизированных text_elements/key_elements.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00</p></div></div>
+<p><a href="prediction_assets/adobe_extract_DIA_001.png">Извлечённый visual asset</a></p>
+<h4>Ground Truth</h4><pre>тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D01\versions\92df332f0870ad8424f1dd75\assets\adobe_p9_00278.png</pre></details>
+<details class="example"><summary>Пример 5: Chemistry — CHEM_004 (D02, стр. 2), 37,78/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/CHEM_004.png" alt="CHEM_004"></div><div><p><b>Тип ошибки:</b> потеря химических символов/меток; structural formula не извлечена; неточный crop</p><p><b>Причина:</b> Structure detection есть, но IoU=31.12, label recall=0.00, extraction=0.00.</p><p><b>Влияние:</b> Object Score=37.78/100; потеря относительно идеального объекта=62.22 п.п.; detection=100.00, iou=31.12, label_recall=0.00, extraction=0.00, structured_extraction=11.11</p></div></div>
+<h4>Ground Truth</h4><pre>Тартразин (Tartrazine); текстовые метки: NaOOC, N=N, OH, NaO3S, SO3Na; asset: ground_truth/assets/CHEM_004.png</pre><h4>Output инструмента</h4><pre>structure; текстовые метки: нет; asset: нет</pre></details>
+<h3>LlamaParse</h3>
+<details class="example"><summary>Пример 1: Images — IMG_001 (D01, стр. 8), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/IMG_001.png" alt="IMG_001"></div><div><p><b>Тип ошибки:</b> в области остался только текст; потеря visual payload</p><p><b>Причина:</b> В области найдено TextBlock: 2, но отсутствует Image asset; OCR-текст, caption или alt-text не заменяют извлечение изображения.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00</p></div></div>
+<h4>Ground Truth</h4><pre>caption: Рис. 3.2. Лицевая панель цифрового миллиомметра GOM-802; asset: ground_truth/assets/IMG_001.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.58: photograph: GWINSTEK GOM-802 DC MILLI-OHM METER front panel
+- TextBlock overlap=0.03: Рис.3.2. Передняя панель цифрового миллиомметра GОМ-802</pre></details>
+<details class="example"><summary>Пример 2: Diagrams — DIA_001 (D01, стр. 9), 0,00/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/DIA_001.png" alt="DIA_001"></div><div><p><b>Тип ошибки:</b> диаграмма представлена только текстом/Markdown; связи не типизированы</p><p><b>Причина:</b> В GT-области найдено TextBlock: 1, но Diagram отсутствует. OCR-текст или Markdown/Mermaid не дают benchmark typed key_elements без отдельного преобразования.</p><p><b>Влияние:</b> Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00</p></div></div>
+<h4>Ground Truth</h4><pre>тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png</pre><h4>Output инструмента</h4><pre>Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.69: graph TD
+    subgraph a
+        S1[&quot;Источникнапряжения&quot;] --- R1[&quot;R&lt;sub&gt;per&lt;/sub&gt;&quot;]
+        R1 --- A1((&quot;A&quot;))
+        A1 ---|I&lt;sub&gt;a&lt;/sub&gt;| RX1[&quot;R&lt;sub&gt;x&lt;/sub&gt;&quot;]
+        S1 --- V1((&quot;B&quot;))
+        V1 ---|U&lt;sub&gt;B&lt;/sub&gt;| RX1
+        A1 --- V1
+    end
+    subgraph b
+        S2[&quot;Источникнапряжения&quot;] --- R2[&quot;R&lt;sub&gt;per&lt;/sub&gt;&quot;]
+        R2 --- A2((&quot;A&quot;))
+        A2 ---|I&lt;sub&gt;a&lt;/sub&gt;| RX2[&quot;R&lt;sub&gt;x&lt;/sub&gt;&quot;]
+        S2 --- V2((&quot;B&quot;))
+        V2 ---|U&lt;sub&gt;B&lt;/sub&gt;| RX2
+        R2 --- V2
+    end</pre></details>
+<details class="example"><summary>Пример 3: Math — MATH_001 (D01, стр. 17), 37,44/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/MATH_001.png" alt="MATH_001"></div><div><p><b>Тип ошибки:</b> искажение токенов/номера формулы</p><p><b>Причина:</b> Exact match отсутствует; token precision=58.65, token recall=90.70, edit similarity=44.74.</p><p><b>Влияние:</b> Object Score=37.44/100; потеря относительно идеального объекта=62.56 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=58.65, token_recall=90.70, token_f1=71.23, edit_similarity=44.74</p></div></div>
+<h4>Ground Truth</h4><pre>\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}}</pre><h4>Output инструмента</h4><pre>\tilde{\mathbf{R}}_{\mathbf{x}} = \frac{\mathbf{U}_{\mathbf{B}}}{\mathbf{I}_{\mathbf{a}}} = \frac{\mathbf{U}_{\mathbf{R}}}{\mathbf{I}_{\mathbf{0}} + \mathbf{I}_{\mathbf{B}}} = \frac{\mathbf{R}_{\mathbf{x}}}{1 + \frac{\mathbf{R}_{\mathbf{x}}}{\mathbf{R}_{\mathbf{B}}}}, \eqno(3)</pre></details>
+<details class="example"><summary>Пример 4: Chemistry — CHEM_004 (D02, стр. 2), 37,64/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/CHEM_004.png" alt="CHEM_004"></div><div><p><b>Тип ошибки:</b> потеря химических символов/меток; structural formula не извлечена; неточный crop</p><p><b>Причина:</b> Structure detection есть, но IoU=30.56, label recall=0.00, extraction=0.00.</p><p><b>Влияние:</b> Object Score=37.64/100; потеря относительно идеального объекта=62.36 п.п.; detection=100.00, iou=30.56, label_recall=0.00, extraction=0.00, structured_extraction=10.91</p></div></div>
+<h4>Ground Truth</h4><pre>Тартразин (Tartrazine); текстовые метки: NaOOC, N=N, OH, NaO3S, SO3Na; asset: ground_truth/assets/CHEM_004.png</pre><h4>Output инструмента</h4><pre>structure; текстовые метки: Тартразин; asset: нет</pre></details>
+<details class="example"><summary>Пример 5: Tables — TAB_005 (D03, стр. 6), 51,74/100</summary><div class="example-grid"><div><h4>Исходный объект</h4><img src="source_crops/TAB_005.png" alt="TAB_005"></div><div><p><b>Тип ошибки:</b> потеря строк; искажение содержимого ячеек</p><p><b>Причина:</b> GT=5×11, output=3×12; headers 11→12. Cell recall=60.00, TEDS-like=50.85.</p><p><b>Влияние:</b> Object Score=51.74/100; потеря относительно идеального объекта=48.26 п.п.; cell_recall=60.00, cell_content=1.98, row_structure=60.00, column_structure=91.67, merged_f1=100.00, teds_like=50.85</p></div></div>
+<h4>Ground Truth</h4><pre>Размер: 5 × 11; ячеек: 55
+[H]  | [H] severe toxic | [H]  | [H] obscene | [H]  | [H] threat | [H]  | [H] insult | [H]  | [H] identity hate | [H] 
+severe toxic | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1
+toxic |  |  |  |  |  |  |  |  |  | 
+0 | 144277 | 0 | 143754 | 523 | 144248 | 29 | 143744 | 533 | 144174 | 103
+1 | 13699 | 1595 | 7368 | 7926 | 14845 | 449 | 7950 | 7344 | 13992 | 1302</pre><h4>Output инструмента</h4><pre>Размер: 3 × 12; ячеек: 36
+[H] severe toxic | [H] toxic | [H] severe toxic&lt;br/&gt;0&lt;br/&gt;toxic | [H] severe toxic&lt;br/&gt;1&lt;br/&gt;toxic | [H] obscene&lt;br/&gt;0&lt;br/&gt;toxic | [H] obscene&lt;br/&gt;1&lt;br/&gt;toxic | [H] threat&lt;br/&gt;0&lt;br/&gt;toxic | [H] threat&lt;br/&gt;1&lt;br/&gt;toxic | [H] insult&lt;br/&gt;0&lt;br/&gt;toxic | [H] insult&lt;br/&gt;1&lt;br/&gt;toxic | [H] identity hate&lt;br/&gt;0&lt;br/&gt;toxic | [H] identity hate&lt;br/&gt;1&lt;br/&gt;toxic
+0 | 144277 | 0 | 143754 | 523 | 144248 | 29 | 143744 | 533 | 144174 | 103 | 
+1 | 13699 | 1595 | 7368 | 7926 | 14845 | 449 | 7950 | 7344 | 13992 | 1302 | </pre></details>
+<h2 id="synthesis">18. Обобщение результатов</h2>
+<div class="table-wrap"><table><caption>Практический выбор по специализации</caption><thead><tr><th>Задача</th><th>Предпочтительный профиль</th><th>Ограничение</th></tr></thead><tbody>
+<tr><td>Максимально точный обычный текст</td><td>PyMuPDF; затем Nutrient, Mindee, LlamaParse</td><td>PyMuPDF не восстанавливает сложную семантику таблиц/диаграмм автоматически.</td></tr>
+<tr><td>Таблицы</td><td>MinerU, LlamaParse, Nutrient</td><td>Результаты близки и имеют широкую междокументную неопределённость.</td></tr>
+<tr><td>Математические формулы</td><td>LlamaParse, MinerU, OCR.Space</td><td>Даже лидер имеет Math 49,33; обязательна проверка LaTeX.</td></tr>
+<tr><td>Химия</td><td>Все обнаруживают 6/6; payload лучше сравнивать по Extraction</td><td>Химия проверена только на одном PDF.</td></tr>
+<tr><td>Изображения</td><td>MinerU; далее Adobe Extract/PyMuPDF/pdfminer.six</td><td>Подписи, crop и типизация часто неполны.</td></tr>
+<tr><td>Диаграммы</td><td>Docling; затем MinerU</td><td>Среднее категории 5,63; полноценное восстановление связей остаётся нерешённым.</td></tr>
+<tr><td>Минимальная локальная задержка</td><td>pdfplumber или PyMuPDF</td><td>Структурные категории слабее локальных ML-систем.</td></tr>
+<tr><td>Локальный комплексный профиль</td><td>Docling или MinerU</td><td>Docling ресурсоёмок; MinerU слабее по диаграммам.</td></tr>
+</tbody></table></div>
+<p>Ни один инструмент не доминирует во всех категориях. Лучший выбор определяется долей обычного текста, таблиц, формул и визуальных объектов, требованиями к локальности, задержке и ресурсам. Для промышленной системы разумна маршрутизация: быстрый локальный парсер для born-digital текста и более тяжёлый структурный/OCR pipeline для сложных страниц.</p>
+<h2 id="limitations">19. Ограничения исследования</h2>
+<ul><li>Корпус мал: пять целенаправленно выбранных PDF и 40 репрезентативных, а не исчерпывающе размеченных объектов.</li><li>Химия представлена одним документом, изображения двумя, математика тремя; переносимость соответствующих результатов ограничена.</li><li>Сравниваются конкретные версии, адаптеры и режимы; иной endpoint, OCR engine или модель может дать другой профиль.</li><li>Object Score измеряет совпадение с выбранным представлением GT; для математики не проверяется символическая эквивалентность, для диаграмм — полная графовая эквивалентность.</li><li>Reading order размечен косвенно внутри выбранных регионов; отдельного полного порядка всех блоков страницы нет.</li><li>Облачное время включает клиентскую и сетевую часть конкретных запусков, но не раскрывает серверные ресурсы; локальное и облачное время различаются по природе.</li><li>Стоимость зафиксирована как нулевая в условиях запусков и не является коммерческим сравнением тарифов.</li><li>13 статистических предупреждений сохранены как наблюдения; outliers автоматически не удалялись.</li></ul>
+<h2 id="conclusions">20. Выводы</h2>
+<ul><li>Предложенная система даёт отдельные воспроизводимые оценки текста, таблиц, математики, химии, изображений и диаграмм, а затем равновесный Overall.</li><li>PyMuPDF наиболее точен по обычному тексту (99,98), MinerU — по таблицам (71,44) и изображениям (75,01), LlamaParse — по математике (49,33), pdfminer.six — по действующему Chemistry Score (82,59), Docling — по диаграммам (42,19).</li><li>Наибольший Overall у Docling (59,44), но он не является лучшим по всем категориям и требует наибольших ресурсов и времени.</li><li>Локальные ML-системы превосходят классические локальные парсеры в среднем Overall за счёт структурных и визуальных категорий; по тексту средние групп почти совпадают.</li><li>Наиболее сложны диаграммы и математика. Таблицы и изображения также требуют структурного, а не только текстового извлечения.</li><li>Результаты существенно зависят от PDF: D05 сложнее D03 на общем наборе Text/Table/Diagram, а отдельные инструменты резко меняют качество и время между документами.</li><li>Повышение score оправдано только при исправлении ошибок адаптера, matching, нормализации или GT. Подгонка правил под конкретный GT снизила бы исследовательскую достоверность.</li><li>Для внешнего сервера следует предоставлять профиль по категориям, время, ресурсы и примеры ошибок, а не один рейтинг Overall.</li></ul>
+<p class="links"><a href="../../PROMPT12_CONTROL.md">Промпт 12 — контроль baseline</a> · <a href="../../PROMPT13_ANALYSIS.md">Промпт 13 — статистический анализ</a> · <a href="../../PROMPT14_ERROR_ANALYSIS.md">Промпт 14 — error analysis</a></p><footer>Отчёт построен из зафиксированного baseline без изменения PDF, Ground Truth и оценок. Машиночитаемые таблицы, графики, примеры и манифест находятся рядом с этим файлом.</footer></main></body></html>

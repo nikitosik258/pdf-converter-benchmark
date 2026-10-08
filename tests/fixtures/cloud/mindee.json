@@ -1,0 +1,60 @@
+{
+  "inference": {
+    "id": "mock-inference",
+    "job": {
+      "id": "mock-job",
+      "status": "Processed"
+    },
+    "result": {
+      "pages": [
+        {
+          "content": "Benchmark PDF",
+          "words": [
+            {
+              "content": "Benchmark",
+              "polygon": [
+                [
+                  0.1,
+                  0.1
+                ],
+                [
+                  0.3,
+                  0.1
+                ],
+                [
+                  0.3,
+                  0.15
+                ],
+                [
+                  0.1,
+                  0.15
+                ]
+              ]
+            },
+            {
+              "content": "PDF",
+              "polygon": [
+                [
+                  0.32,
+                  0.1
+                ],
+                [
+                  0.4,
+                  0.1
+                ],
+                [
+                  0.4,
+                  0.15
+                ],
+                [
+                  0.32,
+                  0.15
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

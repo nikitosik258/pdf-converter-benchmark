@@ -1,0 +1,645 @@
+﻿tool,tool_name,category,category_label,document_id,page,object_id,object_type,matched,match_method,object_score,error_types,cause,metric_impact,ground_truth,tool_output,source_crop,prediction_asset
+pymupdf,PyMuPDF,table,Tables,D04,8,TAB_006,table,False,unmatched,0.0,таблица превращена в обычный текст; структура строк/колонок отсутствует,"Typed Table отсутствует, но внутри GT-области найдено TextBlock: 8. Текст извлечён без сетки ячеек, поэтому cell recall и структурные компоненты обнуляются.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cell_recall=0.00, cell_content=24.24, row_structure=0.00, column_structure=0.00, merged_f1=0.00, teds_like=0.45","Размер: 25 × 6; ячеек: 132
+[H] Сеть | [H] Показатель | [H] Обучающее α | [H] Обучающее λ | [H] Обучающее + 5% шум α | [H] Обучающее + 5% шум λ
+1 | Правильно | 68,20 % | 35,60 % | 67,60 % | 36,20 %
+ | Средняя ошибка | 0,0787 | 0,1430 | 0,0827 | 0,1441
+ | Макс. ошибка | 0,3728 | 0,5027 | 0,9759 | 0,5047
+ | Дисперсия ошибки | 0,0030 | 0,0088 | 0,0046 | 0,0089
+2 | Правильно | 86,00 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0604 |  | 0,0641 | 
+ | Макс. ошибка | 0,3622 |  | 0,4495 | 
+ | Дисперсия ошибки | 0,0020 |  | 0,0028 | 
+3 | Правильно | 88,70 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0583 |  | 0,0634 | 
+ | Макс. ошибка | 0,2045 |  | 0,8540 | 
+ | Дисперсия ошибки | 0,0013 |  | 0,0029 | 
+4 | Правильно | 77,10 % | 39,50 % | 75,80 % | 38,60 %
+ | Средняя ошибка | 0,0671 | 0,1449 | 0,0712 | 0,1466
+ | Макс. ошибка | 0,3594 | 0,5603 | 0,7292 | 0,5605
+ | Дисперсия ошибки | 0,0025 | 0,0103 | 0,0036 | 0,0104
+5 | Правильно | 88,50 % |  | 84,20 % | 
+ | Средняя ошибка | 0,0574 |  | 0,0651 | 
+ | Макс. ошибка | 0,3233 |  | 1,4295 | 
+ | Дисперсия ошибки | 0,016 |  | 0,0057 | 
+6 | Правильно | 80,60 % |  | 79,00 % | 
+ | Средняя ошибка | 0,0631 |  | 0,0683 | 
+ | Макс. ошибка | 0,2647 |  | 0,8166 | 
+ | Дисперсия ошибки | 0,0018 |  | 0,0037 | ","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.02: и тестирование на зашумленном обучающем множестве
+- TextBlock overlap=0.01: Результат обучения нейронной сети
+- TextBlock overlap=0.01: Обучающее + 5 % шум
+- TextBlock overlap=0.01: Дисперсия ошибки
+- TextBlock overlap=0.01: Дисперсия ошибки
+- TextBlock overlap=0.01: Дисперсия ошибки
+- TextBlock overlap=0.01: Дисперсия ошибки
+- TextBlock overlap=0.01: Дисперсия ошибки",source_crops/TAB_006.png,
+pymupdf,PyMuPDF,image,Images,D05,2,IMG_004,image,False,unmatched,0.0,visual candidate не сопоставлен с Image GT,"В области есть visual candidate, но он не выбран при one-to-one сопоставлении по типу/геометрии либо не имеет подтверждённого extraction payload.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00",caption: Рис. 1. Картины течения в системе двух параллельных проводников; asset: ground_truth/assets/IMG_004.png,"Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: assets\p2_image_16.png",source_crops/IMG_004.png,prediction_assets/pymupdf_IMG_004.png
+pymupdf,PyMuPDF,diagram,Diagrams,D01,9,DIA_001,diagram,False,unmatched,0.0,диаграмма сохранена как обычное изображение; потеря текста и связей,"В GT-области найдено Image: 1, но Diagram отсутствует. Generic image не содержит типизированных text_elements/key_elements.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00","тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: assets\p9_image_9.png",source_crops/DIA_001.png,prediction_assets/pymupdf_DIA_001.png
+pymupdf,PyMuPDF,math,Math,D01,17,MATH_001,math_formula,True,bbox_iou,11.399015481201399,потеря fraction structure; ошибки subscript; потеря brackets,"Exact match отсутствует; token precision=61.90, token recall=15.12, edit similarity=8.40.","Object Score=11.40/100; потеря относительно идеального объекта=88.60 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=61.90, token_recall=15.12, token_f1=24.30, edit_similarity=8.40",\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}},"a 0 U U R ~R в R x = = = , x R + I I I x 0 а в + 1 R в",source_crops/MATH_001.png,
+pymupdf,PyMuPDF,chemistry,Chemistry,D02,2,CHEM_003,chemical_structure,True,bbox_iou,62.905289970776415,потеря химических символов/меток; неточный crop,"Structure detection есть, но IoU=51.62, label recall=0.00, extraction=100.00.","Object Score=62.91/100; потеря относительно идеального объекта=37.09 п.п.; detection=100.00, iou=51.62, label_recall=0.00, extraction=100.00, structured_extraction=47.01","Желтый «солнечный закат» (Sunset Yellow FCF); текстовые метки: HO, N=N, NaO3S, SO3Na; asset: ground_truth/assets/CHEM_003.png",structure; текстовые метки: нет; asset: assets\p2_image_15.jpeg,source_crops/CHEM_003.png,prediction_assets/pymupdf_CHEM_003.jpeg
+pdfplumber,pdfplumber,table,Tables,D04,8,TAB_006,table,False,unmatched,0.0,таблица превращена в обычный текст; структура строк/колонок отсутствует,"Typed Table отсутствует, но внутри GT-области найдено TextBlock: 8. Текст извлечён без сетки ячеек, поэтому cell recall и структурные компоненты обнуляются.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cell_recall=0.00, cell_content=24.24, row_structure=0.00, column_structure=0.00, merged_f1=0.00, teds_like=0.45","Размер: 25 × 6; ячеек: 132
+[H] Сеть | [H] Показатель | [H] Обучающее α | [H] Обучающее λ | [H] Обучающее + 5% шум α | [H] Обучающее + 5% шум λ
+1 | Правильно | 68,20 % | 35,60 % | 67,60 % | 36,20 %
+ | Средняя ошибка | 0,0787 | 0,1430 | 0,0827 | 0,1441
+ | Макс. ошибка | 0,3728 | 0,5027 | 0,9759 | 0,5047
+ | Дисперсия ошибки | 0,0030 | 0,0088 | 0,0046 | 0,0089
+2 | Правильно | 86,00 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0604 |  | 0,0641 | 
+ | Макс. ошибка | 0,3622 |  | 0,4495 | 
+ | Дисперсия ошибки | 0,0020 |  | 0,0028 | 
+3 | Правильно | 88,70 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0583 |  | 0,0634 | 
+ | Макс. ошибка | 0,2045 |  | 0,8540 | 
+ | Дисперсия ошибки | 0,0013 |  | 0,0029 | 
+4 | Правильно | 77,10 % | 39,50 % | 75,80 % | 38,60 %
+ | Средняя ошибка | 0,0671 | 0,1449 | 0,0712 | 0,1466
+ | Макс. ошибка | 0,3594 | 0,5603 | 0,7292 | 0,5605
+ | Дисперсия ошибки | 0,0025 | 0,0103 | 0,0036 | 0,0104
+5 | Правильно | 88,50 % |  | 84,20 % | 
+ | Средняя ошибка | 0,0574 |  | 0,0651 | 
+ | Макс. ошибка | 0,3233 |  | 1,4295 | 
+ | Дисперсия ошибки | 0,016 |  | 0,0057 | 
+6 | Правильно | 80,60 % |  | 79,00 % | 
+ | Средняя ошибка | 0,0631 |  | 0,0683 | 
+ | Макс. ошибка | 0,2647 |  | 0,8166 | 
+ | Дисперсия ошибки | 0,0018 |  | 0,0037 | ","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.01: Обучающее+5%
+- TextBlock overlap=0.00: зашумленном
+- TextBlock overlap=0.00: тестирование
+- TextBlock overlap=0.00: Обучающее
+- TextBlock overlap=0.00: обучающем
+- TextBlock overlap=0.00: Правильно
+- TextBlock overlap=0.00: Правильно
+- TextBlock overlap=0.00: Правильно",source_crops/TAB_006.png,
+pdfplumber,pdfplumber,image,Images,D05,2,IMG_004,image,False,unmatched,0.0,visual candidate не сопоставлен с Image GT,"В области есть visual candidate, но он не выбран при one-to-one сопоставлении по типу/геометрии либо не имеет подтверждённого extraction payload.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00",caption: Рис. 1. Картины течения в системе двух параллельных проводников; asset: ground_truth/assets/IMG_004.png,"Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: нет",source_crops/IMG_004.png,
+pdfplumber,pdfplumber,diagram,Diagrams,D01,9,DIA_001,diagram,False,unmatched,0.0,диаграмма сохранена как обычное изображение; потеря текста и связей,"В GT-области найдено Image: 1, но Diagram отсутствует. Generic image не содержит типизированных text_elements/key_elements.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00","тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: нет",source_crops/DIA_001.png,
+pdfplumber,pdfplumber,math,Math,D01,17,MATH_001,math_formula,True,bbox_iou,10.888664842287197,потеря fraction structure; ошибки subscript; потеря brackets,"Exact match отсутствует; token precision=60.00, token recall=13.95, edit similarity=9.16.","Object Score=10.89/100; потеря относительно идеального объекта=89.11 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=60.00, token_recall=13.95, token_f1=22.64, edit_similarity=9.16",\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}},"a 0 U U R ~ в R x = = = , R x R + I I I x 0 а в 1+ R в",source_crops/MATH_001.png,
+pdfplumber,pdfplumber,chemistry,Chemistry,D02,2,CHEM_003,chemical_structure,True,bbox_iou,43.300312644122485,потеря химических символов/меток; structural formula не извлечена; неточный crop,"Structure detection есть, но IoU=53.20, label recall=0.00, extraction=0.00.","Object Score=43.30/100; потеря относительно идеального объекта=56.70 п.п.; detection=100.00, iou=53.20, label_recall=0.00, extraction=0.00, structured_extraction=19.00","Желтый «солнечный закат» (Sunset Yellow FCF); текстовые метки: HO, N=N, NaO3S, SO3Na; asset: ground_truth/assets/CHEM_003.png",structure; текстовые метки: нет; asset: нет,source_crops/CHEM_003.png,
+docling,Docling,image,Images,D01,27,IMG_003,image,False,unmatched,0.0,visual candidate не сопоставлен с Image GT,"В области есть visual candidate, но он не выбран при one-to-one сопоставлении по типу/геометрии либо не имеет подтверждённого extraction payload.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00",caption: Рис. 3.2. Лицевая панель цифрового интегрирующего вольтметра В7-23; asset: ground_truth/assets/IMG_003.png,"Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Diagram overlap=0.97: тип: scientific_scheme
+caption: Рис. 3.2. Лицевая панель цифрового интегрирующего вольтметра В7-23
+текст: Вольтнетр универсальный цифровой В7-23, ЗАПЧЕК, D.l, 1D, IDD, BКЛ, нт, 1D, IUUD дBT, ДЧ БЛОК СЕТЬ
+ключевые элементы/связи: нет
+asset: assets\picture_0007.png",source_crops/IMG_003.png,prediction_assets/docling_IMG_003.png
+docling,Docling,math,Math,D05,19,MATH_006,math_formula,True,bbox_iou,8.990520487264673,потеря fraction structure; ошибки superscript; потеря Greek symbols; потеря operators,"Exact match отсутствует; token precision=12.05, token recall=34.54, edit similarity=9.22.","Object Score=8.99/100; потеря относительно идеального объекта=91.01 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=12.05, token_recall=34.54, token_f1=17.87, edit_similarity=9.22","j(t)=j_e(t)+j_i(t)+j_d(t),\quad j_e(t)=\varepsilon\varepsilon_0\left.\frac{\partial E_1}{\partial t}\right|_{x=0},\quad j_i(t)=e(\mu_1n_{10}+\mu_2n_{20})E_0+\left.e\mu_2n_{20}E_1\right|_{x=0},\quad j_d(t)=\left.e\mu_2n_{21}\right|_{x=0}E_0,\quad \left.E_1\right|_{x=0}=\frac{en_0}{\varepsilon\varepsilon_0d}\left[(x_1+x_2)d-\frac{d^2}{2}-\frac{1}{2}(x_1^2+x_2^2)\right],\quad \left.n_{21}\right|_{x=0}=\left(k_dN-\mu_2\frac{en_0^2}{\varepsilon_0\varepsilon}\right)\frac{x_1}{V_2},\quad t\le t_*;\quad \left.n_{21}\right|_{x=0}=k_dN\frac{d}{V_2}-\mu_2\frac{en_0^2}{\varepsilon\varepsilon_0}\frac{x_2}{V_2},\quad t>t_*","\Pi o c j e \colon & \rho j e _ { N } h a ( 5 5 ) \ n \ \Pi o c j e A \bar { h } \ \bar { b } e p x , \\ \hom e \left ( 5 \right ) c \ & \top \Pi o c \bar { b } \ \Pi o \ J \bar { h } \ \Pi o \bar { h } \ \Pi o \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J \bar { h } \ \Pi o \ J",source_crops/MATH_006.png,
+docling,Docling,table,Tables,D04,8,TAB_006,table,True,bbox_iou,28.823974792718555,потеря строк; ошибки объединения ячеек; искажение содержимого ячеек,"GT=25×6, output=8×6; headers 6→7. Cell recall=19.70, TEDS-like=17.19.","Object Score=28.82/100; потеря относительно идеального объекта=71.18 п.п.; cell_recall=19.70, cell_content=25.54, row_structure=32.00, column_structure=100.00, merged_f1=0.00, teds_like=17.19","Размер: 25 × 6; ячеек: 132
+[H] Сеть | [H] Показатель | [H] Обучающее α | [H] Обучающее λ | [H] Обучающее + 5% шум α | [H] Обучающее + 5% шум λ
+1 | Правильно | 68,20 % | 35,60 % | 67,60 % | 36,20 %
+ | Средняя ошибка | 0,0787 | 0,1430 | 0,0827 | 0,1441
+ | Макс. ошибка | 0,3728 | 0,5027 | 0,9759 | 0,5047
+ | Дисперсия ошибки | 0,0030 | 0,0088 | 0,0046 | 0,0089
+2 | Правильно | 86,00 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0604 |  | 0,0641 | 
+ | Макс. ошибка | 0,3622 |  | 0,4495 | 
+ | Дисперсия ошибки | 0,0020 |  | 0,0028 | 
+3 | Правильно | 88,70 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0583 |  | 0,0634 | 
+ | Макс. ошибка | 0,2045 |  | 0,8540 | 
+ | Дисперсия ошибки | 0,0013 |  | 0,0029 | 
+4 | Правильно | 77,10 % | 39,50 % | 75,80 % | 38,60 %
+ | Средняя ошибка | 0,0671 | 0,1449 | 0,0712 | 0,1466
+ | Макс. ошибка | 0,3594 | 0,5603 | 0,7292 | 0,5605
+ | Дисперсия ошибки | 0,0025 | 0,0103 | 0,0036 | 0,0104
+5 | Правильно | 88,50 % |  | 84,20 % | 
+ | Средняя ошибка | 0,0574 |  | 0,0651 | 
+ | Макс. ошибка | 0,3233 |  | 1,4295 | 
+ | Дисперсия ошибки | 0,016 |  | 0,0057 | 
+6 | Правильно | 80,60 % |  | 79,00 % | 
+ | Средняя ошибка | 0,0631 |  | 0,0683 | 
+ | Макс. ошибка | 0,2647 |  | 0,8166 | 
+ | Дисперсия ошибки | 0,0018 |  | 0,0037 | ","Размер: 8 × 6; ячеек: 35
+ |  | [H] Обучающее |  | [H] Обучающее + 5 % шум | 
+[H] Сеть |  | [H] α | [H] λ | [H] α | [H] λ
+1 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 68,20 % 0,0787 0,3728 0,0030 | 35,60 % 0,1430 0,5027 0,0088 | 67,60 % 0,0827 0,9759 0,0046 | 36,20 % 0,1441 0,5047 0,0089
+2 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 86,00 % 0,0604 0,3622 0,0020 |  | 82,40 % 0,0641 0,4495 0,0028 | 
+3 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 88,70 % 0,0583 0,2045 0,0013 |  | 82,40 % 0,0634 0,8540 0,0029 | 
+4 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 77,10 % 0,0671 0,3594 0,0025 | 39,50 % 0,1449 0,5603 0,0103 | 75,80 % 0,0712 0,7292 0,0036 | 38,60 % 0,1466 0,5605 0,0104
+5 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 88,50 % 0,0574 0,3233 0,016 |  | 84,20 % 0,0651 1,4295 0,0057 | 
+6 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 80,60 % 0,0631 0,2647 0,0018 |  | 79,00 % 0,0683 0,8166 0,0037 | ",source_crops/TAB_006.png,
+docling,Docling,diagram,Diagrams,D02,4,DIA_003,diagram,True,bbox_iou,34.06162627853105,потеря текста; потеря связей/ключевых элементов; потеря caption,"Detection=100.00, IoU=93.74, diagram text recall=0.00, key elements=0.00.","Object Score=34.06/100; потеря относительно идеального объекта=65.94 п.п.; detection_recall=100.00, iou=93.74, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00","тип: chart
+caption: Намагниченность насыщения: а – ХМК–C16–100/Fe3O4; б – ХМК–C16–250/Fe3O4
+текст: Намагниченность, Магнитное поле
+ключевые элементы/связи: кривая намагничивания, ось поля, ось намагниченности
+asset: ground_truth/assets/DIA_003.png","тип: chart
+caption: нет
+текст: 04, 5, nn, 124, =
+ключевые элементы/связи: нет
+asset: assets\picture_0001.png",source_crops/DIA_003.png,prediction_assets/docling_DIA_003.png
+docling,Docling,chemistry,Chemistry,D02,2,CHEM_004,chemical_structure,True,bbox_iou,42.196197383555216,потеря химических символов/меток; structural formula не извлечена; неточный crop,"Structure detection есть, но IoU=48.78, label recall=0.00, extraction=0.00.","Object Score=42.20/100; потеря относительно идеального объекта=57.80 п.п.; detection=100.00, iou=48.78, label_recall=0.00, extraction=0.00, structured_extraction=17.42","Тартразин (Tartrazine); текстовые метки: NaOOC, N=N, OH, NaO3S, SO3Na; asset: ground_truth/assets/CHEM_004.png",structure; текстовые метки: нет; asset: нет,source_crops/CHEM_004.png,
+pdfminer,pdfminer.six,table,Tables,D01,4,TAB_001,table,False,unmatched,0.0,таблица превращена в обычный текст; структура строк/колонок отсутствует,"Typed Table отсутствует, но внутри GT-области найдено TextBlock: 8. Текст извлечён без сетки ячеек, поэтому cell recall и структурные компоненты обнуляются.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cell_recall=0.00, cell_content=0.00, row_structure=0.00, column_structure=0.00, merged_f1=100.00, teds_like=1.96","Размер: 5 × 6; ячеек: 30
+[H] Тип | [H] Число декад | [H] Пределы воспроизведения R, Ом | [H] Дискретность воспроизведения, Ом | [H] Класс точности γ, % | [H] Допускаемая мощность на декаду, Вт
+Р 33 | 6 | 0–100000 | 0,1 | 0,2 | 0,5
+КМС 6 | 6 | 0–100000 | 0,1 | 0,2 | 0,5
+МСР 60М | 6 | 0–10000 | 0,01 | 0,02 | 0,5
+МСР 63 | 7 | 0–100000 | 0,01 | 0,05 | 0,5","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.01: Допускаема
+- TextBlock overlap=0.01: 0 - 100000
+- TextBlock overlap=0.01: 0 - 100000
+- TextBlock overlap=0.01: 0 - 100000
+- TextBlock overlap=0.01: произведе-
+- TextBlock overlap=0.01: ведения R
+- TextBlock overlap=0.01: ность вос-
+- TextBlock overlap=0.01: 0 - 10000",source_crops/TAB_001.png,
+pdfminer,pdfminer.six,image,Images,D05,2,IMG_004,image,False,unmatched,0.0,visual candidate не сопоставлен с Image GT,"В области есть visual candidate, но он не выбран при one-to-one сопоставлении по типу/геометрии либо не имеет подтверждённого extraction payload.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00",caption: Рис. 1. Картины течения в системе двух параллельных проводников; asset: ground_truth/assets/IMG_004.png,"Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: assets\im2.bmp",source_crops/IMG_004.png,prediction_assets/pdfminer_IMG_004.bmp
+pdfminer,pdfminer.six,diagram,Diagrams,D01,9,DIA_001,diagram,False,unmatched,0.0,диаграмма сохранена как обычное изображение; потеря текста и связей,"В GT-области найдено Image: 1, но Diagram отсутствует. Generic image не содержит типизированных text_elements/key_elements.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00","тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: assets\Im1.jpg",source_crops/DIA_001.png,prediction_assets/pdfminer_DIA_001.jpg
+pdfminer,pdfminer.six,math,Math,D01,17,MATH_001,math_formula,True,bbox_iou,10.974918211559434,потеря fraction structure; ошибки subscript; потеря brackets,"Exact match отсутствует; token precision=63.16, token recall=13.95, edit similarity=9.16.","Object Score=10.97/100; потеря относительно идеального объекта=89.03 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=63.16, token_recall=13.95, token_f1=22.86, edit_similarity=9.16",\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}},"U R в R x ~R = = = , U I x + I I 0 а в + 1 R R x в",source_crops/MATH_001.png,
+pdfminer,pdfminer.six,text,Text,D05,10,TXT_009,text,True,text_multiblock_overlap,15.781922525107609,потеря символов/строк; reading order или разбиение слов; сломанные переносы; ошибки OCR/символьные замены,"Длина output составляет 0.43 от GT; CER-quality=25.25, WER-quality=0.00. Классификация причины основана на фактическом соотношении длин и разрыве между посимвольной и пословной метриками.","Object Score=15.78/100; потеря относительно идеального объекта=84.22 п.п.; cer=25.25, wer=0.00, edit_similarity=25.25","5.2. Поверхностные электронные состояния 
+Поверхностные электронные состояния (ПЭС) играют 
+важную роль в теории полупроводников, так как именно 
+они определяют контактные электронные свойства [34]. 
+Реальная поверхность любого металла покрыта оксид­
+ной пленкой, свойства которой ближе к полупроводни­
+ковым, то же самое можно сказать и о л ю б о м металличе­
+ском электроде. П о определению П Э С связаны только с 
+узкой областью вблизи поверхности, где свойства кри­
+сталла сильно отличаются от свойств бесконечной кри­
+сталлической решетки. В этой области возникает нерав­
+н о м е р н о е распределение з а р я д о в как по н о р м а л и к 
+поверхности, так и вдоль нее; имеются специфические 
+центры адсорбции электронов, связанные с дефектами 
+кристаллической решетки, геометрическими неоднород-
+н о с т я м и и т.д. В качестве п р и м е р а приведем схему 
+распределения поверхностных электронов на границе 
+кристалла кремния, покрытого оксидной пленкой S i 0 2 
+(рис. 10) [34]. Из рисунка видно, что по мере продвижения 
+от свободной поверхности (т.е. оксида кремния) к кри­
+сталлу кремния П Э С изменяются, последовательно пере­
+ходя от локализованных состояний 7, 2 (обусловленных 
+наличием ловушек, образованных за счет адсорбции 
+молекул воды с последующим формированием связей 
+S i - О Н . . . Н О - S i ) к состояниям медленных 3 и быстрых 
+4 поверхностных электронов и, наконец, к рекомбина-
+ционным состояниям 5.","т
+е с
+я
+я ( П
+С)
+в, т
+к к
+к и
+о
+е с
+а [34].
+а
+а п
+е к п
+м м
+ы т
+е с
+е э
+е
+и п
+5.2. П
+е
+ь в т
+т к
+ю р
+и о
+я п
+й п
+м, т
+м э
+й о
+а с
+ь л
+а к
+о с
+е э
+о м
+й б
+ь и о л
+С с
+ю П
+и, г
+в б
+и в
+в
+е; и
+и п
+я о
+т с
+и. В э
+й о
+е
+к и в
+и э
+ь н
+в, с
+й, с
+е м
+е с
+о ж
+е. П
+о о
+ю в
+о о
+й р
+е
+и, т
+ы а
+о с
+а к
+й к
+т н
+о
+к
+я
+е с
+к
+и
+е
+и
+д-
+а
+м
+у
+е
+й S i 02
+о, ч
+е п
+о м
+о п
+я) к к
+я
+х
+и
+В к
+й р
+и, г
+и т . д.
+и н
+е
+в
+а
+я
+й п
+я, п
+а к
+с. 10) [34]. И
+з р
+и (т.е. о
+я, п
+й п
+С и
+я П
+о
+а в
+а к
+о п
+й 7, 2 ( о
+а
+х
+т
+м
+м
+О - S i) к с
+в и, н
+ц, к
+(р
+т с
+у к
+т л
+я о
+м
+л
+S i - О
+4 п
+м с
+х с
+к,
+ы с п
+Н .. . Н
+х
+м 5.
+х
+и
+й
+м м
+х
+х 3 и б
+а-",source_crops/TXT_009.png,
+mineru,MinerU,diagram,Diagrams,D01,9,DIA_001,diagram,False,unmatched,0.0,диаграмма сохранена как обычное изображение; потеря текста и связей,"В GT-области найдено Image: 1, но Diagram отсутствует. Generic image не содержит типизированных text_elements/key_elements.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00","тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=0.70: caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра; asset: assets\p9_image_0007.jpg",source_crops/DIA_001.png,prediction_assets/mineru_DIA_001.jpg
+mineru,MinerU,chemistry,Chemistry,D02,3,CHEM_001,chemical_formula,True,content_similarity,30.979020979020984,ошибки индексов; ошибки химических символов,"GT='FeCl3·6H2O', output='FeCl3'; token F1=54.55, composition similarity=30.77.","Object Score=30.98/100; потеря относительно идеального объекта=69.02 п.п.; detection=100.00, token_f1=54.55, composition_similarity=30.77, structured_extraction=30.98",Формула: FeCl3·6H2O,Формула: FeCl3,source_crops/CHEM_001.png,
+mineru,MinerU,table,Tables,D04,8,TAB_006,table,True,bbox_iou,35.92344607264393,потеря строк; ошибки объединения ячеек; искажение содержимого ячеек,"GT=25×6, output=8×6; headers 6→6. Cell recall=31.06, TEDS-like=26.79.","Object Score=35.92/100; потеря относительно идеального объекта=64.08 п.п.; cell_recall=31.06, cell_content=27.04, row_structure=32.00, column_structure=100.00, merged_f1=0.00, teds_like=26.79","Размер: 25 × 6; ячеек: 132
+[H] Сеть | [H] Показатель | [H] Обучающее α | [H] Обучающее λ | [H] Обучающее + 5% шум α | [H] Обучающее + 5% шум λ
+1 | Правильно | 68,20 % | 35,60 % | 67,60 % | 36,20 %
+ | Средняя ошибка | 0,0787 | 0,1430 | 0,0827 | 0,1441
+ | Макс. ошибка | 0,3728 | 0,5027 | 0,9759 | 0,5047
+ | Дисперсия ошибки | 0,0030 | 0,0088 | 0,0046 | 0,0089
+2 | Правильно | 86,00 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0604 |  | 0,0641 | 
+ | Макс. ошибка | 0,3622 |  | 0,4495 | 
+ | Дисперсия ошибки | 0,0020 |  | 0,0028 | 
+3 | Правильно | 88,70 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0583 |  | 0,0634 | 
+ | Макс. ошибка | 0,2045 |  | 0,8540 | 
+ | Дисперсия ошибки | 0,0013 |  | 0,0029 | 
+4 | Правильно | 77,10 % | 39,50 % | 75,80 % | 38,60 %
+ | Средняя ошибка | 0,0671 | 0,1449 | 0,0712 | 0,1466
+ | Макс. ошибка | 0,3594 | 0,5603 | 0,7292 | 0,5605
+ | Дисперсия ошибки | 0,0025 | 0,0103 | 0,0036 | 0,0104
+5 | Правильно | 88,50 % |  | 84,20 % | 
+ | Средняя ошибка | 0,0574 |  | 0,0651 | 
+ | Макс. ошибка | 0,3233 |  | 1,4295 | 
+ | Дисперсия ошибки | 0,016 |  | 0,0057 | 
+6 | Правильно | 80,60 % |  | 79,00 % | 
+ | Средняя ошибка | 0,0631 |  | 0,0683 | 
+ | Макс. ошибка | 0,2647 |  | 0,8166 | 
+ | Дисперсия ошибки | 0,0018 |  | 0,0037 | ","Размер: 8 × 6; ячеек: 48
+[H]  | [H]  | [H] Обуч | [H] ающее | [H] Обучающ | [H] ее+5% шум
+Сеть |  | α | λ | α | λ
+1 | ПравильноСредняя ошибкаМакс. ошибкаДисперсия ошибки | 68,20 %0,07870,37280,0030 | 35,60 %0,14300,50270,0088 | 67,60 %0,08270,97590,0046 | 36,20 %0,14410,50470,0089
+2 | ПравильноСредняя ошибкаМакс. ошибкаДисперсия ошибки | 86,00 %0,06040,36220,0020 |  | 82,40 %0,06410,44950,0028 | 
+3 | ПравильноСредняя ошибкаМакс. ошибкаДисперсия ошибки | 88,70 %0,05830,20450,0013 |  | 82,40 %0,06340,85400,0029 | 
+4 | ПравильноСредняя ошибкаМакс. ошибкаДисперсия ошибки | 77,10 %0,06710,35940,0025 | 39,50 %0,14490,56030,0103 | 75,80 %0,07120,72920,0036 | 38,60 %0,14660,56050,0104
+5 | ПравильноСредняя ошибкаМакс. ошибкаДисперсия ошибки | 88,50 %0,05740,32330,016 |  | 84,20 %0,06511,42950,0057 | 
+6 | ПравильноСредняя ошибкаМакс. ошибкаДисперсия ошибки | 80,60 %0,06310,26470,0018 |  | 79,00 %0,06830,81660,0037 | ",source_crops/TAB_006.png,
+mineru,MinerU,math,Math,D01,17,MATH_001,math_formula,True,bbox_iou,39.769230769230774,искажение токенов/номера формулы,"Exact match отсутствует; token precision=62.31, token recall=94.19, edit similarity=48.85.","Object Score=39.77/100; потеря относительно идеального объекта=60.23 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=62.31, token_recall=94.19, token_f1=75.00, edit_similarity=48.85",\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}},"\widetilde {\mathrm{R}} _ {\mathrm{x}} = \frac {\mathrm{U} _ {\mathrm{B}}}{\mathrm{I} _ {\mathrm{a}}} = \frac {\mathrm{U} _ {\mathrm{R}}}{\mathrm{I} _ {0} + \mathrm{I} _ {\mathrm{B}}} = \frac {\mathrm{R} _ {\mathrm{x}}}{1 + \frac {\mathrm{R} _ {\mathrm{x}}}{\mathrm{R} _ {\mathrm{B}}}},\tag{3}",source_crops/MATH_001.png,
+mineru,MinerU,image,Images,D05,2,IMG_005,image,True,bbox_iou,61.97168732449071,неправильный crop; потеря caption,"Detection=100.00, IoU=27.89, extraction=100.00, caption=0.00.","Object Score=61.97/100; потеря относительно идеального объекта=38.03 п.п.; detection_recall=100.00, iou=27.89, extraction=100.00, caption=0.00",caption: Рис. 2. Фотографии поверхности медного электрода после воздействия электрического поля; asset: ground_truth/assets/IMG_005.png,caption: нет; asset: assets\p2_image_0011.jpg,source_crops/IMG_005.png,prediction_assets/mineru_IMG_005.jpg
+ocr_space,OCR.Space,text,Text,D04,9,TXT_008,text,False,unmatched,0.0,пропуск текста,"В размеченной области не найден TextBlock, поэтому все текстовые компоненты равны нулю.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cer=0.00, wer=0.00, edit_similarity=0.00","3. Метод показал себя устойчивым к шуму в начальных данных: в боль-
+шинстве рассматриваемых моделей внесение шума в исходные данные обрат-
+ной задачи в размере не более 5 % дает 5–7 % снижения точности распознавания
+и весьма незначительное увеличение средней ошибки (порядка 0,02–0,03).
+Но наиболее неожиданным, на наш взгляд, результатом является то, что
+дополнительное знание о расположении измерительного прибора (координа-
+та x0) не дает существенного повышения точности определения параметра
+дробного дифференцирования α.
+Этот факт позволяет выдвинуть гипотезу
+о том, что предложенный метод может быть успешно применен для решения
+обратной задачи в области Ω′ = {(x, t) : −∞< x < ∞, t ≥0}.
+Данные в табл. 5, 6 дают представление о максимальной ошибке восста-
+новления параметров задачи (5), но не говорят о том, как часто возникает
+ошибка, большая допустимой.
+Разобьем отрезок [0, 2] на 11 интервалов [0, 00; 0, 02), [0, 02; 0, 04), [0, 04;
+0, 06), [0, 06; 0, 08), [0, 08; 0, 10), [0, 10; 0, 12), [0, 12; 0, 14), [0, 14; 0, 16), [0, 16; 0, 18),",Типизированный объект отсутствует.,source_crops/TXT_008.png,
+ocr_space,OCR.Space,table,Tables,D04,8,TAB_006,table,False,unmatched,0.0,пропуск таблицы,"В области нет типизированной таблицы; строки, колонки и headers не восстановлены.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cell_recall=0.00, cell_content=24.24, row_structure=0.00, column_structure=0.00, merged_f1=0.00, teds_like=0.45","Размер: 25 × 6; ячеек: 132
+[H] Сеть | [H] Показатель | [H] Обучающее α | [H] Обучающее λ | [H] Обучающее + 5% шум α | [H] Обучающее + 5% шум λ
+1 | Правильно | 68,20 % | 35,60 % | 67,60 % | 36,20 %
+ | Средняя ошибка | 0,0787 | 0,1430 | 0,0827 | 0,1441
+ | Макс. ошибка | 0,3728 | 0,5027 | 0,9759 | 0,5047
+ | Дисперсия ошибки | 0,0030 | 0,0088 | 0,0046 | 0,0089
+2 | Правильно | 86,00 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0604 |  | 0,0641 | 
+ | Макс. ошибка | 0,3622 |  | 0,4495 | 
+ | Дисперсия ошибки | 0,0020 |  | 0,0028 | 
+3 | Правильно | 88,70 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0583 |  | 0,0634 | 
+ | Макс. ошибка | 0,2045 |  | 0,8540 | 
+ | Дисперсия ошибки | 0,0013 |  | 0,0029 | 
+4 | Правильно | 77,10 % | 39,50 % | 75,80 % | 38,60 %
+ | Средняя ошибка | 0,0671 | 0,1449 | 0,0712 | 0,1466
+ | Макс. ошибка | 0,3594 | 0,5603 | 0,7292 | 0,5605
+ | Дисперсия ошибки | 0,0025 | 0,0103 | 0,0036 | 0,0104
+5 | Правильно | 88,50 % |  | 84,20 % | 
+ | Средняя ошибка | 0,0574 |  | 0,0651 | 
+ | Макс. ошибка | 0,3233 |  | 1,4295 | 
+ | Дисперсия ошибки | 0,016 |  | 0,0057 | 
+6 | Правильно | 80,60 % |  | 79,00 % | 
+ | Средняя ошибка | 0,0631 |  | 0,0683 | 
+ | Макс. ошибка | 0,2647 |  | 0,8166 | 
+ | Дисперсия ошибки | 0,0018 |  | 0,0037 | ",Типизированный объект отсутствует.,source_crops/TAB_006.png,
+ocr_space,OCR.Space,image,Images,D01,8,IMG_001,image,False,unmatched,0.0,в области остался только текст; потеря visual payload,"В области найдено TextBlock: 8, но отсутствует Image asset; OCR-текст, caption или alt-text не заменяют извлечение изображения.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00",caption: Рис. 3.2. Лицевая панель цифрового миллиомметра GOM-802; asset: ground_truth/assets/IMG_001.png,"Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.03: Рис. 3.2. Передняя панель цифрового миллиомметра GOM-802
+- TextBlock overlap=0.00: GWINSTEK
+- TextBlock overlap=0.00: DC MILLI-OHM METER
+- TextBlock overlap=0.00: GOM-802
+- TextBlock overlap=0.00: GPIB/RS232
+- TextBlock overlap=0.00: HANDLER
+- TextBlock overlap=0.00: NORMAL
+- TextBlock overlap=0.00: CURSOR",source_crops/IMG_001.png,
+ocr_space,OCR.Space,diagram,Diagrams,D01,9,DIA_001,diagram,False,unmatched,0.0,диаграмма представлена только текстом/Markdown; связи не типизированы,"В GT-области найдено TextBlock: 8, но Diagram отсутствует. OCR-текст или Markdown/Mermaid не дают benchmark typed key_elements без отдельного преобразования.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00","тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.01: UBB Rx
+- TextBlock overlap=0.01: напряжения
+- TextBlock overlap=0.00: 6)
+- TextBlock overlap=0.00: Источник
+- TextBlock overlap=0.00: Источник
+- TextBlock overlap=0.00: a)
+- TextBlock overlap=0.00: Rper
+- TextBlock overlap=0.00: Rx",source_crops/DIA_001.png,
+ocr_space,OCR.Space,math,Math,D04,1,MATH_002,math_formula,True,bbox_iou,22.008534850640117,потеря fraction structure; ошибки subscript; ошибки superscript; потеря Greek symbols; потеря operators; потеря brackets,"Exact match отсутствует; token precision=72.41, token recall=31.82, edit similarity=21.62.","Object Score=22.01/100; потеря относительно идеального объекта=77.99 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=72.41, token_recall=31.82, token_f1=44.21, edit_similarity=21.62","{}_{t}D_*^{\alpha}f(t)=\frac{1}{\Gamma(1-\alpha)}\int_{0}^{t}\frac{f'(\tau)}{(t-\tau)^{\alpha}}\,d\tau,\quad 0<\alpha<1",1 f'(т) Dof(t) = (1-a) (1-7) dr. 0 < α <1.,source_crops/MATH_002.png,
+nutrient,Nutrient,math,Math,D04,2,MATH_003,math_formula,True,bbox_iou,0.0,потеря fraction structure; ошибки subscript; ошибки superscript; потеря Greek symbols; потеря operators; потеря brackets,"Exact match отсутствует; token precision=100.00, token recall=0.00, edit similarity=0.00.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=100.00, token_recall=0.00, token_f1=0.00, edit_similarity=0.00","{}_{t}D^{\alpha}f(t)=\frac{1}{\Gamma(1-\alpha)}\frac{d}{dt}\int_{0}^{t}\frac{f(\tau)}{(t-\tau)^{\alpha}}\,d\tau,\quad 0<\alpha<1","Formula spatially matched, но математический payload пуст.",source_crops/MATH_003.png,
+nutrient,Nutrient,diagram,Diagrams,D01,9,DIA_001,diagram,False,unmatched,0.0,диаграмма сохранена как обычное изображение; потеря текста и связей,"В GT-области найдено Image: 1, но Diagram отсутствует. Generic image не содержит типизированных text_elements/key_elements.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00","тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=0.68: caption: нет; asset: нет",source_crops/DIA_001.png,
+nutrient,Nutrient,table,Tables,D04,8,TAB_006,table,True,bbox_iou,34.73342648623334,потеря строк; ошибки объединения ячеек; искажение содержимого ячеек,"GT=25×6, output=8×6; headers 6→10. Cell recall=29.55, TEDS-like=23.66.","Object Score=34.73/100; потеря относительно идеального объекта=65.27 п.п.; cell_recall=29.55, cell_content=27.49, row_structure=32.00, column_structure=100.00, merged_f1=0.00, teds_like=23.66","Размер: 25 × 6; ячеек: 132
+[H] Сеть | [H] Показатель | [H] Обучающее α | [H] Обучающее λ | [H] Обучающее + 5% шум α | [H] Обучающее + 5% шум λ
+1 | Правильно | 68,20 % | 35,60 % | 67,60 % | 36,20 %
+ | Средняя ошибка | 0,0787 | 0,1430 | 0,0827 | 0,1441
+ | Макс. ошибка | 0,3728 | 0,5027 | 0,9759 | 0,5047
+ | Дисперсия ошибки | 0,0030 | 0,0088 | 0,0046 | 0,0089
+2 | Правильно | 86,00 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0604 |  | 0,0641 | 
+ | Макс. ошибка | 0,3622 |  | 0,4495 | 
+ | Дисперсия ошибки | 0,0020 |  | 0,0028 | 
+3 | Правильно | 88,70 % |  | 82,40 % | 
+ | Средняя ошибка | 0,0583 |  | 0,0634 | 
+ | Макс. ошибка | 0,2045 |  | 0,8540 | 
+ | Дисперсия ошибки | 0,0013 |  | 0,0029 | 
+4 | Правильно | 77,10 % | 39,50 % | 75,80 % | 38,60 %
+ | Средняя ошибка | 0,0671 | 0,1449 | 0,0712 | 0,1466
+ | Макс. ошибка | 0,3594 | 0,5603 | 0,7292 | 0,5605
+ | Дисперсия ошибки | 0,0025 | 0,0103 | 0,0036 | 0,0104
+5 | Правильно | 88,50 % |  | 84,20 % | 
+ | Средняя ошибка | 0,0574 |  | 0,0651 | 
+ | Макс. ошибка | 0,3233 |  | 1,4295 | 
+ | Дисперсия ошибки | 0,016 |  | 0,0057 | 
+6 | Правильно | 80,60 % |  | 79,00 % | 
+ | Средняя ошибка | 0,0631 |  | 0,0683 | 
+ | Макс. ошибка | 0,2647 |  | 0,8166 | 
+ | Дисперсия ошибки | 0,0018 |  | 0,0037 | ","Размер: 8 × 6; ячеек: 46
+[H] Сеть | [H]  | [H] Обучающее |  | [H] Обучающее+5%шум | 
+[H]  | [H]  | [H] α | [H] λ | [H] α | [H] λ
+1 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 68,20 % 0,0787 0,3728 0,0030 | 35,60 % 0,1430 0,5027 0,0088 | 67,60 % 0,0827 0,9759 0,0046 | 36,20 % 0,1441 0,5047 0,0089
+2 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 86,00 % 0,0604 0,3622 0,0020 |  | 82,40 % 0,0641 0,4495 0,0028 | 
+3 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 88,70 % 0,0583 0,2045 0,0013 |  | 82,40 % 0,0634 0,8540 0,0029 | 
+4 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 77,10 % 0,0671 0,3594 0,0025 | 39,50 % 0,1449 0,5603 0,0103 | 75,80 % 0,0712 0,7292 0,0036 | 38,60 % 0,1466 0,5605 0,0104
+5 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 88,50 % 0,0574 0,3233 0,016 |  | 84,20 % 0,0651 1,4295 0,0057 | 
+6 | Правильно Средняя ошибка Макс. ошибка Дисперсия ошибки | 80,60 % 0,0631 0,2647 0,0018 |  | 79,00 % 0,0683 0,8166 0,0037 | ",source_crops/TAB_006.png,
+nutrient,Nutrient,image,Images,D05,2,IMG_005,image,True,bbox_iou,36.89999689405243,неправильный crop; изображение не сохранено; потеря caption,"Detection=100.00, IoU=27.60, extraction=0.00, caption=0.00.","Object Score=36.90/100; потеря относительно идеального объекта=63.10 п.п.; detection_recall=100.00, iou=27.60, extraction=0.00, caption=0.00",caption: Рис. 2. Фотографии поверхности медного электрода после воздействия электрического поля; asset: ground_truth/assets/IMG_005.png,caption: нет; asset: нет,source_crops/IMG_005.png,
+nutrient,Nutrient,chemistry,Chemistry,D02,2,CHEM_004,chemical_structure,True,bbox_iou,38.2960333271328,потеря химических символов/меток; structural formula не извлечена; неточный crop,"Structure detection есть, но IoU=33.18, label recall=0.00, extraction=0.00.","Object Score=38.30/100; потеря относительно идеального объекта=61.70 п.п.; detection=100.00, iou=33.18, label_recall=0.00, extraction=0.00, structured_extraction=11.85","Тартразин (Tartrazine); текстовые метки: NaOOC, N=N, OH, NaO3S, SO3Na; asset: ground_truth/assets/CHEM_004.png",structure; текстовые метки: нет; asset: нет,source_crops/CHEM_004.png,
+mindee,Mindee,table,Tables,D01,4,TAB_001,table,False,unmatched,0.0,таблица превращена в обычный текст; структура строк/колонок отсутствует,"Typed Table отсутствует, но внутри GT-области найдено TextBlock: 8. Текст извлечён без сетки ячеек, поэтому cell recall и структурные компоненты обнуляются.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cell_recall=0.00, cell_content=0.00, row_structure=0.00, column_structure=0.00, merged_f1=100.00, teds_like=1.96","Размер: 5 × 6; ячеек: 30
+[H] Тип | [H] Число декад | [H] Пределы воспроизведения R, Ом | [H] Дискретность воспроизведения, Ом | [H] Класс точности γ, % | [H] Допускаемая мощность на декаду, Вт
+Р 33 | 6 | 0–100000 | 0,1 | 0,2 | 0,5
+КМС 6 | 6 | 0–100000 | 0,1 | 0,2 | 0,5
+МСР 60М | 6 | 0–10000 | 0,01 | 0,02 | 0,5
+МСР 63 | 7 | 0–100000 | 0,01 | 0,05 | 0,5","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.01: Допускаема
+- TextBlock overlap=0.01: Дискрет-
+- TextBlock overlap=0.01: произведе-
+- TextBlock overlap=0.01: Пределы
+- TextBlock overlap=0.01: воспроиз-
+- TextBlock overlap=0.01: мощность
+- TextBlock overlap=0.01: ведения
+- TextBlock overlap=0.01: Класс",source_crops/TAB_001.png,
+mindee,Mindee,image,Images,D01,8,IMG_001,image,False,unmatched,0.0,в области остался только текст; потеря visual payload,"В области найдено TextBlock: 8, но отсутствует Image asset; OCR-текст, caption или alt-text не заменяют извлечение изображения.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00",caption: Рис. 3.2. Лицевая панель цифрового миллиомметра GOM-802; asset: ground_truth/assets/IMG_001.png,"Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.01: GWINSTEK
+- TextBlock overlap=0.01: GOM-802
+- TextBlock overlap=0.01: миллиомметра
+- TextBlock overlap=0.01: цифрового
+- TextBlock overlap=0.00: GOM-802
+- TextBlock overlap=0.00: Передняя
+- TextBlock overlap=0.00: панель
+- TextBlock overlap=0.00: -|10",source_crops/IMG_001.png,
+mindee,Mindee,diagram,Diagrams,D01,9,DIA_001,diagram,False,unmatched,0.0,диаграмма представлена только текстом/Markdown; связи не типизированы,"В GT-области найдено TextBlock: 8, но Diagram отсутствует. OCR-текст или Markdown/Mermaid не дают benchmark typed key_elements без отдельного преобразования.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00","тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.01: напряжения
+- TextBlock overlap=0.01: Источник
+- TextBlock overlap=0.01: напряжения
+- TextBlock overlap=0.01: Источник
+- TextBlock overlap=0.01: Rper
+- TextBlock overlap=0.00: Rper
+- TextBlock overlap=0.00: б)
+- TextBlock overlap=0.00: (B",source_crops/DIA_001.png,
+mindee,Mindee,math,Math,D01,17,MATH_001,math_formula,True,bbox_iou,9.226559124297856,потеря fraction structure; ошибки subscript; потеря brackets,"Exact match отсутствует; token precision=50.00, token recall=11.63, edit similarity=8.40.","Object Score=9.23/100; потеря относительно идеального объекта=90.77 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=50.00, token_recall=11.63, token_f1=18.87, edit_similarity=8.40",\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}},"U R. UR UB = Ř = = , R, I2 I0+1B x a 1+ RA",source_crops/MATH_001.png,
+mindee,Mindee,chemistry,Chemistry,D02,3,CHEM_001,chemical_formula,True,bbox_iou,41.50000000000001,ошибки индексов; ошибки химических символов,"GT='FeCl3·6H2O', output='6H2O'; token F1=66.67, composition similarity=90.00.","Object Score=41.50/100; потеря относительно идеального объекта=58.50 п.п.; detection=100.00, token_f1=66.67, composition_similarity=90.00, structured_extraction=41.50",Формула: FeCl3·6H2O,Формула: 6H2O,source_crops/CHEM_001.png,
+adobe_extract,Adobe Extract,table,Tables,D05,21,TAB_007,table,False,unmatched,0.0,таблица превращена в обычный текст; структура строк/колонок отсутствует,"Typed Table отсутствует, но внутри GT-области найдено TextBlock: 2. Текст извлечён без сетки ячеек, поэтому cell recall и структурные компоненты обнуляются.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; cell_recall=0.00, cell_content=5.71, row_structure=0.00, column_structure=0.00, merged_f1=100.00, teds_like=1.65","Размер: 7 × 5; ячеек: 35
+[H] Процесс | [H] Плотность инжектируемого заряда | [H] Плотность инжектируемого тока | [H] Литература | [H] Физико-химическая схема
+Инжекция Шоттки | q∞ = qA exp(-ε_ad/r_A) | j_i = β q∞ E | [36] | инжекция с поверхности электрода
+M + A+B− ⇄ M(e) + A + B | q∞ | j_i = j_e a_ext a_ox N / (a_red + a_ext) | [19] | окислительно-восстановительный механизм
+X+Q−(M) ⇄ X− | q∞ | j_i = μ q∞ E | [35] | полевая инжекция
+X+Q−(M) ⇒ X− | q∞ | j_i = μ r_i E² | [35] | полевая инжекция
+Адсорбционная электризация | Ток электризации | J = -q_i S V_0; S = 2π r D R |  | q_sj = K_ad j q_0, j=1,2
+Электризация по ОВ-механизму | n* = n_A/K_AD; n_A=(k_1/k_2)c_A | I = √(2 ε e n* φ_0) 2πR V_0 |  | K_ad = ∫ exp(E_ad/x) dx","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p21_00613.png
+- Image overlap=1.00: caption: нет; asset: нет
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p21_00616.png
+- Image overlap=1.00: caption: нет; asset: нет
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p21_00636.png
+- Image overlap=1.00: caption: нет; asset: нет
+- TextBlock overlap=0.02: связанными, могут быть причиной электризации тел в газовой среде, содержащей электроотрицательные моле­кулы. Разумеется, это область малых токов, однако в течение длительного времени (или при наличии интен­сивного обтекания тел) накопление зарядов может быть значительным, и эти процессы нельзя не принимать во внимание. По нашему мнению, процесс ионизации плотных газов, скажем воздуха, по окислительно-восста-
+- TextBlock overlap=0.02: новительному механизму требует дополнительных как экспериментальных, так и теоретических исследований. ",source_crops/TAB_007.png,prediction_assets/adobe_extract_TAB_007.png
+adobe_extract,Adobe Extract,math,Math,D01,17,MATH_001,math_formula,False,unmatched,0.0,формула возвращена как Figure/Image; нет структурированного Math payload,"В области есть графический объект, но нет Formula с LaTeX/plain-math представлением; типобезопасный matcher не переименовывает generic Figure в формулу.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=100.00, token_recall=0.00, token_f1=0.00, edit_similarity=0.00",\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}},"Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=0.52: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D01\versions\92df332f0870ad8424f1dd75\assets\adobe_p17_00663.png
+- Image overlap=0.52: caption: нет; asset: нет
+- TextBlock overlap=0.02: (3) ",source_crops/MATH_001.png,prediction_assets/adobe_extract_MATH_001.png
+adobe_extract,Adobe Extract,image,Images,D05,2,IMG_004,image,False,unmatched,0.0,visual candidate не сопоставлен с Image GT,"В области есть visual candidate, но он не выбран при one-to-one сопоставлении по типу/геометрии либо не имеет подтверждённого extraction payload.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00",caption: Рис. 1. Картины течения в системе двух параллельных проводников; asset: ground_truth/assets/IMG_004.png,"Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p2_00043.png
+- Image overlap=1.00: caption: нет; asset: нет
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p2_00047.png
+- Image overlap=1.00: caption: нет; asset: нет
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p2_00050.png
+- Image overlap=1.00: caption: нет; asset: нет
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D05\versions\88da6cd9c6adb25eb367c265\assets\adobe_p2_00056.png
+- Image overlap=1.00: caption: нет; asset: нет",source_crops/IMG_004.png,prediction_assets/adobe_extract_IMG_004.png
+adobe_extract,Adobe Extract,diagram,Diagrams,D01,9,DIA_001,diagram,False,unmatched,0.0,диаграмма сохранена как обычное изображение; потеря текста и связей,"В GT-области найдено Image: 1, но Diagram отсутствует. Generic image не содержит типизированных text_elements/key_elements.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00","тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- Image overlap=1.00: caption: нет; asset: C:\Users\Nocomp\Desktop\nlp\outputs\benchmark\cache\adobe_extract\D01\versions\92df332f0870ad8424f1dd75\assets\adobe_p9_00278.png",source_crops/DIA_001.png,prediction_assets/adobe_extract_DIA_001.png
+adobe_extract,Adobe Extract,chemistry,Chemistry,D02,2,CHEM_004,chemical_structure,True,bbox_iou,37.78034230900932,потеря химических символов/меток; structural formula не извлечена; неточный crop,"Structure detection есть, но IoU=31.12, label recall=0.00, extraction=0.00.","Object Score=37.78/100; потеря относительно идеального объекта=62.22 п.п.; detection=100.00, iou=31.12, label_recall=0.00, extraction=0.00, structured_extraction=11.11","Тартразин (Tartrazine); текстовые метки: NaOOC, N=N, OH, NaO3S, SO3Na; asset: ground_truth/assets/CHEM_004.png",structure; текстовые метки: нет; asset: нет,source_crops/CHEM_004.png,
+llamaparse,LlamaParse,image,Images,D01,8,IMG_001,image,False,unmatched,0.0,в области остался только текст; потеря visual payload,"В области найдено TextBlock: 2, но отсутствует Image asset; OCR-текст, caption или alt-text не заменяют извлечение изображения.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, extraction=0.00, caption=0.00",caption: Рис. 3.2. Лицевая панель цифрового миллиомметра GOM-802; asset: ground_truth/assets/IMG_001.png,"Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.58: photograph: GWINSTEK GOM-802 DC MILLI-OHM METER front panel
+- TextBlock overlap=0.03: Рис.3.2. Передняя панель цифрового миллиомметра GОМ-802",source_crops/IMG_001.png,
+llamaparse,LlamaParse,diagram,Diagrams,D01,9,DIA_001,diagram,False,unmatched,0.0,диаграмма представлена только текстом/Markdown; связи не типизированы,"В GT-области найдено TextBlock: 1, но Diagram отсутствует. OCR-текст или Markdown/Mermaid не дают benchmark typed key_elements без отдельного преобразования.","Object Score=0.00/100; потеря относительно идеального объекта=100.00 п.п.; detection_recall=0.00, iou=0.00, diagram_text_recall=0.00, caption=0.00, element_recall=0.00, key_elements=0.00","тип: electrical_scheme
+caption: Рис. 4.1. Схемы электрических цепей для реализации метода амперметра и вольтметра
+текст: Источник напряжения, Rрег, A, V, Rx
+ключевые элементы/связи: амперметр, вольтметр, измеряемое сопротивление
+asset: ground_truth/assets/DIA_001.png","Типизированный объект отсутствует.
+
+Содержимое в той же области, но другого/несопоставленного типа:
+- TextBlock overlap=0.69: graph TD
+    subgraph a
+        S1[""Источникнапряжения""] --- R1[""R<sub>per</sub>""]
+        R1 --- A1((""A""))
+        A1 ---|I<sub>a</sub>| RX1[""R<sub>x</sub>""]
+        S1 --- V1((""B""))
+        V1 ---|U<sub>B</sub>| RX1
+        A1 --- V1
+    end
+    subgraph b
+        S2[""Источникнапряжения""] --- R2[""R<sub>per</sub>""]
+        R2 --- A2((""A""))
+        A2 ---|I<sub>a</sub>| RX2[""R<sub>x</sub>""]
+        S2 --- V2((""B""))
+        V2 ---|U<sub>B</sub>| RX2
+        R2 --- V2
+    end",source_crops/DIA_001.png,
+llamaparse,LlamaParse,math,Math,D01,17,MATH_001,math_formula,True,bbox_iou,37.44051910598414,искажение токенов/номера формулы,"Exact match отсутствует; token precision=58.65, token recall=90.70, edit similarity=44.74.","Object Score=37.44/100; потеря относительно идеального объекта=62.56 п.п.; raw_exact_match=0.00, normalized_exact_match=0.00, token_precision=58.65, token_recall=90.70, token_f1=71.23, edit_similarity=44.74",\tilde{R}_{x}=\frac{U_{\mathrm{в}}}{I_{\mathrm{а}}}=\frac{U_R}{I_0+I_{\mathrm{в}}}=\frac{R_x}{1+\frac{R_x}{R_{\mathrm{в}}}},"\tilde{\mathbf{R}}_{\mathbf{x}} = \frac{\mathbf{U}_{\mathbf{B}}}{\mathbf{I}_{\mathbf{a}}} = \frac{\mathbf{U}_{\mathbf{R}}}{\mathbf{I}_{\mathbf{0}} + \mathbf{I}_{\mathbf{B}}} = \frac{\mathbf{R}_{\mathbf{x}}}{1 + \frac{\mathbf{R}_{\mathbf{x}}}{\mathbf{R}_{\mathbf{B}}}}, \eqno(3)",source_crops/MATH_001.png,
+llamaparse,LlamaParse,chemistry,Chemistry,D02,2,CHEM_004,chemical_structure,True,bbox_iou,37.63902928073147,потеря химических символов/меток; structural formula не извлечена; неточный crop,"Structure detection есть, но IoU=30.56, label recall=0.00, extraction=0.00.","Object Score=37.64/100; потеря относительно идеального объекта=62.36 п.п.; detection=100.00, iou=30.56, label_recall=0.00, extraction=0.00, structured_extraction=10.91","Тартразин (Tartrazine); текстовые метки: NaOOC, N=N, OH, NaO3S, SO3Na; asset: ground_truth/assets/CHEM_004.png",structure; текстовые метки: Тартразин; asset: нет,source_crops/CHEM_004.png,
+llamaparse,LlamaParse,table,Tables,D03,6,TAB_005,table,True,bbox_iou,51.7434308859746,потеря строк; искажение содержимого ячеек,"GT=5×11, output=3×12; headers 11→12. Cell recall=60.00, TEDS-like=50.85.","Object Score=51.74/100; потеря относительно идеального объекта=48.26 п.п.; cell_recall=60.00, cell_content=1.98, row_structure=60.00, column_structure=91.67, merged_f1=100.00, teds_like=50.85","Размер: 5 × 11; ячеек: 55
+[H]  | [H] severe toxic | [H]  | [H] obscene | [H]  | [H] threat | [H]  | [H] insult | [H]  | [H] identity hate | [H] 
+severe toxic | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1
+toxic |  |  |  |  |  |  |  |  |  | 
+0 | 144277 | 0 | 143754 | 523 | 144248 | 29 | 143744 | 533 | 144174 | 103
+1 | 13699 | 1595 | 7368 | 7926 | 14845 | 449 | 7950 | 7344 | 13992 | 1302","Размер: 3 × 12; ячеек: 36
+[H] severe toxic | [H] toxic | [H] severe toxic<br/>0<br/>toxic | [H] severe toxic<br/>1<br/>toxic | [H] obscene<br/>0<br/>toxic | [H] obscene<br/>1<br/>toxic | [H] threat<br/>0<br/>toxic | [H] threat<br/>1<br/>toxic | [H] insult<br/>0<br/>toxic | [H] insult<br/>1<br/>toxic | [H] identity hate<br/>0<br/>toxic | [H] identity hate<br/>1<br/>toxic
+0 | 144277 | 0 | 143754 | 523 | 144248 | 29 | 143744 | 533 | 144174 | 103 | 
+1 | 13699 | 1595 | 7368 | 7926 | 14845 | 449 | 7950 | 7344 | 13992 | 1302 | ",source_crops/TAB_005.png,

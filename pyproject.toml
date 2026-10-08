@@ -1,0 +1,79 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pdf-benchmark"
+version = "0.2.1"
+description = "Reproducible PDF document-understanding benchmark adapters"
+requires-python = ">=3.12,<3.15"
+dependencies = [
+  "pydantic>=2.11,<3",
+  "psutil>=6,<8",
+  "beautifulsoup4>=4.13,<5",
+  "lxml>=5,<7",
+  "PyYAML>=6,<7",
+  "nvidia-ml-py>=13,<14",
+]
+
+[project.optional-dependencies]
+# Prompt 7 local environments remain isolated.
+pymupdf = ["PyMuPDF==1.28.2"]
+pdfplumber = ["pdfplumber==0.11.10"]
+pdfminer = ["pdfminer.six==20260107"]
+docling = ["docling==2.130.0"]
+marker = ["marker-pdf==2.0.0"]
+mineru = ["mineru==4.0.0"]
+local-core = [
+  "PyMuPDF==1.28.2",
+  "pdfplumber==0.11.10",
+  "pdfminer.six==20260107",
+  "docling==2.130.0",
+]
+
+# Prompt 8 selected cloud services.
+ocr-space = ["requests==2.32.5"]
+nutrient = ["nutrient-dws==3.1.0"]
+llamaparse = ["llama-cloud==2.16.0"]
+mindee = ["mindee==5.3.1"]
+adobe = ["pdfservices-sdk==4.2.0"]
+azure-document-intelligence = ["azure-ai-documentintelligence==1.0.2"]
+
+cloud-all = [
+  "PyMuPDF==1.28.2",
+  "requests==2.32.5",
+  "python-dotenv==1.2.3",
+  "nutrient-dws==3.1.0",
+  "llama-cloud==2.16.0",
+  "mindee==5.3.1",
+  "pdfservices-sdk==4.2.0",
+  "azure-ai-documentintelligence==1.0.2",
+]
+
+web = [
+  "fastapi>=0.116,<1",
+  "uvicorn[standard]>=0.35,<1",
+  "python-multipart>=0.0.20,<1",
+  "pydantic-settings>=2.10,<3",
+  "PyMuPDF==1.28.2",
+]
+
+test = [
+  "pytest>=8,<10",
+  "pytest-timeout>=2,<3",
+  "httpx>=0.28,<1",
+]
+
+[project.scripts]
+pdf-benchmark-api = "pdf_benchmark.web.app:run"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pdf_benchmark"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+markers = [
+  "heavy: runs ML/OCR engines and may download/start local models",
+  "cloud_live: makes real quota-consuming cloud API calls",
+]

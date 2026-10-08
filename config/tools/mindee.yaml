@@ -1,0 +1,6 @@
+mock: false
+request_timeout_seconds: 120
+initial_poll_delay_seconds: 2.0
+poll_interval_seconds: 1.5
+poll_max_retries: 120
+assume_free_trial_available: true

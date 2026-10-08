@@ -1,0 +1,5 @@
+mock: false
+max_attempts: 4
+retry_base_seconds: 2.0
+retry_max_seconds: 30.0
+assume_free_tier: true

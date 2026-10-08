@@ -1,0 +1,3307 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-10-04T01:42:11.889844+00:00",
+  "experiment_id": "20261004T013334Z_s42_20904978",
+  "source_experiment_id": "20261003T202925Z_s42_ee4d6ac4",
+  "status": "pass",
+  "offline_cached_recomputation": {
+    "pairs": 50,
+    "standardize_only": 50,
+    "reuse_standardized": 0,
+    "adapter_acquisitions": 0,
+    "cloud_api_calls": 0,
+    "legacy_cache_files_verified_unchanged": 2284
+  },
+  "dataset": {
+    "tools": 10,
+    "pairs": 50,
+    "objects": 400,
+    "errors": 0,
+    "warnings": 13
+  },
+  "score_changes": {
+    "changed_object_rows": 54,
+    "improved": 54,
+    "worsened": 0,
+    "unchanged": 346
+  },
+  "formula_payloads_checked_for_idempotence": 4005,
+  "chemistry_predictions": 355,
+  "checks_passed": 623,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "experiment_status_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_passed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "row_counts_10_50_400",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "active_roster",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "raw_equals_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "quality_summary_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "warnings_are_retained_iqr_observations",
+      "passed": true,
+      "detail": {
+        "warning_count": 13
+      }
+    },
+    {
+      "check": "ground_truth_json_jsonl_equal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ground_truth_manifest_valid",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "targeted_gt_repairs_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\CHEM_003.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\CHEM_004.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\CHEM_005.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\CHEM_006.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\DIA_001.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\DIA_002.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\DIA_003.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\DIA_004.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\DIA_005.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\DIA_006.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\DIA_007.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\IMG_001.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\IMG_002.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\IMG_003.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\IMG_004.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\assets\\IMG_005.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\objects.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:ground_truth\\objects.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_gt_hash:benchmark\\object_manifest.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_pdf_hash:D01",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_pdf_hash:D02",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_pdf_hash:D03",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_pdf_hash:D04",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preflight_pdf_hash:D05",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "complete_unique_pair_grid",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "complete_unique_object_grid",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "object_identity_ranges_and_missing_zero",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf:run_and_integrity_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf:five_saved_pairs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D01:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D01:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pymupdf\\D01\\versions\\eba02e067a556542f3636e77",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pymupdf\\D01\\raw"
+      }
+    },
+    {
+      "check": "pymupdf/D01:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D01:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D01:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D01:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D01:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D01:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D01:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D01:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D02:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D02:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pymupdf\\D02\\versions\\b7cf241aa2de9305cbdcd568",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pymupdf\\D02\\raw"
+      }
+    },
+    {
+      "check": "pymupdf/D02:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D02:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D02:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D02:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D02:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D02:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D02:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D02:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D03:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D03:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pymupdf\\D03\\versions\\9040e3964a21c967e84bed8f",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pymupdf\\D03\\raw"
+      }
+    },
+    {
+      "check": "pymupdf/D03:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D03:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D03:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D03:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D03:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D03:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D03:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D03:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D04:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D04:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pymupdf\\D04\\versions\\e33059c6afee950d4f57cc9c",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pymupdf\\D04\\raw"
+      }
+    },
+    {
+      "check": "pymupdf/D04:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D04:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D04:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D04:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D04:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D04:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D04:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D04:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D05:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D05:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pymupdf\\D05\\versions\\003a2c8c4acb22fdea90eb09",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pymupdf\\D05\\raw"
+      }
+    },
+    {
+      "check": "pymupdf/D05:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D05:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D05:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D05:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D05:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D05:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D05:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf/D05:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf:aggregate_scores_and_ci_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pymupdf:reported_tool_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber:run_and_integrity_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber:five_saved_pairs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D01:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D01:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfplumber\\D01\\versions\\6934a673594fc49490ddfb2a",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfplumber\\D01\\raw"
+      }
+    },
+    {
+      "check": "pdfplumber/D01:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D01:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D01:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D01:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D01:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D01:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D01:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D01:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D02:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D02:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfplumber\\D02\\versions\\86c1c2d5d34ce197dcb25874",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfplumber\\D02\\raw"
+      }
+    },
+    {
+      "check": "pdfplumber/D02:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D02:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D02:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D02:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D02:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D02:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D02:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D02:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D03:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D03:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfplumber\\D03\\versions\\26c94fa1f156818090397571",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfplumber\\D03\\raw"
+      }
+    },
+    {
+      "check": "pdfplumber/D03:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D03:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D03:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D03:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D03:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D03:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D03:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D03:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D04:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D04:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfplumber\\D04\\versions\\5c7f6ecbb7e2e191fbd42fb4",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfplumber\\D04\\raw"
+      }
+    },
+    {
+      "check": "pdfplumber/D04:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D04:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D04:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D04:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D04:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D04:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D04:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D04:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D05:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D05:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfplumber\\D05\\versions\\42f9786b8afd07429c4607e5",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfplumber\\D05\\raw"
+      }
+    },
+    {
+      "check": "pdfplumber/D05:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D05:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D05:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D05:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D05:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D05:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D05:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber/D05:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber:aggregate_scores_and_ci_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfplumber:reported_tool_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling:run_and_integrity_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling:five_saved_pairs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D01:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D01:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\docling\\D01\\versions\\1e6680a9d6b86b037666b3d0",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\docling\\D01\\raw"
+      }
+    },
+    {
+      "check": "docling/D01:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D01:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D01:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D01:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D01:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D01:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D01:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D01:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D02:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D02:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\docling\\D02\\versions\\5b83383440fc7668600f1e19",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\docling\\D02\\raw"
+      }
+    },
+    {
+      "check": "docling/D02:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D02:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D02:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D02:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D02:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D02:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D02:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D02:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D03:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D03:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\docling\\D03\\versions\\9a179048d7325ead45db9dd3",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\docling\\D03\\raw"
+      }
+    },
+    {
+      "check": "docling/D03:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D03:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D03:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D03:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D03:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D03:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D03:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D03:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D04:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D04:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\docling\\D04\\versions\\da2f12e00025b0fd9d20adb5",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\docling\\D04\\raw"
+      }
+    },
+    {
+      "check": "docling/D04:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D04:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D04:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D04:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D04:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D04:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D04:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D04:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D05:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D05:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\docling\\D05\\versions\\d2e804df48b83aa727c94685",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\docling\\D05\\raw"
+      }
+    },
+    {
+      "check": "docling/D05:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D05:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D05:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D05:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D05:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D05:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D05:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling/D05:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling:aggregate_scores_and_ci_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "docling:reported_tool_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer:run_and_integrity_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer:five_saved_pairs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D01:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D01:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfminer\\D01\\versions\\6d0dcff724545720eee675c7",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfminer\\D01\\raw"
+      }
+    },
+    {
+      "check": "pdfminer/D01:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D01:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D01:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D01:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D01:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D01:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D01:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D01:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D02:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D02:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfminer\\D02\\versions\\2bfe31a28a8c4a2d31a9f243",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfminer\\D02\\raw"
+      }
+    },
+    {
+      "check": "pdfminer/D02:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D02:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D02:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D02:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D02:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D02:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D02:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D02:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D03:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D03:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfminer\\D03\\versions\\76d18161916ccad1506b71ab",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfminer\\D03\\raw"
+      }
+    },
+    {
+      "check": "pdfminer/D03:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D03:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D03:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D03:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D03:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D03:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D03:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D03:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D04:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D04:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfminer\\D04\\versions\\386ec8e3a1c323909dc9b633",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfminer\\D04\\raw"
+      }
+    },
+    {
+      "check": "pdfminer/D04:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D04:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D04:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D04:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D04:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D04:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D04:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D04:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D05:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D05:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfminer\\D05\\versions\\0ba6ad20bbfd2264f12f5f70",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\pdfminer\\D05\\raw"
+      }
+    },
+    {
+      "check": "pdfminer/D05:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D05:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D05:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D05:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D05:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D05:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D05:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer/D05:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer:aggregate_scores_and_ci_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdfminer:reported_tool_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru:run_and_integrity_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru:five_saved_pairs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D01:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D01:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mineru\\D01\\versions\\4ab1eef0f9eda1da07734074",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mineru\\D01\\raw"
+      }
+    },
+    {
+      "check": "mineru/D01:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D01:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D01:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D01:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D01:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D01:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D01:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D01:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D02:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D02:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mineru\\D02\\versions\\d39bc2adc98f16ffd428ed9e",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mineru\\D02\\raw"
+      }
+    },
+    {
+      "check": "mineru/D02:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D02:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D02:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D02:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D02:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D02:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D02:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D02:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D03:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D03:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mineru\\D03\\versions\\4d9e4d6e0a6cc9cfa834cd84",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mineru\\D03\\raw"
+      }
+    },
+    {
+      "check": "mineru/D03:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D03:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D03:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D03:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D03:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D03:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D03:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D03:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D04:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D04:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mineru\\D04\\versions\\cb8ea10d2e41aba138ea2777",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mineru\\D04\\raw"
+      }
+    },
+    {
+      "check": "mineru/D04:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D04:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D04:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D04:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D04:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D04:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D04:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D04:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D05:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D05:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mineru\\D05\\versions\\ea7312c74f293b302e353890",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mineru\\D05\\raw"
+      }
+    },
+    {
+      "check": "mineru/D05:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D05:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D05:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D05:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D05:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D05:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D05:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru/D05:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru:aggregate_scores_and_ci_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mineru:reported_tool_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space:run_and_integrity_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space:five_saved_pairs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D01:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D01:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\ocr_space\\D01\\versions\\8cf92fac879343bf5804bd33",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\ocr_space\\D01\\raw"
+      }
+    },
+    {
+      "check": "ocr_space/D01:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D01:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D01:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D01:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D01:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D01:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D01:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D01:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D01:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D02:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D02:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\ocr_space\\D02\\versions\\9cf343a294dbc71f99f17c1f",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\ocr_space\\D02\\raw"
+      }
+    },
+    {
+      "check": "ocr_space/D02:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D02:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D02:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D02:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D02:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D02:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D02:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D02:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D02:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D03:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D03:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\ocr_space\\D03\\versions\\6e7349f1a7a070f85973dff0",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\ocr_space\\D03\\raw"
+      }
+    },
+    {
+      "check": "ocr_space/D03:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D03:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D03:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D03:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D03:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D03:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D03:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D03:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D03:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D04:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D04:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\ocr_space\\D04\\versions\\2396ff1fd3466f37326beb55",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\ocr_space\\D04\\raw"
+      }
+    },
+    {
+      "check": "ocr_space/D04:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D04:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D04:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D04:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D04:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D04:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D04:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D04:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D04:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D05:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D05:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\ocr_space\\D05\\versions\\31fadcc2b0877f535601f5e4",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\ocr_space\\D05\\raw"
+      }
+    },
+    {
+      "check": "ocr_space/D05:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D05:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D05:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D05:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D05:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D05:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D05:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D05:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space/D05:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space:aggregate_scores_and_ci_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ocr_space:reported_tool_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient:run_and_integrity_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient:five_saved_pairs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D01:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D01:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\nutrient\\D01\\versions\\919ab3a79ac3c6c8093fe03d",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\nutrient\\D01\\raw"
+      }
+    },
+    {
+      "check": "nutrient/D01:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D01:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D01:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D01:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D01:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D01:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D01:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D01:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D01:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D02:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D02:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\nutrient\\D02\\versions\\aabbd3297ea68496c392b95a",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\nutrient\\D02\\raw"
+      }
+    },
+    {
+      "check": "nutrient/D02:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D02:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D02:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D02:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D02:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D02:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D02:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D02:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D02:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D03:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D03:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\nutrient\\D03\\versions\\8c5335e13d267af2f1caf3e0",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\nutrient\\D03\\raw"
+      }
+    },
+    {
+      "check": "nutrient/D03:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D03:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D03:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D03:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D03:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D03:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D03:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D03:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D03:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D04:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D04:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\nutrient\\D04\\versions\\13add2f6c0ccd11d600f0a33",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\nutrient\\D04\\raw"
+      }
+    },
+    {
+      "check": "nutrient/D04:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D04:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D04:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D04:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D04:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D04:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D04:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D04:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D04:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D05:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D05:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\nutrient\\D05\\versions\\029afa01b657b3ccc52c1b63",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\nutrient\\D05\\raw"
+      }
+    },
+    {
+      "check": "nutrient/D05:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D05:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D05:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D05:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D05:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D05:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D05:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D05:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient/D05:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient:aggregate_scores_and_ci_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nutrient:reported_tool_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee:run_and_integrity_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee:five_saved_pairs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D01:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D01:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mindee\\D01\\versions\\145c6b0d0d92c983a606c19f",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mindee\\D01\\raw"
+      }
+    },
+    {
+      "check": "mindee/D01:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D01:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D01:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D01:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D01:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D01:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D01:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D01:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D01:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D02:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D02:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mindee\\D02\\versions\\4d9edec9f89e0b5ca1d7bbf4",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mindee\\D02\\raw"
+      }
+    },
+    {
+      "check": "mindee/D02:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D02:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D02:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D02:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D02:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D02:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D02:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D02:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D02:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D03:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D03:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mindee\\D03\\versions\\8734a85a8fedea9d175e769d",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mindee\\D03\\raw"
+      }
+    },
+    {
+      "check": "mindee/D03:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D03:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D03:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D03:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D03:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D03:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D03:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D03:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D03:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D04:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D04:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mindee\\D04\\versions\\6a058032ab5c75f8c7f0cec5",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mindee\\D04\\raw"
+      }
+    },
+    {
+      "check": "mindee/D04:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D04:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D04:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D04:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D04:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D04:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D04:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D04:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D04:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D05:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D05:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mindee\\D05\\versions\\27c3740fe45cae258bb8d69f",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\mindee\\D05\\raw"
+      }
+    },
+    {
+      "check": "mindee/D05:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D05:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D05:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D05:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D05:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D05:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D05:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D05:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee/D05:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee:aggregate_scores_and_ci_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "mindee:reported_tool_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract:run_and_integrity_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract:five_saved_pairs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D01:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D01:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\adobe_extract\\D01\\versions\\4006b9bc4b9eeffa5682fd33",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\adobe_extract\\D01\\raw"
+      }
+    },
+    {
+      "check": "adobe_extract/D01:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D01:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D01:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D01:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D01:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D01:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D01:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D01:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D01:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D02:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D02:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\adobe_extract\\D02\\versions\\f862b6d5f1086ab5d9fbb35c",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\adobe_extract\\D02\\raw"
+      }
+    },
+    {
+      "check": "adobe_extract/D02:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D02:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D02:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D02:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D02:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D02:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D02:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D02:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D02:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D03:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D03:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\adobe_extract\\D03\\versions\\d4df0d267a618557b374f272",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\adobe_extract\\D03\\raw"
+      }
+    },
+    {
+      "check": "adobe_extract/D03:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D03:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D03:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D03:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D03:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D03:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D03:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D03:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D03:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D04:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D04:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\adobe_extract\\D04\\versions\\5eb26bd71b8b7b3e0512fd67",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\adobe_extract\\D04\\raw"
+      }
+    },
+    {
+      "check": "adobe_extract/D04:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D04:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D04:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D04:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D04:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D04:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D04:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D04:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D04:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D05:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D05:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\adobe_extract\\D05\\versions\\4d964ac006ea1b00b0d62def",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\adobe_extract\\D05\\raw"
+      }
+    },
+    {
+      "check": "adobe_extract/D05:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D05:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D05:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D05:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D05:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D05:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D05:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D05:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract/D05:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract:aggregate_scores_and_ci_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "adobe_extract:reported_tool_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse:run_and_integrity_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse:five_saved_pairs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D01:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D01:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\llamaparse\\D01\\versions\\1f0d510d3bb4bcb26acd89ed",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\llamaparse\\D01\\raw"
+      }
+    },
+    {
+      "check": "llamaparse/D01:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D01:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D01:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D01:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D01:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D01:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D01:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D01:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D01:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D02:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D02:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\llamaparse\\D02\\versions\\16c19a43f423f0acbf539178",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\llamaparse\\D02\\raw"
+      }
+    },
+    {
+      "check": "llamaparse/D02:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D02:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D02:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D02:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D02:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D02:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D02:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D02:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D02:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D03:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D03:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\llamaparse\\D03\\versions\\5a8c7dfd974add6988ff5782",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\llamaparse\\D03\\raw"
+      }
+    },
+    {
+      "check": "llamaparse/D03:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D03:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D03:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D03:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D03:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D03:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D03:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D03:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D03:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D04:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D04:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\llamaparse\\D04\\versions\\699273610aa5f648c53fc31d",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\llamaparse\\D04\\raw"
+      }
+    },
+    {
+      "check": "llamaparse/D04:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D04:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D04:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D04:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D04:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D04:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D04:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D04:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D04:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D05:cached_without_acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D05:versioned_downstream_cache",
+      "passed": true,
+      "detail": {
+        "cache_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\llamaparse\\D05\\versions\\960138dae59a4eb551225ae2",
+        "raw_dir": "C:\\Users\\Nocomp\\Desktop\\nlp\\outputs\\benchmark\\cache\\llamaparse\\D05\\raw"
+      }
+    },
+    {
+      "check": "llamaparse/D05:stage_fingerprints_match_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D05:all_stage_files_exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D05:cloud_api_not_recalled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D05:normalized_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D05:matching_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D05:object_evaluation_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D05:csv_object_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D05:match_counts_consistent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse/D05:operational_provenance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse:aggregate_scores_and_ci_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "llamaparse:reported_tool_scores_reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "all_pairs_reused_cached_stages",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "zero_adapter_acquisitions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "zero_cloud_api_calls",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "content_counts_match_repaired_outputs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "latex_normalization_idempotent",
+      "passed": true,
+      "detail": {
+        "payloads": 4005
+      }
+    },
+    {
+      "check": "typed_chemistry_predictions_use_shared_explicit_evidence",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "chemistry_scores_and_split_reporting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "visual_context_count",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "visual_sampled_gt_recall_policy",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "repair_mineru_string_tables",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "repair_mineru_visual_assets",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "repair_adobe_indexed_tables",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "repair_adobe_visual_assets",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "repair_docling_picture_classification_and_assets",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "repair_docling_picture_child_text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "repair_mindee_word_level_text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "repair_pdfminer_text_hierarchy",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "repair_pymupdf_native_lines",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "repair_nutrient_coordinate_canvas",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "legacy_cache_byte_identical",
+      "passed": true,
+      "detail": {
+        "files_checked": 2284,
+        "missing": 0,
+        "changed": 0
+      }
+    },
+    {
+      "check": "score_changes_retained_without_selection",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+mock: false
+max_attempts: 6
+retry_base_seconds: 1.0
+retry_max_seconds: 30.0
+timeout_seconds: 600
+model_id: prebuilt-layout
+tier: F0
+pages_per_request: 2
+min_request_interval_seconds: 1.05
+output_content_format: markdown
+assume_free_quota_available: true

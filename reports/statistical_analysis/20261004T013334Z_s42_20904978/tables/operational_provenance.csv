@@ -1,0 +1,51 @@
+﻿tool,document_id,api_cost_basis,historical_pricing_note,credits_estimate,provider_credits,raw_processing_seconds,raw_latency_seconds,adapter_wall_time_seconds,ram_scope,gpu_process_mb,gpu_device_mb,torch_allocated_mb_diagnostic,torch_reserved_mb_diagnostic
+pymupdf,D01,not_applicable_local,not_applicable_local,,,,,5.926651500049047,local_process_tree,,,,
+pymupdf,D02,not_applicable_local,not_applicable_local,,,,,2.479653599963058,local_process_tree,,,,
+pymupdf,D03,not_applicable_local,not_applicable_local,,,,,2.770310199994128,local_process_tree,,,,
+pymupdf,D04,not_applicable_local,not_applicable_local,,,,,3.3321928999503143,local_process_tree,,,,
+pymupdf,D05,not_applicable_local,not_applicable_local,,,,,20.454830200003926,local_process_tree,,,,
+pdfplumber,D01,not_applicable_local,not_applicable_local,,,,,2.3051649000044563,local_process_tree,,240.0,0.0,0.0
+pdfplumber,D02,not_applicable_local,not_applicable_local,,,,,0.8367144000003464,local_process_tree,,240.0,0.0,0.0
+pdfplumber,D03,not_applicable_local,not_applicable_local,,,,,0.7538429999985965,local_process_tree,,240.0,0.0,0.0
+pdfplumber,D04,not_applicable_local,not_applicable_local,,,,,1.0152760999990278,local_process_tree,,240.0,0.0,0.0
+pdfplumber,D05,not_applicable_local,not_applicable_local,,,,,3.5557425000006333,local_process_tree,,240.0,0.0,0.0
+docling,D01,not_applicable_local,not_applicable_local,,,,,680.1475232001394,local_process_tree,,8180.71484375,9869.33154296875,11228.0
+docling,D02,not_applicable_local,not_applicable_local,,,,,146.29116129968315,local_process_tree,,8180.71484375,9659.759765625,10928.0
+docling,D03,not_applicable_local,not_applicable_local,,,,,729.3130992003717,local_process_tree,,8180.71484375,10407.20361328125,14470.0
+docling,D04,not_applicable_local,not_applicable_local,,,,,976.9017235999927,local_process_tree,,8180.71484375,9604.64599609375,10604.0
+docling,D05,not_applicable_local,not_applicable_local,,,,,4566.106212200131,local_process_tree,,8180.71484375,11376.34033203125,16558.0
+pdfminer,D01,not_applicable_local,not_applicable_local,,,,,1.8365619000978768,local_process_tree,,678.71484375,0.0,0.0
+pdfminer,D02,not_applicable_local,not_applicable_local,,,,,0.5476084002293646,local_process_tree,,678.71484375,0.0,0.0
+pdfminer,D03,not_applicable_local,not_applicable_local,,,,,0.5754935997538269,local_process_tree,,678.71484375,0.0,0.0
+pdfminer,D04,not_applicable_local,not_applicable_local,,,,,0.6343284002505243,local_process_tree,,678.71484375,0.0,0.0
+pdfminer,D05,not_applicable_local,not_applicable_local,,,,,266.8974831998348,local_process_tree,,678.71484375,0.0,0.0
+mineru,D01,not_applicable_local,not_applicable_local,,,,,53.53860120009631,local_process_tree,,4745.43359375,1584.57275390625,1970.0
+mineru,D02,not_applicable_local,not_applicable_local,,,,,22.587151299696416,local_process_tree,,4767.93359375,1596.1962890625,1970.0
+mineru,D03,not_applicable_local,not_applicable_local,,,,,17.308833099901676,local_process_tree,,3603.05859375,740.57177734375,864.0
+mineru,D04,not_applicable_local,not_applicable_local,,,,,22.51683109998703,local_process_tree,,4720.49609375,1584.57275390625,1960.0
+mineru,D05,not_applicable_local,not_applicable_local,,,,,149.11876119999215,local_process_tree,,3764.43359375,623.12890625,968.0
+ocr_space,D01,actual,OCR.Space Free API; Engine 3 uses its own free conversion quota,,,156.191,162.47200000006706,162.89494669996202,cloud_client_only,,678.71484375,,
+ocr_space,D02,actual,OCR.Space Free API; Engine 3 uses its own free conversion quota,,,37.934,39.34400000004098,39.51203829981387,cloud_client_only,,678.71484375,,
+ocr_space,D03,actual,OCR.Space Free API; Engine 3 uses its own free conversion quota,,,52.552,54.7339999997057,54.99689080007374,cloud_client_only,,678.71484375,,
+ocr_space,D04,actual,OCR.Space Free API; Engine 3 uses its own free conversion quota,,,83.665,85.40599999949336,85.64278440037742,cloud_client_only,,678.71484375,,
+ocr_space,D05,actual,OCR.Space Free API; Engine 3 uses its own free conversion quota,,,275.492,279.56199999991804,279.94887610012665,cloud_client_only,,678.71484375,,
+nutrient,D01,estimated,"Nutrient Data Extraction free plan: 5,000 credits/month; Parse understand mode uses 9 credits/page.",387.0,,96.01500000013039,96.01500000013039,96.2144733001478,cloud_client_only,,678.71484375,,
+nutrient,D02,estimated,"Nutrient Data Extraction free plan: 5,000 credits/month; Parse understand mode uses 9 credits/page.",63.0,,9.140999999828637,9.140999999828637,9.315639500040561,cloud_client_only,,678.71484375,,
+nutrient,D03,estimated,"Nutrient Data Extraction free plan: 5,000 credits/month; Parse understand mode uses 9 credits/page.",126.0,,5.561999999918044,5.561999999918044,5.738115299958736,cloud_client_only,,678.71484375,,
+nutrient,D04,estimated,"Nutrient Data Extraction free plan: 5,000 credits/month; Parse understand mode uses 9 credits/page.",108.0,,25.95299999974668,25.95299999974668,26.134568399749696,cloud_client_only,,678.71484375,,
+nutrient,D05,estimated,"Nutrient Data Extraction free plan: 5,000 credits/month; Parse understand mode uses 9 credits/page.",198.0,,279.35900000017136,279.35900000017136,279.564710999839,cloud_client_only,,678.71484375,,
+mindee,D01,estimated,Mindee OCR is page/credit based; benchmark adapter chunks trial requests to at most 10 pages per request.,43,,43.90599999995902,43.90599999995902,44.619824199937284,cloud_client_only,,678.71484375,,
+mindee,D02,estimated,Mindee Free Trial: 200 pages or 14 days; OCR is page/credit based.,7,,11.171999999787658,11.171999999787658,11.664219799917191,cloud_client_only,,678.71484375,,
+mindee,D03,estimated,Mindee OCR is page/credit based; benchmark adapter chunks trial requests to at most 10 pages per request.,14,,15.407000000122935,15.407000000122935,15.919062400236726,cloud_client_only,,678.71484375,,
+mindee,D04,estimated,Mindee OCR is page/credit based; benchmark adapter chunks trial requests to at most 10 pages per request.,12,,19.625,19.625,20.15847560018301,cloud_client_only,,678.71484375,,
+mindee,D05,estimated,Mindee OCR is page/credit based; benchmark adapter chunks trial requests to at most 10 pages per request.,22,,50.561999999918044,50.561999999918044,51.60164829995483,cloud_client_only,,678.71484375,,
+adobe_extract,D01,estimated,Extract: 1 Document Transaction per up to 5 pages; free tier has 500 transactions/month,,,23.890000000130385,23.890000000130385,25.224922299850732,cloud_client_only,,678.71484375,,
+adobe_extract,D02,estimated,Extract: 1 Document Transaction per up to 5 pages; free tier has 500 transactions/month,,,14.125,14.125,14.404226599726826,cloud_client_only,,678.71484375,,
+adobe_extract,D03,estimated,Extract: 1 Document Transaction per up to 5 pages; free tier has 500 transactions/month,,,17.483999999705702,17.483999999705702,17.79714799998328,cloud_client_only,,678.71484375,,
+adobe_extract,D04,estimated,Extract: 1 Document Transaction per up to 5 pages; free tier has 500 transactions/month,,,15.421999999787658,15.421999999787658,15.716784600168467,cloud_client_only,,678.71484375,,
+adobe_extract,D05,estimated,Extract: 1 Document Transaction per up to 5 pages; free tier has 500 transactions/month,,,67.79700000025332,67.79700000025332,68.22856569988653,cloud_client_only,,678.71484375,,
+llamaparse,D01,estimated,"LlamaParse Free plan includes 10,000 credits/month; configured agentic tier budgeted at 10 credits/page.",430.0,,56.45300000021234,56.45300000021234,0.08418860007077456,cloud_client_only,,678.71484375,,
+llamaparse,D02,estimated,"LlamaParse Free plan includes 10,000 credits/month; configured agentic tier budgeted at 10 credits/page.",70.0,,45.15599999995902,45.15599999995902,0.07485319999977946,cloud_client_only,,678.71484375,,
+llamaparse,D03,estimated,"LlamaParse Free plan includes 10,000 credits/month; configured agentic tier budgeted at 10 credits/page.",140.0,,39.64099999982864,39.64099999982864,0.07535269996151328,cloud_client_only,,678.71484375,,
+llamaparse,D04,estimated,"LlamaParse Free plan includes 10,000 credits/month; configured agentic tier budgeted at 10 credits/page.",120.0,,39.20299999974668,39.20299999974668,0.075719999615103,cloud_client_only,,678.71484375,,
+llamaparse,D05,estimated,"LlamaParse Free plan includes 10,000 credits/month; configured agentic tier budgeted at 10 credits/page.",220.0,,92.5,92.5,0.08597899973392487,cloud_client_only,,678.71484375,,

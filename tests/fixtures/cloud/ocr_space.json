@@ -1,0 +1,34 @@
+{
+  "page_offset": 0,
+  "chunk_pages": 1,
+  "response": {
+    "ParsedResults": [
+      {
+        "TextOverlay": {
+          "HasOverlay": true,
+          "Lines": [
+            {
+              "Words": [
+                {
+                  "WordText": "Benchmark",
+                  "Left": 10,
+                  "Top": 10,
+                  "Height": 12,
+                  "Width": 70
+                }
+              ]
+            }
+          ]
+        },
+        "ParsedText": "Benchmark PDF\n\n| Name | Value |\n| --- | --- |\n| alpha | 42 |\n",
+        "FileParseExitCode": 1,
+        "ErrorMessage": null,
+        "ErrorDetails": null
+      }
+    ],
+    "OCRExitCode": 1,
+    "IsErroredOnProcessing": false,
+    "ErrorMessage": null,
+    "ProcessingTimeInMilliseconds": "120"
+  }
+}

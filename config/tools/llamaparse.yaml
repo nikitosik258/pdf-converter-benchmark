@@ -1,0 +1,12 @@
+config:
+  mock: false
+  tier: agentic
+  version: "2026-09-07"
+  credits_per_page: 10
+  free_credits_per_month: 10000
+  assume_free_quota_available: true
+  resource_sample_interval: 0.1
+  timeout_seconds: 900
+  polling_interval_seconds: 1.0
+  max_poll_interval_seconds: 5.0
+  save_layout_images: true

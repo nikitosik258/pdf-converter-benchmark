@@ -1,0 +1,11 @@
+#! kustomization.yaml
+# Generated code, do not edit
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+    - 0-pdf-benchmark-namespace.yaml
+    - app-deployment.yaml
+    - app-expose.yaml
+    - app-service.yaml
+    - app-web-runtime-persistentVolumeClaim.yaml
+    - default-network-policy.yaml

@@ -1,0 +1,14 @@
+tool: docling
+pinned_version: "2.130.0"
+config:
+  do_ocr: true
+  ocr_languages: ["iso:ru", "iso:en"]
+  do_table_structure: true
+  table_mode: accurate
+  do_formula_enrichment: true
+  do_picture_classification: true
+  do_chart_extraction: true
+  generate_page_images: true
+  generate_picture_images: true
+  images_scale: 1.5
+  resource_sample_interval: 0.2

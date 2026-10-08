@@ -1,0 +1,11 @@
+﻿tool,chemistry_score,chemistry_detection_score,chemistry_structured_extraction_score,detected_objects,gt_objects,detected_linear_formulas,gt_linear_formulas,detected_structures,gt_structures,structured_extraction_denominator,included_in_overall
+pymupdf,82.432814478183,100.0,74.90402068311859,6,6,2,2,4,4,detected_objects_only,False
+pdfplumber,72.587548791529,100.0,60.83935541646896,6,6,2,2,4,4,detected_objects_only,False
+docling,73.448501590386,100.0,62.06928798626498,6,6,2,2,4,4,detected_objects_only,False
+pdfminer,82.587548791528,100.0,75.12506970218325,6,6,2,2,4,4,detected_objects_only,False
+mineru,47.395047906711,100.0,39.03598965979519,6,6,2,2,4,4,detected_objects_only,False
+ocr_space,64.057141039719,100.0,61.69046210307234,6,6,2,2,4,4,detected_objects_only,False
+nutrient,70.381657680873,100.0,57.68808240124694,6,6,2,2,4,4,detected_objects_only,False
+mindee,52.332710188652,100.0,44.00377517297715,6,6,2,2,4,4,detected_objects_only,False
+adobe_extract,69.903848066315,100.0,57.005497237592905,6,6,2,2,4,4,detected_objects_only,False
+llamaparse,69.804140207212,100.0,56.86305743887389,6,6,2,2,4,4,detected_objects_only,False

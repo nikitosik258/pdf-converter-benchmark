@@ -1,0 +1,95 @@
+{
+  "page_offset": 0,
+  "page_count": 1,
+  "result": {
+    "pages": [
+      {
+        "page_number": 1,
+        "width": 8.27,
+        "height": 11.69,
+        "lines": [
+          {
+            "content": "Azure text",
+            "polygon": [
+              0.8,
+              1.0,
+              6.0,
+              1.0,
+              6.0,
+              1.3,
+              0.8,
+              1.3
+            ]
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "row_count": 2,
+        "column_count": 2,
+        "bounding_regions": [
+          {
+            "page_number": 1,
+            "polygon": [
+              0.8,
+              3.0,
+              6.0,
+              3.0,
+              6.0,
+              5.0,
+              0.8,
+              5.0
+            ]
+          }
+        ],
+        "cells": [
+          {
+            "row_index": 0,
+            "column_index": 0,
+            "content": "A",
+            "kind": "columnHeader"
+          },
+          {
+            "row_index": 0,
+            "column_index": 1,
+            "content": "B",
+            "kind": "columnHeader"
+          },
+          {
+            "row_index": 1,
+            "column_index": 0,
+            "content": "1"
+          },
+          {
+            "row_index": 1,
+            "column_index": 1,
+            "content": "2"
+          }
+        ]
+      }
+    ],
+    "figures": [
+      {
+        "bounding_regions": [
+          {
+            "page_number": 1,
+            "polygon": [
+              0.8,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              9.0,
+              0.8,
+              9.0
+            ]
+          }
+        ],
+        "caption": {
+          "content": "Figure 1"
+        }
+      }
+    ]
+  }
+}

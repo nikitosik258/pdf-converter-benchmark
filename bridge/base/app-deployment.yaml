@@ -1,0 +1,74 @@
+#! app-deployment.yaml
+# Generated code, do not edit
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: app
+    namespace: pdf-benchmark
+    labels:
+        com.docker.compose.project: pdf-benchmark
+        com.docker.compose.service: app
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            com.docker.compose.project: pdf-benchmark
+            com.docker.compose.service: app
+    strategy:
+        type: Recreate
+    template:
+        metadata:
+            labels:
+                com.docker.compose.project: pdf-benchmark
+                com.docker.compose.service: app
+                com.docker.compose.network.default: "true"
+        spec:
+            restartPolicy: unless-stopped
+            containers:
+                - name: app
+                  image: pdf-benchmark-web:cpu
+                  imagePullPolicy: IfNotPresent
+                  env:
+                    - name: PDF_BENCHMARK_WEB_ADAPTER_TIMEOUT_SECONDS
+                      value: "5400"
+                    - name: PDF_BENCHMARK_WEB_ALLOW_CLOUD
+                      value: "false"
+                    - name: PDF_BENCHMARK_WEB_CLEANUP_INTERVAL_SECONDS
+                      value: "900"
+                    - name: PDF_BENCHMARK_WEB_DOCS_ENABLED
+                      value: "false"
+                    - name: PDF_BENCHMARK_WEB_DOCUMENT_TTL_SECONDS
+                      value: "86400"
+                    - name: PDF_BENCHMARK_WEB_EXECUTOR_WORKERS
+                      value: "2"
+                    - name: PDF_BENCHMARK_WEB_HOST
+                      value: "0.0.0.0"
+                    - name: PDF_BENCHMARK_WEB_LOG_LEVEL
+                      value: "INFO"
+                    - name: PDF_BENCHMARK_WEB_MAX_PAGES
+                      value: "300"
+                    - name: PDF_BENCHMARK_WEB_MAX_UPLOAD_BYTES
+                      value: "104857600"
+                    - name: PDF_BENCHMARK_WEB_PORT
+                      value: "8000"
+                    - name: PDF_BENCHMARK_WEB_PROJECT_ROOT
+                      value: "/opt/pdf-benchmark"
+                    - name: PDF_BENCHMARK_WEB_STORAGE_ROOT
+                      value: "/var/lib/pdf-benchmark/runtime"
+                  livenessProbe:
+                    exec:
+                        command: ['curl --fail --silent http://127.0.0.1:8000/api/v1/health']
+                    periodSeconds: 30
+                    initialDelaySeconds: 20
+                    timeoutSeconds: 5
+                    failureThreshold: 3
+                  ports:
+                    - name: app-8000
+                      containerPort: 8000
+                  volumeMounts:
+                    - name: var-lib-pdf-benchmark-runtime
+                      mountPath: /var/lib/pdf-benchmark/runtime
+            volumes:
+                - name: var-lib-pdf-benchmark-runtime
+                  persistentVolumeClaim:
+                    claimName: app-web-runtime

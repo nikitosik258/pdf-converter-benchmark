@@ -1,0 +1,335 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-10-08T05:26:01.892355+00:00",
+  "experiment_id": "20261004T095716Z_s42_2334c932",
+  "status": "pass",
+  "checks_passed": 50,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "analysis_manifest_complete",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "correct_experiment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "input_hashes_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "no_acquisition_or_network",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "analysis_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "expected_table_count",
+      "passed": true,
+      "detail": {
+        "count": 24,
+        "expected": 24
+      }
+    },
+    {
+      "check": "table_row_counts_recorded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "seventeen_manifest_figures",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "expected_figure_names",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:01_overall.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:01_overall.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:02_categories_ci.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:02_categories_ci.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:03_radar.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:03_radar.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:04_heatmap.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:04_heatmap.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:05_speed.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:05_speed.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:06_resources.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:06_resources.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:07_cost.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:07_cost.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:08_quality_speed.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:08_quality_speed.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:09_quality_cost.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:09_quality_cost.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:10_document_text.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:10_document_text.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:11_document_categories.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:11_document_categories.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:12_category_difficulty.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:12_category_difficulty.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:13_groups.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:13_groups.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:14_object_distributions.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:14_object_distributions.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:15_document_sensitivity.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:15_document_sensitivity.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:16_paired_differences.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:16_paired_differences.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:17_speed_by_document.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure:17_speed_by_document.svg",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "artifact:report.html",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "artifact:report.md",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "artifact:requirements-analysis-pinned.txt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "artifact:pytest_results.xml",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "report_describes_repaired_baseline",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdf_atlas_seventeen_pages",
+      "passed": true,
+      "detail": {
+        "pages": 17
+      }
+    },
+    {
+      "check": "safe_suite_passed",
+      "passed": true,
+      "detail": {
+        "tests": 314,
+        "failures": 0,
+        "errors": 0
+      }
+    }
+  ],
+  "artifact_sha256": {
+    "analysis_manifest.json": "27b76d0dc6e0971b23d348dbe591716265dced1ddafe1e97d0f94896b08e2736",
+    "figures/01_overall.png": "3fafc53b967f9c0ef835663de42c42f201ecba039f1bf3e23f1f5861aac430b0",
+    "figures/01_overall.svg": "aae153f81ce5777ea1a16cfce59d7a5982c68070cf47e99c6a51fac564c838b6",
+    "figures/02_categories_ci.png": "3f10f14a7b4e9b054e18449eb29b8e5547af85f53f16fe0f72a403bdb3bd1db2",
+    "figures/02_categories_ci.svg": "dd289c081246cdc127c315b264aa8cec7952a5fd3cba0f1861446fdb2b68da59",
+    "figures/03_radar.png": "ce3eb7388e4188e077eed6d508aaec0cc57c4a04ad8666112c8e7a148c40d5da",
+    "figures/03_radar.svg": "56158f9c46222cddde1d16e9f85f1449aedcd7f3129cc27b6fee90b6ca6b60d1",
+    "figures/04_heatmap.png": "445862f74304042d66574f7ead2e01d328fcafa57ee1defe1dcaef53ecaccbef",
+    "figures/04_heatmap.svg": "2b9da0390487e49e7616c0adc40b4c31b59ffc265afb82ae126ba5eb15f83651",
+    "figures/05_speed.png": "f0d0e47e277ebf502369039d316fb35a1c7f5e1d4a6156c515d8066a25a486c2",
+    "figures/05_speed.svg": "420d559c92b3c57487fe7ce25bd98359cd0cb3fa6396bec218a843d8ef799df4",
+    "figures/06_resources.png": "62b1ce630200b009f5b7a41aeeef7e9532d6e3a39ad386dccc379ff2f5cca29f",
+    "figures/06_resources.svg": "2c4dbef8552ea39822fb395fb2532a19ab2ae14ec5cf1d357af1f91a06457eea",
+    "figures/07_cost.png": "efb475d0fb5900bf80360dc7c9dd1f639a9849c5490a5b435e88ce3018dccfd7",
+    "figures/07_cost.svg": "ded1e5831391709a6d469235e789ab4a037313a74f2acfa23dfbab3be7a5833e",
+    "figures/08_quality_speed.png": "78dcbac27a0dde03ce500446d5e5950d2c6316f2f2c849dd914b6f1c8b2e9cbe",
+    "figures/08_quality_speed.svg": "c9b7c853289ed601e9321e018407ceb851f74d904de6701cecdbaf2bb4a065a0",
+    "figures/09_quality_cost.png": "9b727cc066b9e6ee12d691b5840470f0b300629aa9c5b75c4d2271e3af7819f2",
+    "figures/09_quality_cost.svg": "5fe4e1eab4534bfc3dca06a3554283ab819b75a1c9b5818023e49795a46db927",
+    "figures/10_document_text.png": "e7c15e3a9fd79a8677df99ccdc24a78458bebf45322491489ce3eccd206fcbfa",
+    "figures/10_document_text.svg": "a099386bd910398a02b8f3949f5de3588e9f92293e47a555e3f83aef51cb8826",
+    "figures/11_document_categories.png": "5853533c8389a16393610b51206924a5caefd140c0e974e493f3fc69e568a128",
+    "figures/11_document_categories.svg": "2adfbf2196556e472ea992951f93b8d6a86580fe55b719a4f5056dc3a82ccdc7",
+    "figures/12_category_difficulty.png": "55b2a8c1e8c0e2fa231cc9fbdbc817f9801b063f667ce6be39e03eb4f4e10472",
+    "figures/12_category_difficulty.svg": "59a647f4c3ada7e8bdefb708275dec92d854702784dd3c47ba94ee3a1000c3d1",
+    "figures/13_groups.png": "c7de86a593533779f561837289b0384c356838b75407ef46f801e0da196cf9de",
+    "figures/13_groups.svg": "352d289e6f5733726ccd70ea82ae2ac945c17e12310096c512da7d45becede1c",
+    "figures/14_object_distributions.png": "6eedb5f97786dd6369564dcf03a8c8fabbd3c195e398738e78af2148f4c6be0b",
+    "figures/14_object_distributions.svg": "407705146c098e0a60e6e6cb4b3a67b73a287de774cb606fb457aa4b263359c6",
+    "figures/15_document_sensitivity.png": "39b47cb5455b25d851248f9ba2945a1b462b36d404a665795bf68bfcb849221e",
+    "figures/15_document_sensitivity.svg": "c8f9f24280dd463cebe44d2dfba08c48a5a6cef8aa0d8a3931d0c7eefba9cdc3",
+    "figures/16_paired_differences.png": "5901462f6978de132b6ad821ce09ab59ee7beec53e721daddd300a5a8dcffb37",
+    "figures/16_paired_differences.svg": "049ab1bed573acae001684c70cff1d43e487d1e1b565d43cc127dd07415580de",
+    "figures/17_speed_by_document.png": "805bc09ba6c461075a4497ad6ce87c1abfee8b6e35cd45e937084e60dfda2deb",
+    "figures/17_speed_by_document.svg": "0252258f02bf36b2fd82fbdffb4d2d568e47148b0d4b4b7dccd6ab539d614a27",
+    "figures.pdf": "39a9a0a3a3e216f6cf3ebee12b500094d8e823391b2dd277d2fbdf121e9fce49",
+    "pytest_results.xml": "ddd7df920842b7194fea6d4149b6e921147d66f222ecd512df617fc23f61764a",
+    "report.html": "b6d245e0dad1a2396ae5938b5a962068bb30f089b16d35f2155d7940e5a39bb4",
+    "report.md": "3cd9c6519f8ab729aa749e113b818e1ad470a6b5f8852e68490c1812192c23fd",
+    "requirements-analysis-pinned.txt": "29ffdc9a6e9ea0d59a3fafda969b11548510c8c990870e13b8ac115daee898a5",
+    "tables/category_difficulty.csv": "057eadd3c9a0c9f55504413de89c60647cf8669275f30d0fa5bf1bcd190074ee",
+    "tables/category_uncertainty.csv": "080e833d680fd976d69c35997ddbdb6069086fabbea5b8f6f071a90e972c275e",
+    "tables/chemistry_detection_extraction.csv": "043ea95218a0376508ac0180d9b3863d6c9308944690f1d2e4be7738c3171b4e",
+    "tables/correlations.csv": "af77d6e014f1dfaf52415772469f4b32942eb746673adfac6f9001a322893e8e",
+    "tables/document_category_scores.csv": "61effb7a321423ac93015b3ad50a8c8e06db0ba960031cb9606371af4055875e",
+    "tables/document_dependence.csv": "14feaae2cc418cbf240edf613438bf515883811f44bd27b310eea7ac7872c58c",
+    "tables/document_diagnostics.csv": "de12832fb4c3446e19d9df32bad982a2f206d8da01030b96da97d6f94312d803",
+    "tables/document_difficulty.csv": "71823170176f8ef9868492124e685c52dce309cf8fe71ddfe38a2307dca3fcf0",
+    "tables/ground_truth_coverage.csv": "e4f8eff671e6f34b28c6e3fc7e7eeccc0759bea3f584927c7d9e45bb906ecc76",
+    "tables/group_scores.csv": "a79748b3a4c7953bb454e94d2b6ee030047081fb8779ea535806cbf040ed5c35",
+    "tables/leave_one_document_out.csv": "3ed16d6340523f59b88915d952cd3cd1255735ee0f8abe6edceaa255ecaeedcb",
+    "tables/metric_diagnostics.csv": "bba9d380ed18822176fdb0c2476262fb1a8acecd0f4d5582d018412076955afa",
+    "tables/object_scores.csv": "57f247be5c1c523d7aaf9245ba0c0cf7609e0434e1762610cf9bf83bfe50f405",
+    "tables/object_variance.csv": "70d0a10db9a6990991a2d8b90f1d926d9ad9245ea5a8d603d423e47c9d86ec3d",
+    "tables/operational_provenance.csv": "e5bdf6a891cd71941918a1a8985b20aae72458e758e7d11b55578ac5cadeafa5",
+    "tables/pair_operational.csv": "1029045a3d518b7e8e40eb294ae69ffef4d35fc0c74ec6e26224738297da1a5e",
+    "tables/paired_category_differences.csv": "d47ce407be648b09363fde9cc31713e58707dc8ae1eb9642cbc22b755394b47c",
+    "tables/paired_group_differences.csv": "ce3bfa651c38d94dcc037ce877582a619ea89b26183dd40db1ce4245ab879131",
+    "tables/pareto_frontiers.csv": "3195d003725964b0a3f23646869a3caf6673164c66916ed6224f16aedc2460a2",
+    "tables/quality_issues.csv": "08013adbc396e6c1e47ee6e8ac031d4b2f528ea16e2d5c5243a834b5319a11cc",
+    "tables/speed_sensitivity.csv": "ca73823c08ea0279c42669fbde568ce263d384e4e5aecf7c1fcc55c0180b48e1",
+    "tables/standardized_object_counts.csv": "598db43f92782f12a86ca7bc71e4a2ebed5047f048d92507aa7bd45c8dfc302c",
+    "tables/tool_scores.csv": "8c02a2c6e0f8fc9dcabf74b65416fdd7af78d882b0f75d5e07a4713130c723ef",
+    "tables/versions.csv": "9d6244bf627f95d4a6a9835a1a9e791f24bfb8f3df6ca152303cf14b191825a2"
+  }
+}

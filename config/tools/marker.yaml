@@ -1,0 +1,13 @@
+tool: marker
+pinned_version: "2.0.0"
+config:
+  mode: balanced
+  output_format: json
+  use_llm: false
+  disable_ocr: false
+  force_ocr: false
+  ocr_inline_math: true
+  disable_image_extraction: false
+  keep_pageheader_in_output: true
+  keep_pagefooter_in_output: true
+  resource_sample_interval: 0.2

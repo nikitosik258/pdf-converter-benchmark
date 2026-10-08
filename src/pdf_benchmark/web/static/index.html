@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PDF Converter Lab</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">PDF benchmark · demonstration</p>
+          <h1>PDF Converter Lab</h1>
+        </div>
+        <div id="api-state" class="api-state" aria-live="polite">Подключение к API…</div>
+      </header>
+
+      <form id="conversion-form" class="control-panel" aria-labelledby="conversion-title" novalidate onsubmit="window.pdfBenchmarkStartConversion(event)">
+        <div class="panel-heading">
+          <h2 id="conversion-title">Новая конвертация</h2>
+          <p>Загрузите PDF, выберите один доступный инструмент и запустите обработку.</p>
+        </div>
+        <div class="control-grid">
+          <label class="file-picker" for="pdf-file">
+            <span class="field-label">PDF-файл</span>
+            <span id="file-label" class="file-label">Выберите файл</span>
+            <input id="pdf-file" type="file" accept="application/pdf,.pdf" />
+          </label>
+          <label class="field" for="converter-select">
+            <span class="field-label">Converter</span>
+            <select id="converter-select" disabled>
+              <option>Загрузка списка…</option>
+            </select>
+          </label>
+          <div class="action-field">
+            <span class="field-label">Запуск</span>
+            <button id="convert-button" class="primary" type="submit" disabled>
+              Convert PDF
+            </button>
+          </div>
+        </div>
+        <p id="converter-note" class="muted" aria-live="polite"></p>
+      </form>
+
+      <section id="status-panel" class="status-panel is-idle" aria-live="polite">
+        <div class="status-main">
+          <span id="status-indicator" class="status-dot" aria-hidden="true"></span>
+          <div>
+            <strong id="status-title">Готово к загрузке</strong>
+            <p id="status-message">Выберите PDF и converter.</p>
+          </div>
+        </div>
+        <dl class="timing">
+          <div><dt>Статус</dt><dd id="status-value">idle</dd></div>
+          <div><dt>Время обработки</dt><dd id="processing-time">—</dd></div>
+        </dl>
+      </section>
+
+      <section id="error-panel" class="error-panel" hidden role="alert">
+        <strong id="error-title">Ошибка</strong>
+        <p id="error-message"></p>
+      </section>
+
+      <section id="workspace" class="workspace" hidden aria-label="Результат конвертации">
+        <div class="workspace-toolbar">
+          <div>
+            <h2 id="document-title">Результат</h2>
+            <p id="document-meta" class="muted"></p>
+          </div>
+          <div class="downloads">
+            <a id="download-txt" class="button secondary" href="#" download>Скачать TXT</a>
+            <a id="download-json" class="button secondary" href="#" download>Скачать JSON</a>
+          </div>
+        </div>
+
+        <div class="result-grid">
+          <section class="source-pane" aria-labelledby="source-title">
+            <div class="pane-title"><h3 id="source-title">Исходный PDF</h3></div>
+            <iframe id="pdf-viewer" title="Исходный PDF"></iframe>
+          </section>
+
+          <section class="output-pane" aria-labelledby="output-title">
+            <div class="pane-title"><h3 id="output-title">Полученный результат</h3></div>
+            <div class="tabs" role="tablist" aria-label="Тип результата">
+              <button class="tab is-active" data-tab="text" role="tab" aria-selected="true">Text</button>
+              <button class="tab" data-tab="tables" role="tab" aria-selected="false">Tables</button>
+              <button class="tab" data-tab="formulas" role="tab" aria-selected="false">Formulas</button>
+              <button class="tab" data-tab="images" role="tab" aria-selected="false">Images</button>
+              <button class="tab" data-tab="raw" role="tab" aria-selected="false">Raw JSON</button>
+            </div>
+            <div id="tab-content" class="tab-content" tabindex="0"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/static/app.js"></script>
+  </body>
+</html>

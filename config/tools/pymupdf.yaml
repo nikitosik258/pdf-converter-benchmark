@@ -1,0 +1,13 @@
+tool: pymupdf
+pinned_version: "1.28.2"
+config:
+  sort: true
+  ocr_if_no_text: true
+  ocr_languages: "rus+eng"
+  ocr_dpi: 300
+  min_native_text_chars: 20
+  find_tables: true
+  table_use_layout: true
+  table_union: false
+  table_refine: false
+  resource_sample_interval: 0.1

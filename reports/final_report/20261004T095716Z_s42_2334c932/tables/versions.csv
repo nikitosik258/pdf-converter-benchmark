@@ -1,0 +1,11 @@
+﻿tool,deployment,technology,installed_version,model_versions
+pymupdf,local,classic_local,1.28.2,"{""PyMuPDF"": ""1.28.2""}"
+pdfplumber,local,classic_local,0.11.10,"{""pdfplumber"": ""0.11.10"", ""pdfminer.six"": ""20260107""}"
+docling,local,ml_local,2.130.0,"{""docling"": ""2.130.0"", ""docling-core"": ""2.99.0"", ""docling-ibm-models"": ""4.0.3"", ""torch"": ""2.14.0+cu130""}"
+pdfminer,local,classic_local,20260107,"{""pdfminer.six"": ""20260107""}"
+mineru,local,ml_local,4.0.0,"{""mineru"": ""4.0.0"", ""docvortex"": ""0.5.7"", ""onnxruntime"": ""1.30.0"", ""torch"": ""2.14.0+cu130""}"
+ocr_space,cloud,cloud_unspecified,2.32.5,"{""ocr_engine"": ""3"", ""endpoint"": ""https://api.ocr.space/parse/image""}"
+nutrient,cloud,cloud_unspecified,3.1.0,"{""product"": ""Nutrient Data Extraction API"", ""endpoint"": ""/extraction/parse"", ""mode"": ""understand"", ""output_format"": ""spatial""}"
+mindee,cloud,cloud_unspecified,5.3.1,"{""product"": ""Mindee V2 OCR utility / Raw Text OCR"", ""model_id"": ""58e6c937-4df2-44bd-be3f-32375784ff40""}"
+adobe_extract,cloud,cloud_unspecified,4.2.0,{}
+llamaparse,cloud,cloud_unspecified,2.16.0,"{""product"": ""LlamaParse v2 Parse"", ""tier"": ""agentic"", ""version"": ""2026-09-07""}"

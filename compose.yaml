@@ -1,0 +1,67 @@
+name: pdf-benchmark
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pdf-benchmark-web:cpu
+    restart: unless-stopped
+    init: true
+    env_file:
+      - path: ./deploy/.env.server
+        required: false
+    environment:
+      PDF_BENCHMARK_WEB_PROJECT_ROOT: /opt/pdf-benchmark
+      PDF_BENCHMARK_WEB_STORAGE_ROOT: /var/lib/pdf-benchmark/runtime
+      PDF_BENCHMARK_WEB_HOST: 0.0.0.0
+      PDF_BENCHMARK_WEB_PORT: "8000"
+    volumes:
+      - web-runtime:/var/lib/pdf-benchmark/runtime
+    expose:
+      - "8000"
+    ports:
+      # Safe default for a direct local/Docker Desktop demonstration.  Remove
+      # this mapping when the optional Caddy profile publishes HTTPS instead.
+      - "127.0.0.1:8001:8000"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://127.0.0.1:8000/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  caddy:
+    image: caddy:2.10-alpine
+    profiles: ["proxy"]
+    restart: unless-stopped
+    depends_on:
+      app:
+        condition: service_healthy
+    environment:
+      # `localhost` keeps `docker compose config` and a CPU-only local run
+      # usable. Set a real public DNS name before enabling this profile.
+      APP_DOMAIN: ${APP_DOMAIN:-localhost}
+      ACME_EMAIL: ${ACME_EMAIL:-admin@example.invalid}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+volumes:
+  web-runtime:
+  caddy-data:
+  caddy-config:
