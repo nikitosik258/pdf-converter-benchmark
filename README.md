@@ -45,7 +45,6 @@ pdf-benchmark-api
 
 - `reports/statistical_analysis/` — таблицы, графики и статистический анализ;
 - `reports/error_analysis/` — примеры характерных ошибок;
-- `reports/final_report/` — полный отчёт и Word-версии;
 - `reports/benchmark_control/` — контроль воспроизводимости.
 
 Большие кэши обработок намеренно исключены из Git через `.gitignore`.
