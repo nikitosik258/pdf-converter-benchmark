@@ -1,53 +1,51 @@
-# Codex handoff package
+# PDF Converter Benchmark
 
-Files:
+Исследовательский проект для сравнения пяти облачных сервисов и пяти локальных библиотек, которые преобразуют технические PDF в текст и структурированные данные.
 
-- `CODEX_CONTEXT.md` — full technical/project context
-- `AGENTS.md` — persistent repository operating rules for Codex
-- `FIRST_CODEX_PROMPT.md` — first prompt to send to Codex
+Benchmark оценивает шесть типов содержимого: текст, таблицы, математические формулы, химические формулы, изображения и диаграммы. В проекте есть воспроизводимый набор тестов, количественные метрики, результаты анализа и web-интерфейс для демонстрации конвертеров.
 
-Recommended placement in the repository root:
+## Инструменты
 
-```text
-C:\Users\Nocomp\Desktop\nlp\CODEX_CONTEXT.md
-C:\Users\Nocomp\Desktop\nlp\AGENTS.md
-C:\Users\Nocomp\Desktop\nlp\FIRST_CODEX_PROMPT.md
-```
+- Локальные: PyMuPDF, pdfplumber, pdfminer.six, Docling, MinerU.
+- Облачные: OCR.Space, Nutrient, Mindee, Adobe Extract, LlamaParse.
 
-Then open the repository in Codex and paste the contents of `FIRST_CODEX_PROMPT.md`.
+## Быстрый запуск через Docker
 
-Do not include credentials or secret values in these files.
-
-## FastAPI backend
-
-The FastAPI backend is documented in
-`reports/PROMPT17_FASTAPI_BACKEND.md`. After installing the `web` extra, run:
+Нужен Docker Desktop. В PowerShell из папки проекта выполните:
 
 ```powershell
-.venv\Scripts\python.exe -m pip install -e ".[web]"
-.venv\Scripts\pdf-benchmark-api.exe
+docker compose up --build -d
 ```
 
-Swagger UI is available at `http://127.0.0.1:8000/docs`. Cloud converters are
-disabled by default and require server-side environment variables.
+После запуска откройте [http://127.0.0.1:8001](http://127.0.0.1:8001). Остановить приложение можно командой:
 
-The browser interface is available at `http://127.0.0.1:8000/`; its details
-are in `reports/PROMPT18_WEB_INTERFACE.md`.
+```powershell
+docker compose down
+```
 
-## Docker deployment
+## Локальный запуск без Docker
 
-CPU/GPU Docker images, Compose, HTTPS reverse proxy configuration and Ubuntu /
-Docker Desktop instructions are in `reports/PROMPT19_DOCKER_DEPLOYMENT.md`.
+Нужен Python 3.12. Создайте окружение, установите web-зависимости и запустите сервер:
 
-## Research outputs
+```powershell
+py -3.12 -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e ".[web,pymupdf,pdfplumber,pdfminer]"
+pdf-benchmark-api
+```
 
-The current reproducible benchmark baseline is
-`20261004T095716Z_s42_2334c932`. The main report materials are stored under:
+Интерфейс откроется по адресу [http://127.0.0.1:8000](http://127.0.0.1:8000), документация API — [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-- `reports/statistical_analysis/` — quantitative comparison and figures;
-- `reports/error_analysis/` — deterministic error examples;
-- `reports/final_report/` — the full report, including Word editions;
-- `reports/benchmark_control/` — quality-control evidence.
+Облачные конвертеры требуют ключей API в переменных окружения; ключи не должны добавляться в Git.
 
-Large cached adapter outputs are deliberately excluded from Git. They can be
-recreated from compatible saved data or retained separately as an archive.
+## Результаты исследования
+
+Актуальный baseline: `20261004T095716Z_s42_2334c932`.
+
+- `reports/statistical_analysis/` — таблицы, графики и статистический анализ;
+- `reports/error_analysis/` — примеры характерных ошибок;
+- `reports/final_report/` — полный отчёт и Word-версии;
+- `reports/benchmark_control/` — контроль воспроизводимости.
+
+Большие кэши обработок намеренно исключены из Git через `.gitignore`.
